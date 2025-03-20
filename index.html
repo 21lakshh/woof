@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawsGuard 🐾 - Stray Dog Rescue</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">PawsGuard</div>
+        <nav class="nav-links">
+            <a href="#report">Report</a>
+            <a href="#adopt">Adopt</a>
+            <a href="#hotspots">Hotspots</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Save a Life Today</h1>
+            <p class="hero-subtitle" style="font-size: 1.5rem;">Your Report Can Make a Difference</p>
+            <div class="stats-grid">
+                <div class="stat-card animate delay-1">
+                    <i class="fas fa-paw"></i>
+                    <h3>12,543+</h3>
+                    <p>Dogs Rescued</p>
+                </div>
+                <div class="stat-card animate delay-2">
+                    <i class="fas fa-home"></i>
+                    <h3>8,921+</h3>
+                    <p>Successful Adoptions</p>
+                </div>
+                <div class="stat-card animate delay-3">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>74</h3>
+                    <p>Cities Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="report-section" id="report">
+        <form class="report-form animate">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Report Stray Dog</h2>
+            <div class="form-group">
+                <input type="text" id="location" required>
+                <label for="location">Location</label>
+            </div>
+            <div class="form-group">
+                <select id="condition" required>
+                    <option value=""></option>
+                    <option value="healthy">Healthy</option>
+                    <option value="injured">Injured/Sick</option>
+                    <option value="emergency">Emergency</option>
+                </select>
+                <label for="condition">Dog's Condition</label>
+            </div>
+            <div class="form-group">
+                <input type="file" id="photo" accept="image/*" required>
+                <label for="photo">Upload Photo</label>
+            </div>
+            <div class="form-group">
+                <textarea id="notes" rows="4"></textarea>
+                <label for="notes">Additional Notes</label>
+            </div>
+            <button style="background: var(--secondary); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; cursor: pointer; width: 100%; transition: 0.3s;" 
+                    onmouseover="this.style.transform='scale(1.02)'" 
+                    onmouseout="this.style.transform='scale(1)'">
+                Submit Report
+            </button>
+        </form>
+    </section>
+
+    <section class="features">
+        <div class="feature-grid">
+            <div class="feature-card animate delay-1">
+                <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h3>Real-time Tracking</h3>
+                <p>AI-powered hotspot detection with live updates</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-content">
+            <div class="about-text animate">
+                <h2>Our Mission</h2>
+                <p>Since 2015, PawsGuard has been at the forefront of animal rescue operations. Our network of 500+ volunteers and 200+ partner clinics work round the clock to ensure every stray finds safety and care.</p>
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <i class="fas fa-medkit"></i>
+                        <div>
+                            <h4>24/7 Medical Support</h4>
+                            <p>138 veterinary partners nationwide</p>
+                        </div>
+                    </div>
+                    <div class="impact-card">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Community Driven</h4>
+                            <p>Over 50,000 active reporters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image animate delay-1">
+                <img src="resources/myths-about-rescue-dogs.jpg.webp" alt="Rescue Team">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Locations</h3>
+                <div class="location-grid">
+                    <div class="location-card">
+                        <i class="fas fa-map-pin"></i>
+                        <p>Mumbai Headquarters<br><span>24/7 Rescue Center</span></p>
+                    </div>
+                    <div class="location-card">
+                        <i class="fas fa-map-pin"></i>
+                        <p>Delhi Operations<br><span>Adoption Hub</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
+                    <a href="#volunteer"><i class="fas fa-hands-helping"></i> Volunteer</a>
+                    <a href="#partners"><i class="fas fa-handshake"></i> Partners</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="newsletter">
+                    <input type="email" placeholder="Join our newsletter">
+                    <button><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 PawsGuard. All rights reserved. Made with ❤️ for animals</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
