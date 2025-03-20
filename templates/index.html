@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawsGuard 🐾 - Stray Dog Rescue</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel = "stylesheet" href = "static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add this line to include Marked.js -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/your-real-kit-code.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -43,37 +47,46 @@
         </div>
     </section>
 
-    <section class="report-section" id="report">
-        <form class="report-form animate">
-            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">Report Stray Dog</h2>
-            <div class="form-group">
-                <input type="text" id="location" required>
-                <label for="location">Location</label>
-            </div>
-            <div class="form-group">
-                <select id="condition" required>
-                    <option value=""></option>
-                    <option value="healthy">Healthy</option>
-                    <option value="injured">Injured/Sick</option>
-                    <option value="emergency">Emergency</option>
-                </select>
-                <label for="condition">Dog's Condition</label>
-            </div>
-            <div class="form-group">
-                <input type="file" id="photo" accept="image/*" required>
-                <label for="photo">Upload Photo</label>
-            </div>
-            <div class="form-group">
-                <textarea id="notes" rows="4"></textarea>
-                <label for="notes">Additional Notes</label>
-            </div>
-            <button style="background: var(--secondary); color: white; padding: 1rem 2rem; border: none; border-radius: 10px; cursor: pointer; width: 100%; transition: 0.3s;" 
-                    onmouseover="this.style.transform='scale(1.02)'" 
-                    onmouseout="this.style.transform='scale(1)'">
-                Submit Report
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            
+        <!-- Upload Image Card -->
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
+            <h2 class="text-xl font-semibold text-purple-400 mb-4">📤 Upload Image</h2>
+            
+            <button id="upload-btn" class="w-full py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-md transition-all">
+                📸 Click to Upload
             </button>
-        </form>
-    </section>
+            
+            <input type="file" id="image-upload" accept="image/*" class="hidden" />
+            
+            <div id="image-container" class="hidden mt-4">
+                <img id="display-image" src="" alt="Uploaded image" class="w-full rounded-lg shadow-lg" />
+            </div>
+        </div>
+
+        <!-- Ask Question Card -->
+        <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
+            <h2 class="text-xl font-semibold text-blue-400 mb-4">💬 Ask Question</h2>
+            <textarea id="query-input" rows="4" placeholder="Enter your question about the image"
+                class="w-full p-3 bg-gray-800 text-gray-300 rounded-lg shadow"></textarea>
+            <button id="submit-query" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-3 transition-all">
+                🚀 Submit Query
+            </button>
+        </div>
+    </div>
+    
+    <!-- Model Response -->
+    <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
+        <h2 class="text-xl font-semibold text-green-400">🤖 Llama-3.2-90b-vision Response</h2>
+        <div id="response-container" class="hidden mt-4 bg-gray-800 p-4 rounded text-gray-300"></div>
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-container" class="hidden mt-8 p-4 bg-red-500 text-white rounded">
+        <p id="error-text"></p>
+    </div>
+</div>
+
 
     <section class="features">
         <div class="feature-grid">
@@ -108,7 +121,7 @@
                 </div>
             </div>
             <div class="about-image animate delay-1">
-                <img src="resources/myths-about-rescue-dogs.jpg.webp" alt="Rescue Team">
+                <img src="static/images/myths-about-rescue-dogs.jpg.webp" alt="Rescue Team">
             </div>
         </div>
     </section>
@@ -154,6 +167,7 @@
             <p>© 2023 PawsGuard. All rights reserved. Made with ❤️ for animals</p>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="static/script.js"></script>
+    
 </body>
 </html>

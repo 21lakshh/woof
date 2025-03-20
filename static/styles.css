@@ -72,7 +72,7 @@ body {
 .hero {
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
-                url('resources/VIER\ PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg') center/cover;
+    url("images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg") center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
