@@ -25,7 +25,6 @@ def classify_dog_condition(image_path, additional_info=""):
     - 🟡 Mildly Injured/Sick
     - 🟠 Moderately Injured/Sick
     - 🔴 Critical Condition
-    - ⚠️ Aggressive Behavior
     """
     try:
         # Read and encode the image
