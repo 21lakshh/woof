@@ -19,13 +19,12 @@ if not GROQ_API_KEY:
     raise ValueError("GROQ API KEY is not set in the .env file")
 
 def classify_dog_condition(image_path, additional_info=""):
-    """                                 
+    """
     Analyzes the uploaded dog image and returns a condition classification:
     - 🟢 Healthy
     - 🟡 Mildly Injured/Sick
     - 🟠 Moderately Injured/Sick
     - 🔴 Critical Condition
-    - ⚠️ Aggressive Behavior
     """
     try:
         # Read and encode the image
