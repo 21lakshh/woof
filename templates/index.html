@@ -11,15 +11,18 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/your-real-kit-code.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 </head>
 <body>
     <header class="header">
-        <div class="logo">PawsGuard</div>
+        <div class="logo">Woof🐾 </div>
         <nav class="nav-links">
             <a href="#report">Report</a>
-            <a href="#adopt">Adopt</a>
+            <a href="/static/adoption_new.html">Adopt</a>
             <a href="#hotspots">Hotspots</a>
-            <a href="#about">About</a>
+            <a href="#about">Donate</a>
+            <a href="#testimonials">Testimonials</a>
         </nav>
     </header>
 
@@ -47,134 +50,893 @@
         </div>
     </section>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+    <!-- Report Section -->
+    <div class="w-full bg-[#395a7f] py-16" id="report">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#e9ecee] mb-8 text-center">🐾 Report a Stray Dog</h2>
             
-        <!-- Upload Image Card -->
-        <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
-            <h2 class="text-xl font-semibold text-purple-400 mb-4">📤 Upload Image</h2>
-            
-            <button id="upload-btn" class="w-full py-3 bg-purple-500 hover:bg-purple-600 text-white font-bold rounded-md transition-all">
-                📸 Click to Upload
-            </button>
-            
-            <input type="file" id="image-upload" accept="image/*" class="hidden" />
-            
-            <div id="image-container" class="hidden mt-4">
-                <img id="display-image" src="" alt="Uploaded image" class="w-full rounded-lg shadow-lg" />
+            <!-- Main Report Container -->
+            <div class="bg-[#e9ecee]/95 backdrop-blur-md rounded-xl shadow-lg border border-[#6e9fc1]/20 overflow-hidden">
+                <!-- Input Section -->
+                <div class="p-6 space-y-6">
+                    <!-- Location Input -->
+                    <div class="flex gap-3">
+                        <div class="flex-1">
+                            <label class="block text-[#395a7f] text-sm font-medium mb-2">Location</label>
+                            <input 
+                                id="location-input"
+                                type="text" 
+                                placeholder="Enter location or use current location"
+                                class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f]"
+                                readonly
+                            />
+                            <!-- Add a hidden input for coordinates -->
+                            <input type="hidden" id="coordinates-input">
+                            <!-- Location status message -->
+                            <p id="location-status" class="text-sm text-[#6e9fc1] mt-2"></p>
+                        </div>
+                        <button 
+                            type="button"
+                            onclick="getLocation()"
+                            id="detect-location"
+                            class="px-4 bg-[#6e9fc1] hover:bg-[#395a7f] text-white rounded-xl transition-all flex items-center justify-center group"
+                            title="Use current location"
+                        >
+                            <i id="location-icon" class="fas fa-location-dot text-xl group-hover:animate-pulse"></i>
+                            <i id="location-loader" class="fas fa-circle-notch animate-spin text-xl hidden"></i>
+                        </button>
+                    </div>
+
+                    <!-- Upload Image Section -->
+                    <div>
+                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Photos</label>
+                        <div class="flex items-center gap-4">
+                            <button id="upload-btn" 
+                                class="flex-1 py-4 px-6 bg-gradient-to-r from-[#395a7f] to-[#6e9fc1] hover:from-[#6e9fc1] hover:to-[#395a7f] text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg">
+                                <i class="fas fa-camera text-xl"></i>
+                                <span>Upload Images</span>
+                            </button>
+                            <input type="file" id="image-upload" accept="image/*" multiple class="hidden" />
+                        </div>
+                    </div>
+
+                    <!-- Image Preview Grid -->
+                    <div id="image-container" class="hidden">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- Image previews will be added here dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Condition -->
+                    <div>
+                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Condition</label>
+                        <select class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f]">
+                            <option value="">Select condition</option>
+                            <option value="healthy">Healthy</option>
+                            <option value="injured">Injured</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+
+                    <!-- Description Input -->
+                    <div>
+                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Additional Details</label>
+                        <textarea 
+                            id="query-input" 
+                            rows="4" 
+                            placeholder="Describe the situation, animal's behavior, or any other relevant details..."
+                            class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f] resize-none"
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                        id="submit-query" 
+                        class="w-full py-4 bg-gradient-to-r from-[#395a7f] to-[#6e9fc1] hover:from-[#6e9fc1] hover:to-[#395a7f] text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg"
+                    >
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Submit Report</span>
+                    </button>
+
+                    <!-- Helper Text -->
+                    <div class="flex items-start gap-3 p-4 bg-[#a1cae9]/20 rounded-xl">
+                        <i class="fas fa-info-circle text-[#395a7f] mt-1"></i>
+                        <p class="text-[#395a7f] text-sm">
+                            Your report helps us locate and rescue stray animals efficiently. We'll contact you for any additional information needed.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Response Section -->
+                <div id="response-container" class="hidden border-t border-[#6e9fc1]/20">
+                    <div class="p-6 space-y-4">
+                        <h3 class="text-xl font-semibold text-[#395a7f] flex items-center gap-2">
+                            <i class="fas fa-comment-dots"></i>
+                            Response
+                        </h3>
+                        <div class="bg-white p-4 rounded-xl text-[#395a7f]">
+                            <!-- AI responses will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-container" class="hidden">
+                    <div class="p-6 bg-red-500/10 border-t border-red-500/20">
+                        <div class="flex items-start gap-3">
+                            <i class="fas fa-exclamation-circle text-red-400 mt-1"></i>
+                            <p id="error-text" class="text-red-400"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <!-- Ask Question Card -->
-        <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
-            <h2 class="text-xl font-semibold text-blue-400 mb-4">💬 Additional Information</h2>
-            <textarea id="query-input" rows="4" placeholder="Enter your question about the image"
-                class="w-full p-3 bg-gray-800 text-gray-300 rounded-lg shadow"></textarea>
-            <button id="submit-query" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg mt-3 transition-all">
-                🚀 Submit Information
-            </button>
-        </div>
-    </div>
-    
-    <!-- Model Response -->
-    <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/20">
-        <h2 class="text-xl font-semibold text-green-400">🤖 AI Vision Response</h2>
-        <div id="response-container" class="hidden mt-4 bg-gray-800 p-4 rounded text-gray-300"></div>
     </div>
 
-    <!-- Error Message -->
-    <div id="error-container" class="hidden mt-8 p-4 bg-red-500 text-white rounded">
-        <p id="error-text"></p>
-    </div>
-</div>
+    <section class="features bg-[#e9ecee] py-16" id="hotspots">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#395a7f] mb-4">Real-time Stray Tracking</h2>
+                <p class="text-[#6e9fc1] text-lg">Monitor and help strays in your area</p>
+            </div>
 
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Map Container -->
+                <div class="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden border border-[#a1cae9]/20">
+                    <div class="p-4 bg-[#395a7f] text-white flex justify-between items-center">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Live Hotspot Map
+                        </h3>
+                        <div class="flex items-center gap-4">
+                            <span class="text-sm flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                Live Updates
+                            </span>
+                            <button class="p-2 hover:bg-[#6e9fc1] rounded-lg transition-colors">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative h-[600px]">
+                        <iframe 
+                            src="/static/hotspot_map.html"
+                            class="absolute inset-0 w-full h-full border-none"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
-    <section class="features">
-        <div class="feature-grid">
-            <div class="feature-card animate delay-1">
-                <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                <h3>Real-time Tracking</h3>
-                <p>AI-powered hotspot detection with live updates</p>
-                <div class="map-container" style="width: 100%; height: 400px; position: relative;">
-                    <iframe 
-                        src="/static/hotspot_map.html"
-                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 10px;"
-                        allowfullscreen>
-                    </iframe>
+                <!-- Stats and Filters Panel -->
+                <div class="space-y-6">
+                    <!-- Quick Stats -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
+                        <h3 class="text-[#395a7f] font-semibold mb-4">Current Statistics</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
+                                <span class="text-[#395a7f]">Active Reports</span>
+                                <span class="text-[#6e9fc1] font-bold">24</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
+                                <span class="text-[#395a7f]">Teams Deployed</span>
+                                <span class="text-[#6e9fc1] font-bold">8</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
+                                <span class="text-[#395a7f]">Response Time</span>
+                                <span class="text-[#6e9fc1] font-bold">~15 mins</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
+                        <h3 class="text-[#395a7f] font-semibold mb-4">Map Filters</h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-2 text-[#395a7f]">
+                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                                Recent Reports
+                            </label>
+                            <label class="flex items-center gap-2 text-[#395a7f]">
+                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                                Active Teams
+                            </label>
+                            <label class="flex items-center gap-2 text-[#395a7f]">
+                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                                High Priority Areas
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
+                        <h3 class="text-[#395a7f] font-semibold mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-3">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                <div>
+                                    <p class="text-[#395a7f]">New report at Koramangala</p>
+                                    <p class="text-[#acacac] text-sm">2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                <div>
+                                    <p class="text-[#395a7f]">Team dispatched to Indiranagar</p>
+                                    <p class="text-[#acacac] text-sm">5 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                <div>
+                                    <p class="text-[#395a7f]">Rescue completed in HSR Layout</p>
+                                    <p class="text-[#acacac] text-sm">15 minutes ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="about" id="about">
-        <div class="about-content">
-            <div class="about-text animate">
-                <h2>Our Mission</h2>
-                <p>Since 2015, PawsGuard has been at the forefront of animal rescue operations. Our network of 500+ volunteers and 200+ partner clinics work round the clock to ensure every stray finds safety and care.</p>
-                <div class="impact-grid">
-                    <div class="impact-card">
-                        <i class="fas fa-medkit"></i>
-                        <div>
-                            <h4>24/7 Medical Support</h4>
-                            <p>138 veterinary partners nationwide</p>
+    <section class="about-donation bg-[#2d3630] py-20" id="about">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <!-- Emotional Header -->
+            <div class="text-center mb-16 animate fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Every Paw Deserves a Chance 🐾</h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Right now, a scared puppy is searching for food. A injured dog is crying in pain. 
+                    A mother cat is struggling to feed her kittens. Your help can change their story.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Left Side: Emotional Stories -->
+                <div class="space-y-8">
+                    <!-- Emergency Alert -->
+                    <div class="bg-[#3d463f]/50 border border-red-500/20 rounded-xl p-6 animate pulse">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                            <h3 class="text-red-400 font-semibold">URGENT: 47 Rescues Waiting</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            We have 47 injured strays needing immediate medical care. Every minute counts. 
+                            Your donation today can save a life tomorrow.
+                        </p>
+                    </div>
+                    <!-- Success Story -->
+                    <div class="bg-[#3d463f]/50 rounded-xl overflow-hidden">
+                        <img src="static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" alt="Luna's transformation" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-semibold text-purple-400 mb-4">Luna's Second Chance</h3>
+                            <p class="text-gray-300 mb-4">
+                                "When we found Luna, she was skin and bones, too weak to even stand. 
+                                Three months of love and care transformed her into the happy, healthy dog 
+                                you see today. Your donation made this possible."
+                            </p>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-400">Before</p>
+                                    <p class="text-2xl font-bold text-red-400">4.2 kg</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="text-sm text-gray-400">After</p>
+                                    <p class="text-2xl font-bold text-green-400">12.5 kg</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="impact-card">
-                        <i class="fas fa-users"></i>
-                        <div>
-                            <h4>Community Driven</h4>
-                            <p>Over 50,000 active reporters</p>
+
+                    <!-- Impact Numbers -->
+                    <div class="bg-[#3d463f]/50 rounded-xl p-4">
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="bg-white/5 rounded-xl p-4 text-center">
+                                <h4 class="text-3xl font-bold text-blue-400">12,547</h4>
+                                <p class="text-sm text-gray-400">Lives Saved</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 text-center">
+                                <h4 class="text-3xl font-bold text-green-400">8,921</h4>
+                                <p class="text-sm text-gray-400">Adoptions</p>
+                            </div>
+                            <div class="bg-white/5 rounded-xl p-4 text-center">
+                                <h4 class="text-3xl font-bold text-yellow-400">74</h4>
+                                <p class="text-sm text-gray-400">Cities</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Right Side: Donation Panel -->
+                <div class="bg-[#3d463f]/30 backdrop-blur-lg rounded-xl p-8 border border-[#4d564f]/20">
+                    <h3 class="text-2xl font-bold text-center text-white mb-6">
+                        Be Their Guardian Angel Today 🙏
+                    </h3>
+                    
+                    <!-- Emotional Appeal -->
+                    <p class="text-gray-300 mb-8 text-center">
+                        For just ₹100/day, you can feed a hungry stray, provide medical care, 
+                        and give them the love they deserve. Will you help?
+                    </p>
+
+                    <!-- Donation Options -->
+                    <div class="space-y-4 mb-8">
+                        <button class="w-full bg-gradient-to-r from-[#4d564f] to-[#5d665f] hover:from-[#5d665f] hover:to-[#6d766f] text-white py-4 rounded-lg flex items-center justify-between px-6 group transition-all">
+                            <span>Feed a Stray</span>
+                            <span class="font-bold">₹100/day</span>
+                        </button>
+                        <button class="w-full bg-gradient-to-r from-[#3d463f] to-[#4d564f] hover:from-[#4d564f] hover:to-[#5d665f] text-white py-4 rounded-lg flex items-center justify-between px-6 group transition-all">
+                            <span>Medical Care</span>
+                            <span class="font-bold">₹500/day</span>
+                        </button>
+                        <button class="w-full bg-gradient-to-r from-[#5d665f] to-[#6d766f] hover:from-[#6d766f] hover:to-[#7d867f] text-white py-4 rounded-lg flex items-center justify-between px-6 group transition-all">
+                            <span>Save a Life</span>
+                            <span class="font-bold">₹1000/day</span>
+                        </button>
+                    </div>
+
+                    <!-- Custom Amount -->
+                    <div class="mb-8">
+                        <div class="flex">
+                            <span class="bg-[#3d463f] px-4 py-3 rounded-l-lg text-gray-400">₹</span>
+                            <input type="number" placeholder="Amount" 
+                                   class="flex-1 bg-[#3d463f] px-4 py-3 rounded-r-lg text-white focus:outline-none focus:ring-2 focus:ring-[#5d665f]">
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <button class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg transition-all">
+                            <i class="fab fa-cc-visa"></i>
+                            <span>Card</span>
+                        </button>
+                        <button class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg transition-all">
+                            <i class="fas fa-qrcode"></i>
+                            <span>UPI</span>
+                        </button>
+                    </div>
+
+                    <!-- Monthly Donation -->
+                    <label class="flex items-center justify-center gap-2 mb-8 cursor-pointer">
+                        <input type="checkbox" class="form-checkbox h-5 w-5 text-purple-500">
+                        <span class="text-gray-300">Make this a monthly blessing</span>
+                    </label>
+
+                    <!-- CTA Button -->
+                    <button class="w-full bg-gradient-to-r from-[#4d564f] to-[#5d665f] hover:from-[#5d665f] hover:to-[#6d766f] text-white py-4 rounded-lg font-bold text-lg transform hover:scale-105 transition-all mb-6">
+                        Save a Life Today 🐾
+                    </button>
+
+                    <!-- Trust Indicators -->
+                    <div class="grid grid-cols-2 gap-4 text-center text-sm text-gray-400">
+                        <div>
+                            <i class="fas fa-lock mb-1"></i>
+                            <p>100% Secure</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-heart mb-1"></i>
+                            <p>Tax Benefits</p>
+                        </div>
+                    </div>
+
+                    <!-- Final Appeal -->
+                    <p class="text-center text-sm text-gray-400 mt-6 italic">
+                        "Every donation, no matter how small, is a beacon of hope for a stray in need. 
+                        Your kindness today creates miracles tomorrow."
+                    </p>
+                </div>
             </div>
-            <div class="about-image animate delay-1">
-                <img src="static/images/myths-about-rescue-dogs.jpg.webp" alt="Rescue Team">
+            
+            <!-- Bottom Testimonials Section -->
+            <div class="mt-16 mb-24" id="testimonials">
+                <!-- Section Header -->
+                <header class="section-header text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-purple-400">Voices of Hope</h2>
+                </header>
+
+                <!-- Owl Carousel Slider -->
+                <div class="owl-carousel owl-theme testimonials-container">
+                    <!-- Testimonial 1 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">A Life Transformed</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "I found an injured puppy on the street. One call to Woof, and within 30 minutes, 
+                                they were there. Today, that puppy has a loving home. Your donations make such 
+                                rescues possible."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Priya Shah</span>
+                                <span class="text-gray-400">Mumbai Resident</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">Emergency Response</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "During the floods, PawsGuard rescued over 200 stranded animals. They didn't just save 
+                                lives; they gave hope when all seemed lost. Every donation counts in emergencies like these."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Arjun Kumar</span>
+                                <span class="text-gray-400">Rescue Volunteer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">Daily Miracles</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "Every morning, I see PawsGuard volunteers feeding the strays in my area. These angels 
+                                work tirelessly, rain or shine. A small monthly donation helps keep their mission alive."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Sneha Patel</span>
+                                <span class="text-gray-400">Regular Donor</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">Second Chances</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "My heart broke seeing a paralyzed dog struggling. PawsGuard provided months of 
+                                treatment and physiotherapy. Today, he runs and plays like any other dog. These 
+                                miracles happen because of donors like you."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Dr. Rahul Verma</span>
+                                <span class="text-gray-400">Veterinarian</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">Community Impact</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "As a school teacher, I've seen how PawsGuard's work teaches children compassion. 
+                                They rescued an injured puppy from our school grounds, and now our students understand 
+                                the importance of being kind to animals."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Meera Krishnan</span>
+                                <span class="text-gray-400">School Teacher</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="item testimonial-card">
+                        <main class="test-card-body bg-[#3d463f]/50 backdrop-blur-md rounded-xl">
+                            <div class="quote">
+                                <i class="fa fa-quote-left text-purple-400"></i>
+                                <h2 class="text-white">Night Heroes</h2>
+                            </div>
+                            <p class="text-gray-300">
+                                "At 2 AM, I found a critically injured dog after an accident. One call to PawsGuard's 
+                                emergency helpline, and they were there within minutes. Their 24/7 service saves 
+                                countless lives. Please donate to keep this lifeline running."
+                            </p>
+                            <div class="ratings">
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                                <i class="fa-solid fa-heart text-red-400"></i>
+                            </div>
+                        </main>
+                        <div class="profile mt-4">
+                            <div class="profile-desc">
+                                <span class="text-purple-400 font-bold">Kabir Singh</span>
+                                <span class="text-gray-400">Late Night Hero</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
+
+            <!-- Decorative Separator -->
+            <!-- <div class="separator-wrapper relative h-24">
+                <div class="absolute w-full overflow-hidden" style="height: 48px;">
+                    <div class="w-full h-full bg-[#2d3630] transform -skew-y-3"></div>
+                </div>
+                <div class="absolute bottom-0 w-full overflow-hidden" style="height: 48px;">
+                    <div class="w-full h-full bg-[#1a211d] transform skew-y-3"></div>
+                </div>
+            </div>
+        </div> -->
     </section>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Locations</h3>
-                <div class="location-grid">
-                    <div class="location-card">
-                        <i class="fas fa-map-pin"></i>
-                        <p>Mumbai Headquarters<br><span>24/7 Rescue Center</span></p>
+    <!-- Remove any constraining containers and make footer standalone -->
+    <footer class="w-full bg-[#1a211d] text-gray-300 pt-16 pb-8 relative">
+        <!-- Decorative Top Border -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500/50 via-purple-400 to-purple-500/50"></div>
+        
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Mission Section -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-6">Woof</h3>
+                    <p class="text-gray-400">
+                        Every tail has a story, every paw needs a guardian. 
+                        Join us in creating a world where no stray goes unloved.
+                    </p>
+                    <div class="emergency-contact bg-[#3d463f]/50 p-4 rounded-lg mt-4">
+                        <h4 class="text-red-400 font-semibold">24/7 Emergency Rescue</h4>
+                        <p class="text-xl font-bold text-white">1800-PAWHELP</p>
                     </div>
-                    <div class="location-card">
-                        <i class="fas fa-map-pin"></i>
-                        <p>Delhi Operations<br><span>Adoption Hub</span></p>
+                </div>
+                
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-purple-400 mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#about" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-paw"></i> About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#volunteer" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-hands-helping"></i> Volunteer
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#donate" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-heart"></i> Donate
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#success-stories" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-star"></i> Success Stories
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-phone"></i> Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Locations -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-purple-400 mb-6">Our Centers</h3>
+                    <div class="space-y-4">
+                        <div class="bg-[#3d463f]/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white">Mumbai HQ</h4>
+                            <p class="text-sm text-gray-400">
+                                123 Animal Care Road<br/>
+                                Mumbai, MH 400001<br/>
+                                <span class="text-green-400">Open 24/7</span>
+                            </p>
+                        </div>
+                        <div class="bg-[#3d463f]/50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-white">Delhi Center</h4>
+                            <p class="text-sm text-gray-400">
+                                45 Paw Street<br/>
+                                Delhi, DL 110001<br/>
+                                <span class="text-green-400">Open 24/7</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connect -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold text-purple-400 mb-6">Stay Connected</h3>
+                    <!-- Newsletter -->
+                    <div class="mb-6">
+                        <p class="text-sm mb-3">Subscribe to our newsletter for updates</p>
+                        <div class="flex">
+                            <input type="email" 
+                                   placeholder="Enter your email" 
+                                   class="bg-[#3d463f] px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-400 flex-1">
+                            <button class="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-r-lg transition-colors">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Social Links -->
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-white">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-[#3d463f]/50 p-3 rounded-full hover:bg-purple-500 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="bg-[#3d463f]/50 p-3 rounded-full hover:bg-purple-500 transition-colors">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="#" class="bg-[#3d463f]/50 p-3 rounded-full hover:bg-purple-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-[#3d463f]/50 p-3 rounded-full hover:bg-purple-500 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <div class="footer-links">
-                    <a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
-                    <a href="#volunteer"><i class="fas fa-hands-helping"></i> Volunteer</a>
-                    <a href="#partners"><i class="fas fa-handshake"></i> Partners</a>
+
+            <!-- Bottom Bar -->
+            <div class="mt-12 pt-8 border-t border-[#4d564f]">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-sm text-gray-400">
+                        © 2024 Woof. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for animals
+                    </div>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#privacy" class="hover:text-purple-400 transition-colors">Privacy Policy</a>
+                        <a href="#terms" class="hover:text-purple-400 transition-colors">Terms of Service</a>
+                        <a href="#faq" class="hover:text-purple-400 transition-colors">FAQ</a>
+                    </div>
                 </div>
             </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                </div>
-                <div class="newsletter">
-                    <input type="email" placeholder="Join our newsletter">
-                    <button><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2023 PawsGuard. All rights reserved. Made with ❤️ for animals</p>
         </div>
     </footer>
+
     <script src="static/script.js"></script>
     
+    <!-- Add required scripts before closing body tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $('.testimonials-container').owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 6000,
+            margin: 20,
+            nav: true,
+            navText: [
+                "<i class='fa-solid fa-arrow-left'></i>",
+                "<i class='fa-solid fa-arrow-right'></i>"
+            ],
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: false
+                },
+                768: {
+                    items: 2,
+                    nav: true
+                }
+            }
+        });
+    </script>
+
+    <!-- Add these styles to your CSS -->
+    <style>
+        .testimonial-card {
+            padding: 20px;
+        }
+
+        .test-card-body {
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .test-card-body:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .owl-nav button {
+            background: #3d463f !important;
+            width: 40px;
+            height: 40px;
+            border-radius: 50% !important;
+            margin: 0 10px;
+        }
+
+        .owl-nav button i {
+            color: #fff;
+        }
+
+        .owl-dots .owl-dot span {
+            background: #4d564f !important;
+        }
+
+        .owl-dots .owl-dot.active span {
+            background: purple-400 !important;
+        }
+
+        .separator-wrapper {
+            margin-top: -48px;
+            margin-bottom: -48px;
+            z-index: 10;
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+    </style>
+
+    <script>
+    function getLocation() {
+        const locationInput = document.getElementById('location-input');
+        const coordinatesInput = document.getElementById('coordinates-input');
+        const locationStatus = document.getElementById('location-status');
+        const locationIcon = document.getElementById('location-icon');
+        const locationLoader = document.getElementById('location-loader');
+
+        // Show loading state
+        locationIcon.classList.add('hidden');
+        locationLoader.classList.remove('hidden');
+        locationStatus.textContent = 'Detecting your location...';
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude, accuracy } = position.coords;
+
+                    if (accuracy <= 500 ) { // Increased threshold slightly for better usability
+                        // Reverse Geocoding using OpenStreetMap Nominatim API
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const locationName = data.display_name || "Unknown location";
+                                // Store formatted address
+                                locationInput.value = locationName;
+                                // Store coordinates
+                                coordinatesInput.value = `${latitude},${longitude}`;
+                                // Update status
+                                locationStatus.textContent = `Location detected with ${Math.round(accuracy)}m accuracy`;
+                                locationStatus.classList.remove('text-red-500');
+                                locationStatus.classList.add('text-green-500');
+                            })
+                            .catch(() => {
+                                locationInput.value = `${latitude}, ${longitude}`;
+                                coordinatesInput.value = `${latitude},${longitude}`;
+                                locationStatus.textContent = 'Could not fetch location name, using coordinates';
+                                locationStatus.classList.add('text-yellow-500');
+                            })
+                            .finally(() => {
+                                // Hide loading state
+                                locationIcon.classList.remove('hidden');
+                                locationLoader.classList.add('hidden');
+                            });
+                    } else {
+                        locationStatus.textContent = 'Could not get an accurate location. Please try again.';
+                        locationStatus.classList.add('text-red-500');
+                        // Hide loading state
+                        locationIcon.classList.remove('hidden');
+                        locationLoader.classList.add('hidden');
+                    }
+                },
+                (error) => {
+                    let errorMessage = 'Error detecting location: ';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage += 'Please enable location access.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage += 'Location information unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage += 'Location request timed out.';
+                            break;
+                        default:
+                            errorMessage += 'Unknown error occurred.';
+                    }
+                    locationStatus.textContent = errorMessage;
+                    locationStatus.classList.add('text-red-500');
+                    // Hide loading state
+                    locationIcon.classList.remove('hidden');
+                    locationLoader.classList.add('hidden');
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        } else {
+            locationStatus.textContent = 'Geolocation is not supported by this browser.';
+            locationStatus.classList.add('text-red-500');
+            // Hide loading state
+            locationIcon.classList.remove('hidden');
+            locationLoader.classList.add('hidden');
+        }
+    }
+    </script>
 </body>
 </html>

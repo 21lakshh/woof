@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Adoption Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 700px;
+            transform: translateY(0);
+            animation: formEntrance 0.6s ease-out;
+        }
+
+        @keyframes formEntrance {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group button {
+            background: #3498db;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+        }
+
+        .form-group button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        /* Chat Bot Styles */
+        .chat-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: auto;
+        }
+
+        .chat-button {
+            background: #3498db;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 550px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .chat-header {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            padding: 15px;
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Radio and Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            size: 20cm;
+        }
+
+        .radio-group label, .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>🐾 Dog Adoption Application 🐾</h2>
+        <!-- Form content same as previous version -->
+        <!-- ... (Include all the form groups from previous code) ... -->
+    
+        <div class="form-container">
+            
+                <form id="adoptionForm">
+                <!-- Personal Information -->
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required>
+                </div>
+        
+                <div class="form-group">
+                    <label>Address *</label>
+                    <input type="text" required>
+                </div>
+        
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" required>
+                </div>
+        
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" required>
+                </div>
+        
+                <!-- Living Situation -->
+                <div class="form-group">
+                    <label>Housing Type *</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="housing" required> Own</label>
+                        <label><input type="radio" name="housing" required> Rent</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label>If renting, landlord's contact information</label>
+                    <input type="text">
+                </div>
+        
+                <div class="form-group">
+                    <label>Type of Residence *</label>
+                    <select required>
+                        <option value="">Select...</option>
+                        <option>House</option>
+                        <option>Apartment</option>
+                        <option>Condo</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+        
+                <!-- Household Information -->
+                <div class="form-group">
+                    <label>Number of adults in household *</label>
+                    <input type="number" min="1" required>
+                </div>
+        
+                <div class="form-group">
+                    <label>Number of children (ages)</label>
+                    <input type="text" placeholder="e.g., 2 (5 & 8 years old)">
+                </div>
+        
+                <!-- Pet Experience -->
+                <div class="form-group">
+                    <label>Previous pet experience *</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="experience" required> Yes</label>
+                        <label><input type="radio" name="experience" required> No</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label>If yes, please describe</label>
+                    <textarea rows="3"></textarea>
+                </div>
+        
+                <!-- Current Pets -->
+                <div class="form-group">
+                    <label>Current pets in household</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Dog(s)</label>
+                        <label><input type="checkbox"> Cat(s)</label>
+                        <label><input type="checkbox"> Other</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label>Veterinarian Name & Clinic</label>
+                    <input type="text">
+                </div>
+        
+                <!-- Dog Care -->
+                <div class="form-group">
+                    <label>Where will the dog stay during the day? *</label>
+                    <textarea rows="2" required></textarea>
+                </div>
+        
+                <div class="form-group">
+                    <label>Where will the dog sleep at night? *</label>
+                    <textarea rows="2" required></textarea>
+                </div>
+        
+                <!-- Dog Preferences -->
+                <div class="form-group">
+                    <label>Preferred dog characteristics</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox"> Puppy</label>
+                        <label><input type="checkbox"> Adult</label>
+                        <label><input type="checkbox"> Senior</label>
+                        <label><input type="checkbox"> Special Needs</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label>Why do you want to adopt a dog? *</label>
+                    <textarea rows="3" required></textarea>
+                </div>
+        
+                <!-- Agreement -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" required> I agree to provide veterinary care</label>
+                        <label><input type="checkbox" required> I agree to a home visit</label>
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <button type="submit">Submit Application</button>
+                </div>
+            </form>
+        </div>
+        
+    
+    
+    </div>
+    
+    <!-- Chat Bot -->
+    <div class="chat-container">
+        <div class="chat-button" onclick="toggleChat()">
+            <i class="fas fa-comment-dots fa-2x"></i>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Adoption Assistant</h3>
+                <button onclick="toggleChat()" style="background: none; border: none; color: white;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot-message">
+                    Hi! How can I help you with your adoption?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="userInput" placeholder="Type your message...">
+                <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Form Submission
+        document.getElementById('adoptionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            showConfetti();
+            this.reset();
+        });
+
+        // Chat Toggle
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Simple Chat Functionality
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const chatBody = document.getElementById('chatBody');
+            
+            if (userInput.value.trim()) {
+                // User message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message user-message';
+                userMessage.textContent = userInput.value;
+                chatBody.appendChild(userMessage);
+                
+                // Bot response
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message bot-message';
+                    botMessage.textContent = "Thank you for your message! Our team will get back to you soon.";
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+
+                userInput.value = '';
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        }
+
+        // Confetti Effect
+        function showConfetti() {
+            // Add confetti library or custom implementation here
+            alert('Thank you for your application! We will review it shortly.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adoption</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .pet-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-enter {
+            animation: modalEnter 0.3s ease-out;
+        }
+
+        @keyframes modalEnter {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation (Enhanced) -->
+    <nav class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <h1 class="text-2xl font-bold text-white mb-2 md:mb-0 flex items-center">
+                <i class="fas fa-paw mr-2"></i>Happy Tails Adoption
+            </h1>
+            
+        </div>
+    </nav>
+
+    <!-- Main Content (Original Structure Enhanced) -->
+    <div class="container mx-auto my-10 px-4">
+        <div class="text-center mb-12 animate-slide-in">
+            <h2 class="text-4xl font-bold text-gray-800 mb-3">Meet Our Furry Friends</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">Each pet has a unique story - find your perfect match!</p>
+        </div>
+
+        <!-- Pet Cards Grid (Enhanced) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" id="petContainer">
+            <!-- Pet cards will be generated here dynamically -->
+        </div>
+    </div>
+
+    <!-- Modal (Enhanced) -->
+    <div id="popup" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-50 p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full modal-enter">
+            <!-- Modal content injected here -->
+        </div>
+    </div>
+
+    <!-- Chat Bot (Matching Form Style) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button class="bg-blue-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-600 transition-all flex items-center justify-center">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+    </div>
+
+    <script>
+        const pets = [ 
+        { 
+                name: "Buddy", 
+                description: "Golden Retrievers are one of the most affectionate and loyal dog breeds. They are intelligent, friendly, and outgoing, making them excellent family pets. These dogs require a lot of exercise, including long walks and playtime. They are highly trainable and eager to please, which makes them great for first-time dog owners. However, they need a lot of attention and companionship, so they are best suited for active families who can dedicate time to their training and care.", 
+                image: "images/richard-burlton-HTpmedSyZag-unsplash.jpg" 
+            },
+            { 
+                name: "Charlie", 
+                description: "Beagles are small hounds known for their boundless energy, curiosity, and intelligence. They are friendly, playful, and get along well with children and other pets. However, their strong hunting instincts can make them stubborn at times. Beagles require regular exercise and mental stimulation to prevent boredom and destructive behavior. Their sense of smell is incredibly sharp, and they love following scents, so a secure backyard or leash walks are necessary.", 
+                image: "images/ben-owen-FFwNGYZK-2o-unsplash.jpg" 
+            },
+            { 
+                name: "Luna", 
+                description: "Labradors are one of the most popular dog breeds due to their friendly, intelligent, and outgoing nature. They are highly social dogs that love human companionship, making them ideal for families. Labradors require regular exercise, such as running, swimming, and playing fetch, to maintain their health and happiness. They are incredibly trainable and excel in obedience training. Due to their affectionate nature, Labradors are known to form strong bonds with their owners, making them excellent emotional support and therapy dogs.", 
+                image: "images/images.jpeg.jpg" 
+            },
+            { 
+                name: "Max", 
+                description: "German Shepherds are highly intelligent, loyal, and courageous dogs. They are known for their strong protective instincts, making them great guard dogs. However, they require structured training, socialization, and mental stimulation to prevent behavioral issues. German Shepherds thrive in active households and are ideal for experienced dog owners who can provide firm leadership and training.", 
+                image: "images/jana-ohajdova-IqF8B95ZFfs-unsplash.jpg" 
+            },
+            { 
+                name: "Bella", 
+                description: "Pugs are affectionate, playful, and love being the center of attention. They have a charming and friendly nature, making them excellent companions for families and individuals. Due to their short snouts, pugs can have breathing difficulties, so they require a cool environment and moderate exercise. They love human interaction and can suffer from separation anxiety if left alone for long periods.", 
+                image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" 
+            },
+            { 
+                name: "Oliver", 
+                description: "Oliver is a fun-loving and energetic Siberian Husky. Huskies are known for their striking appearance, thick fur coats, and beautiful blue or multicolored eyes. They are incredibly intelligent but can be stubborn, requiring firm and consistent training. Huskies are very active and need a lot of physical and mental stimulation, including long walks, running, and puzzle toys. They are extremely friendly and social dogs but have a strong prey drive, so proper socialization is important. They thrive in cold weather due to their thick double coat and require regular grooming to maintain their fur.", 
+                image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" 
+            }/* Keep your original pets array */ ];
+
+        function generateCards() {
+            const container = document.getElementById("petContainer");
+            container.innerHTML = pets.map(pet => `
+                <div class="pet-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg">
+                    <div class="relative h-60">
+                        <img src="${pet.image}" alt="${pet.name}" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 p-4">
+                            <h3 class="text-xl font-semibold text-white">${pet.name}</h3>
+                            <div class="flex gap-2 mt-2">
+                                <span class="bg-blue-500/80 text-white px-2 py-1 rounded-md text-sm">3 years</span>
+                                <span class="bg-purple-500/80 text-white px-2 py-1 rounded-md text-sm">Male</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-gray-600 text-sm mb-4">${pet.description.substring(0, 100)}...</p>
+                        <button onclick="openPopup('${pet.name}', '${pet.description}')" 
+                                class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                            Meet ${pet.name}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openPopup(name, description) {
+            const modalContent = `
+                <div class="grid md:grid-cols-2 gap-6 p-6">
+                    <div class="relative rounded-xl overflow-hidden bg-gray-100 h-64 md:h-96">
+                        <img src="${pets.find(p => p.name === name).image}" alt="${name}" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="space-y-4">
+                        <h2 class="text-3xl font-bold text-gray-800">${name}</h2>
+                        <div class="flex gap-2">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Adoption Ready</span>
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Vaccinated</span>
+                        </div>
+                        <p class="text-gray-600">${description}</p>
+                        <div class="space-y-3 mt-6">
+                            <a href="adoptionForm2.html" 
+                               class="block text-center bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors">
+                                Adopt ${name}
+                            </a>
+                            <button onclick="closePopup()" 
+                                    class="w-full text-center border-2 border-blue-500 text-blue-500 py-3 rounded-lg hover:bg-blue-50 transition-colors">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const popup = document.getElementById("popup");
+            popup.querySelector('.bg-white').innerHTML = modalContent;
+            popup.classList.remove("hidden");
+        }
+
+        function closePopup() {
+            document.getElementById("popup").classList.add("hidden");
+        }
+
+        generateCards();
+    </script>
+</body>
+</html>
