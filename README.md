@@ -36,30 +36,23 @@ Reports are assigned severity levels, influencing their importance in clustering
 
 ### 3. **Time Decay Factor**
 Older reports have reduced influence on the clustering process using an **exponential decay function**:
-![Grad-CAM Example](/GradCAM/image1.png)
-\[
-Decay Factor = e^{-\lambda t}
-\]
+![DecayFactor](/formulas/decayfactor.png)
 Where:
 - `λ` (lambda) is the **decay constant**, controlling how quickly older reports lose significance.
 - `t` is the **time difference (in hours)** between the report and the latest report.
 
-![Grad-CAM Example](/GradCAM/image1.png)
+![Weight](/formulas/weight.png)
 The adjusted weight of a report is calculated as:
-\[
-Weight = Severity \times e^{-\lambda t}
-\]
 This ensures that recent severe reports dominate the clustering process.
 
 ### 4. **Custom Weighted Distance Function**
 Instead of using standard Euclidean distance, we introduce a **modified distance function** that incorporates severity-based weighting:
-\[
-d_w(A, B) = \frac{\sqrt{(lat_1 - lat_2)^2 + (lon_1 - lon_2)^2}}{1 + \sqrt{w_1 \times w_2}}
-\]
 Where:
 - `(lat_1, lon_1, w_1)` = Latitude, Longitude, and Weight of point A
 - `(lat_2, lon_2, w_2)` = Latitude, Longitude, and Weight of point B
 - `d_w(A, B)` is the **weighted distance** between two points.
+  
+![DistanceFunction](/formulas/distancefunction.png)
 
 This modification ensures that points with higher severity are more closely clustered.
 
