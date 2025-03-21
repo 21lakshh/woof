@@ -3,170 +3,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Adoption</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Adopt | PawsGuard - Luxury Pet Adoption</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css?family=Material+Icons+Round">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body {
+        :root {
+            --primary: #2B616D;
+            --secondary: #FF6B6B;
+            --accent: #FFD93D;
+            --dark: #1a2b32;
+            --light: #f8fbfd;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
         }
-        
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            margin-top: 100px;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pet-grid {
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .pet-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pet-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .pet-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px -10px rgba(0,0,0,0.1);
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
         }
-        
+
         .pet-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 60px -10px rgba(0,0,0,0.15);
         }
 
-        .modal-enter {
-            animation: modalEnter 0.3s ease-out;
+        .pet-image {
+            height: 350px;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes modalEnter {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
+        .pet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .pet-card:hover .pet-image img {
+            transform: scale(1.08);
+        }
+
+        .pet-info {
+            padding: 2rem;
+        }
+
+        .pet-info::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .pet-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat {
+            background: rgba(43, 97, 109, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .adopt-btn {
+            background: var(--secondary);
+            color: white;
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: 0.4s;
+            font-weight: 600;
+        }
+
+        .adopt-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 800px;
+            width: 90%;
+            padding: 2rem;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5%;
+            margin-top: 6rem;
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <!-- Navigation (Enhanced) -->
-    <nav class="bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-2xl font-bold text-white mb-2 md:mb-0 flex items-center">
-                <i class="fas fa-paw mr-2"></i>Happy Tails Adoption
-            </h1>
-            
-        </div>
-    </nav>
+<body>
+    <div class="floating-paws" style="top:20%;left:10%">🐾</div>
+    <div class="floating-paws" style="top:70%;left:90%">🐾</div>
+    <div class="floating-paws" style="top:40%;left:85%">🐾</div>
 
-    <!-- Main Content (Original Structure Enhanced) -->
-    <div class="container mx-auto my-10 px-4">
-        <div class="text-center mb-12 animate-slide-in">
-            <h2 class="text-4xl font-bold text-gray-800 mb-3">Meet Our Furry Friends</h2>
-            <p class="text-gray-600 max-w-xl mx-auto">Each pet has a unique story - find your perfect match!</p>
-        </div>
+    <header class="header">
+        <div class="logo">Woof🐾</div>
+    </header>
 
-        <!-- Pet Cards Grid (Enhanced) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" id="petContainer">
-            <!-- Pet cards will be generated here dynamically -->
-        </div>
-    </div>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Your Perfect<br>Furry Companion</h1>
+                <p>Rescued Souls Waiting for Forever Homes</p>
+            </div>
+        </section>
 
-    <!-- Modal (Enhanced) -->
-    <div id="popup" class="fixed inset-0 flex items-center justify-center hidden bg-black bg-opacity-50 p-4">
-        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full modal-enter">
-            <!-- Modal content injected here -->
-        </div>
-    </div>
+        <section class="pet-grid" id="petContainer">
+            <!-- Pet cards will be generated here by JavaScript -->
+        </section>
 
-    <!-- Chat Bot (Matching Form Style) -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <button class="bg-blue-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-blue-600 transition-all flex items-center justify-center">
-            <i class="fas fa-comment-dots text-xl"></i>
-        </button>
-    </div>
+        <div class="modal-overlay" id="modal">
+            <div class="modal-content">
+                <button class="close-btn" onclick="closeModal()">×</button>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 PawsGuard. All rights reserved.</p>
+    </footer>
 
     <script>
-        const pets = [ 
-        { 
-                name: "Buddy", 
-                description: "Golden Retrievers are one of the most affectionate and loyal dog breeds. They are intelligent, friendly, and outgoing, making them excellent family pets. These dogs require a lot of exercise, including long walks and playtime. They are highly trainable and eager to please, which makes them great for first-time dog owners. However, they need a lot of attention and companionship, so they are best suited for active families who can dedicate time to their training and care.", 
-                image: "images/richard-burlton-HTpmedSyZag-unsplash.jpg" 
-            },
-            { 
-                name: "Charlie", 
-                description: "Beagles are small hounds known for their boundless energy, curiosity, and intelligence. They are friendly, playful, and get along well with children and other pets. However, their strong hunting instincts can make them stubborn at times. Beagles require regular exercise and mental stimulation to prevent boredom and destructive behavior. Their sense of smell is incredibly sharp, and they love following scents, so a secure backyard or leash walks are necessary.", 
-                image: "images/ben-owen-FFwNGYZK-2o-unsplash.jpg" 
-            },
-            { 
-                name: "Luna", 
-                description: "Labradors are one of the most popular dog breeds due to their friendly, intelligent, and outgoing nature. They are highly social dogs that love human companionship, making them ideal for families. Labradors require regular exercise, such as running, swimming, and playing fetch, to maintain their health and happiness. They are incredibly trainable and excel in obedience training. Due to their affectionate nature, Labradors are known to form strong bonds with their owners, making them excellent emotional support and therapy dogs.", 
-                image: "images/images.jpeg.jpg" 
-            },
-            { 
-                name: "Max", 
-                description: "German Shepherds are highly intelligent, loyal, and courageous dogs. They are known for their strong protective instincts, making them great guard dogs. However, they require structured training, socialization, and mental stimulation to prevent behavioral issues. German Shepherds thrive in active households and are ideal for experienced dog owners who can provide firm leadership and training.", 
-                image: "images/jana-ohajdova-IqF8B95ZFfs-unsplash.jpg" 
-            },
-            { 
-                name: "Bella", 
-                description: "Pugs are affectionate, playful, and love being the center of attention. They have a charming and friendly nature, making them excellent companions for families and individuals. Due to their short snouts, pugs can have breathing difficulties, so they require a cool environment and moderate exercise. They love human interaction and can suffer from separation anxiety if left alone for long periods.", 
-                image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" 
-            },
-            { 
-                name: "Oliver", 
-                description: "Oliver is a fun-loving and energetic Siberian Husky. Huskies are known for their striking appearance, thick fur coats, and beautiful blue or multicolored eyes. They are incredibly intelligent but can be stubborn, requiring firm and consistent training. Huskies are very active and need a lot of physical and mental stimulation, including long walks, running, and puzzle toys. They are extremely friendly and social dogs but have a strong prey drive, so proper socialization is important. They thrive in cold weather due to their thick double coat and require regular grooming to maintain their fur.", 
-                image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" 
-            }/* Keep your original pets array */ ];
+        const pets = [
+    { 
+        name: "Buddy", 
+        breed: "Golden Retriever",
+        age: "3 Years",
+        gender: "Male",
+        location: "Mumbai Center",
+        personality: ["Friendly", "Playful", "Loyal"],
+        description: "Meet Buddy, our sunshine golden boy! This energetic retriever loves swimming and playing fetch. Perfect for active families looking for a loyal companion.",
+        image: "images/richard-burlton-HTpmedSyZag-unsplash.jpg",
+        vaccinated: true,
+        trained: true
+    },
+    { 
+        name: "Charlie", 
+        breed: "Beagle",
+        age: "2 Years",
+        gender: "Male",
+        location: "Delhi Shelter",
+        personality: ["Energetic", "Curious", "Intelligent"],
+        description: "Charlie is a playful and curious Beagle with an incredible sense of smell. He loves exploring and would do great with a family that enjoys outdoor adventures.",
+        image: "images/ben-owen-FFwNGYZK-2o-unsplash.jpg",
+        vaccinated: true,
+        trained: false
+    },
+    { 
+        name: "Luna", 
+        breed: "Labrador Retriever",
+        age: "4 Years",
+        gender: "Female",
+        location: "Bangalore Rescue Home",
+        personality: ["Affectionate", "Intelligent", "Social"],
+        description: "Luna is a loving and gentle Labrador who enjoys being around people. She is highly trainable and would make a great family pet or therapy dog.",
+        image: "images/jaspal-kahlon-VYrMzY-g5HQ-unsplash.jpg",
+        vaccinated: true,
+        trained: true
+    },
+    { 
+        name: "Max", 
+        breed: "German Shepherd",
+        age: "3.5 Years",
+        gender: "Male",
+        location: "Chennai K9 Center",
+        personality: ["Loyal", "Protective", "Courageous"],
+        description: "Max is a highly intelligent and strong German Shepherd with excellent guarding instincts. He needs an experienced owner who can provide proper training and leadership.",
+        image: "images/jana-ohajdova-IqF8B95ZFfs-unsplash.jpg",
+        vaccinated: true,
+        trained: true
+    },
+    { 
+        name: "Bella", 
+        breed: "Pug",
+        age: "2.5 Years",
+        gender: "Female",
+        location: "Pune Adoption Center",
+        personality: ["Affectionate", "Playful", "Friendly"],
+        description: "Bella is a charming and fun-loving Pug who loves being the center of attention. She thrives in human company and is best suited for an indoor-loving family.",
+        image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg",
+        vaccinated: true,
+        trained: false
+    },
+    { 
+        name: "Oliver", 
+        breed: "Siberian Husky",
+        age: "3 Years",
+        gender: "Male",
+        location: "Manali Rescue Home",
+        personality: ["Energetic", "Independent", "Intelligent"],
+        description: "Oliver is a striking Siberian Husky with a love for running and outdoor activities. He needs an active owner who can keep up with his high energy levels.",
+        image: "images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg",
+        vaccinated: true,
+        trained: false
+    }
+];
 
-        function generateCards() {
-            const container = document.getElementById("petContainer");
+        function generatePetCards() {
+            const container = document.getElementById('petContainer');
             container.innerHTML = pets.map(pet => `
-                <div class="pet-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg">
-                    <div class="relative h-60">
-                        <img src="${pet.image}" alt="${pet.name}" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 p-4">
-                            <h3 class="text-xl font-semibold text-white">${pet.name}</h3>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-blue-500/80 text-white px-2 py-1 rounded-md text-sm">3 years</span>
-                                <span class="bg-purple-500/80 text-white px-2 py-1 rounded-md text-sm">Male</span>
-                            </div>
-                        </div>
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="${pet.image}" alt="${pet.name}">
                     </div>
-                    <div class="p-4">
-                        <p class="text-gray-600 text-sm mb-4">${pet.description.substring(0, 100)}...</p>
-                        <button onclick="openPopup('${pet.name}', '${pet.description}')" 
-                                class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                            Meet ${pet.name}
-                        </button>
+                    <div class="pet-info">
+                        <h3>${pet.name}</h3>
+                        <div class="pet-stats">
+                            <span class="stat">${pet.age}</span>
+                            <span class="stat">${pet.gender}</span>
+                        </div>
+                        <p>${pet.description}</p>
+                        <button class="adopt-btn" onclick="showModal('${pet.name}')">Meet ${pet.name}</button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function openPopup(name, description) {
-            const modalContent = `
-                <div class="grid md:grid-cols-2 gap-6 p-6">
-                    <div class="relative rounded-xl overflow-hidden bg-gray-100 h-64 md:h-96">
-                        <img src="${pets.find(p => p.name === name).image}" alt="${name}" 
-                             class="w-full h-full object-cover">
+        function showModal(petName) {
+            const pet = pets.find(p => p.name === petName);
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="modal-body">
+                    <div class="pet-image">
+                        <img src="${pet.image}" alt="${pet.name}">
                     </div>
-                    <div class="space-y-4">
-                        <h2 class="text-3xl font-bold text-gray-800">${name}</h2>
-                        <div class="flex gap-2">
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Adoption Ready</span>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Vaccinated</span>
+                    <div class="pet-details">
+                        <h2>${pet.name}</h2>
+                        <p><strong>Breed:</strong> ${pet.breed}</p>
+                        <p><strong>Age:</strong> ${pet.age}</p>
+                        <p><strong>Gender:</strong> ${pet.gender}</p>
+                        <p><strong>Location:</strong> ${pet.location}</p>
+                        <div class="personality">
+                            ${pet.personality.map(t => `<span class="personality-tag">${t}</span>`).join('')}
                         </div>
-                        <p class="text-gray-600">${description}</p>
-                        <div class="space-y-3 mt-6">
-                            <a href="adoptionForm2.html" 
-                               class="block text-center bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors">
-                                Adopt ${name}
-                            </a>
-                            <button onclick="closePopup()" 
-                                    class="w-full text-center border-2 border-blue-500 text-blue-500 py-3 rounded-lg hover:bg-blue-50 transition-colors">
-                                Close
-                            </button>
-                        </div>
+                        <p>${pet.description}</p>
+                        <button class="adopt-btn" onclick="location.href='adoptionForm2.html'">Start Adoption Process</button>
                     </div>
                 </div>
             `;
-
-            const popup = document.getElementById("popup");
-            popup.querySelector('.bg-white').innerHTML = modalContent;
-            popup.classList.remove("hidden");
+            document.getElementById('modal').style.display = 'flex';
+            setTimeout(() => document.getElementById('modal').classList.add('modal-active'), 10);
         }
 
-        function closePopup() {
-            document.getElementById("popup").classList.add("hidden");
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('modal-active');
+            setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        generateCards();
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        generatePetCards();
     </script>
 </body>
 </html>

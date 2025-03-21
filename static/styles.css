@@ -330,3 +330,242 @@ body {
     border-radius: 8px;
     cursor: pointer;
 }
+
+/* Blockchain and Payment UI Styles */
+.connect-wallet-btn {
+    background: linear-gradient(135deg, #395a7f, #6e9fc1);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.connect-wallet-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.wallet-status {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.wallet-connected {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.wallet-connected i {
+    font-size: 1.5rem;
+    color: #6e9fc1;
+}
+
+.transaction-status {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.tx-pending {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    border-top-color: #6e9fc1;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.tx-confirmed {
+    text-align: center;
+    color: white;
+}
+
+.tx-confirmed i {
+    font-size: 3rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+}
+
+.tx-failed {
+    text-align: center;
+    color: white;
+}
+
+.tx-failed i {
+    font-size: 3rem;
+    color: #f44336;
+    margin-bottom: 1rem;
+}
+
+.tx-details {
+    background: rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.blockchain-explorer {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+.blockchain-explorer h3 {
+    color: white;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.badge {
+    background: #6e9fc1;
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.tx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tx-item {
+    background: rgba(255,255,255,0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.tx-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+}
+
+.tx-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.tx-id {
+    color: #6e9fc1;
+    font-weight: 500;
+}
+
+.tx-amount {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.tx-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+}
+
+.tx-hash {
+    font-family: monospace;
+}
+
+.view-explorer {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #6e9fc1;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.view-explorer:hover {
+    background: #395a7f;
+    transform: translateY(-2px);
+}
+
+/* QR Modal Styles */
+.modal-content {
+    background: #2d3630;
+    color: white;
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.modal-body {
+    padding: 2rem;
+    text-align: center;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin: 1rem auto;
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.upi-details {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+}
+
+.upi-id {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #6e9fc1;
+}
+
+.payment-amount {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #4CAF50;
+    margin: 0.5rem 0;
+}
+
+.payment-status {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(76,175,80,0.1);
+    border-radius: 20px;
+    display: inline-block;
+    color: #4CAF50;
+}
