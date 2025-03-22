@@ -2,7 +2,7 @@
 
 ## 📝 1. User Reporting System
 
-### 📌c Report Stray Dogs with Ease
+### 📌 Report Stray Dogs with Ease
 Users can report stray dogs by providing the following details:
 - **Location:** Auto-detect via GPS or manual pin selection.
 - **Photo Upload:** Verify the dog's condition with an image.
