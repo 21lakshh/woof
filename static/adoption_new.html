@@ -124,22 +124,8 @@
         .pet-grid {
             padding: 5rem 5%;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 1024px) {
-            .pet-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .pet-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
         .pet-card {
@@ -315,7 +301,7 @@
         location: "Mumbai Center",
         personality: ["Friendly", "Playful", "Loyal"],
         description: "Meet Buddy, our sunshine golden boy! This energetic retriever loves swimming and playing fetch. Perfect for active families looking for a loyal companion.",
-        image: "images/richard-burlton-HTpmedSyZag-unsplash.jpg",
+        image: "richard-burlton-HTpmedSyZag-unsplash.jpg",
         vaccinated: true,
         trained: true
     },
@@ -327,7 +313,7 @@
         location: "Delhi Shelter",
         personality: ["Energetic", "Curious", "Intelligent"],
         description: "Charlie is a playful and curious Beagle with an incredible sense of smell. He loves exploring and would do great with a family that enjoys outdoor adventures.",
-        image: "images/ben-owen-FFwNGYZK-2o-unsplash.jpg",
+        image: "ben-owen-FFwNGYZK-2o-unsplash.jpg",
         vaccinated: true,
         trained: false
     },
@@ -339,7 +325,7 @@
         location: "Bangalore Rescue Home",
         personality: ["Affectionate", "Intelligent", "Social"],
         description: "Luna is a loving and gentle Labrador who enjoys being around people. She is highly trainable and would make a great family pet or therapy dog.",
-        image: "images/jaspal-kahlon-VYrMzY-g5HQ-unsplash.jpg",
+        image: "",
         vaccinated: true,
         trained: true
     },
@@ -351,7 +337,7 @@
         location: "Chennai K9 Center",
         personality: ["Loyal", "Protective", "Courageous"],
         description: "Max is a highly intelligent and strong German Shepherd with excellent guarding instincts. He needs an experienced owner who can provide proper training and leadership.",
-        image: "images/jana-ohajdova-IqF8B95ZFfs-unsplash.jpg",
+        image: "jana-ohajdova-IqF8B95ZFfs-unsplash.jpg",
         vaccinated: true,
         trained: true
     },
@@ -363,7 +349,7 @@
         location: "Pune Adoption Center",
         personality: ["Affectionate", "Playful", "Friendly"],
         description: "Bella is a charming and fun-loving Pug who loves being the center of attention. She thrives in human company and is best suited for an indoor-loving family.",
-        image: "images/mink-mingle-UAsFSsMDpa0-unsplash.jpg",
+        image: "mink-mingle-UAsFSsMDpa0-unsplash.jpg",
         vaccinated: true,
         trained: false
     },
@@ -375,7 +361,7 @@
         location: "Manali Rescue Home",
         personality: ["Energetic", "Independent", "Intelligent"],
         description: "Oliver is a striking Siberian Husky with a love for running and outdoor activities. He needs an active owner who can keep up with his high energy levels.",
-        image: "images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg",
+        image: "",
         vaccinated: true,
         trained: false
     }
@@ -416,10 +402,10 @@
                         <p><strong>Gender:</strong> ${pet.gender}</p>
                         <p><strong>Location:</strong> ${pet.location}</p>
                         <div class="personality">
-                            ${pet.personality.map(t => `<span class="personality-tag">${t}</span>`).join('')}
+                            ${pet.personality.map(t => <span class="personality-tag">${t}</span>).join('')}
                         </div>
                         <p>${pet.description}</p>
-                        <button class="adopt-btn" onclick="location.href='adoptionForm2.html'">Start Adoption Process</button>
+                        <button class="adopt-btn" onclick="location.href='adoption-form.html'">Start Adoption Process</button>
                     </div>
                 </div>
             `;

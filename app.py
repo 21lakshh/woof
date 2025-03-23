@@ -67,4 +67,4 @@ async def upload_and_query(file: UploadFile = File(...), additional_info: str = 
     
 
 import uvicorn
-uvicorn.run(app, port=8000)
+uvicorn.run(app, port=8000) 
