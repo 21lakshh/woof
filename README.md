@@ -40,8 +40,13 @@ Reports are weighted based on severity, giving higher priority to more critical 
 #### 3. **Time Decay Factor**
 Older reports gradually lose their influence using an **exponential decay function**:
 
+![DecayFactor](formulas/decayfactor.png)
+![Weight](formulas/weight.png)
+
 #### 4. **Custom Weighted Distance Function**
 A **modified distance function** incorporates severity-based weighting, ensuring that high-severity points are more closely clustered.
+
+![DistanceFunction](formulas/distancefunction.png)
 
 ### 📊 Visualization with Folium
 Clusters are plotted on an interactive **Folium** map:
