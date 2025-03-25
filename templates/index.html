@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Woof 🐾 - Stray Dog Rescue</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23395a7f'/%3E%3Cpath d='M30 40c0 0 5-10 20-10s20 10 20 10M30 60c0 0 5 10 20 10s20-10 20-10M50 40v20' stroke='white' stroke-width='8' fill='none'/%3E%3C/svg%3E">
     <link rel = "stylesheet" href = "static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,71 +17,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">Woof🐾 </div>
-        <nav class="nav-links">
-            <a href="#report">Report</a>
-            <a href="/static/adoption_new.html">Adopt</a>
-            <a href="#hotspots">Hotspots</a>
-            <a href="#about">Donate</a>
-            <a href="#testimonials">Testimonials</a>
+    <header class="header bg-[#2d3630] p-4 flex justify-between items-center">
+        <div class="logo text-purple-400 text-4xl font-extrabold">Woof🐾</div>
+        <nav class="nav-links flex space-x-6 text-lg">
+            <a href="#report" class="text-white hover:text-purple-400">Report</a>
+            <a href="/static/adoption_new.html" class="text-white hover:text-purple-400">Adopt</a>
+            <a href="#hotspots" class="text-white hover:text-purple-400">Hotspots</a>
+            <a href="#about" class="text-white hover:text-purple-400">Donate</a>
+            <a href="#testimonials" class="text-white hover:text-purple-400">Testimonials</a>
         </nav>
     </header>
 
     <section class="hero bg-[#2d3630]">
         <div class="hero-content">
-            <h1 class="hero-title" style="font-size: 4rem; margin-bottom: 1rem;">Save a Life Today</h1>
-            <p class="hero-subtitle" style="font-size: 1.5rem;">Your Report Can Make a Difference</p>
+            <h1 class="hero-title text-white" style="font-size: 4rem; margin-bottom: 1rem;">Save a Life Today</h1>
+            <p class="hero-subtitle text-gray-300" style="font-size: 1.5rem;">Your Report Can Make a Difference</p>
             <div class="stats-grid">
-                <div class="stat-card animate delay-1">
-                    <i class="fas fa-paw"></i>
-                    <h3>12,543+</h3>
-                    <p>Dogs Rescued</p>
+                <div class="stat-card animate delay-1 bg-[#3d463f]/50">
+                    <i class="fas fa-paw text-purple-400"></i>
+                    <h3 class="text-white">12,543+</h3>
+                    <p class="text-gray-300">Dogs Rescued</p>
                 </div>
-                <div class="stat-card animate delay-2">
-                    <i class="fas fa-home"></i>
-                    <h3>8,921+</h3>
-                    <p>Successful Adoptions</p>
+                <div class="stat-card animate delay-2 bg-[#3d463f]/50">
+                    <i class="fas fa-home text-purple-400"></i>
+                    <h3 class="text-white">8,921+</h3>
+                    <p class="text-gray-300">Successful Adoptions</p>
                 </div>
-                <div class="stat-card animate delay-3">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>74</h3>
-                    <p>Cities Covered</p>
+                <div class="stat-card animate delay-3 bg-[#3d463f]/50">
+                    <i class="fas fa-map-marker-alt text-purple-400"></i>
+                    <h3 class="text-white">74</h3>
+                    <p class="text-gray-300">Cities Covered</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Report Section -->
-    <div class="w-full bg-[#395a7f] py-16" id="report">
+    <div class="w-full bg-[#2d3630] py-16" id="report">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#e9ecee] mb-8 text-center">🐾 Report a Stray Dog</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">🐾 Report a Stray Dog</h2>
             
             <!-- Main Report Container -->
-            <div class="bg-[#e9ecee]/95 backdrop-blur-md rounded-xl shadow-lg border border-[#6e9fc1]/20 overflow-hidden">
+            <div class="bg-[#3d463f]/50 backdrop-blur-md rounded-xl shadow-lg border border-purple-400/20 overflow-hidden">
                 <!-- Input Section -->
                 <div class="p-6 space-y-6">
                     <!-- Location Input -->
                     <div class="flex gap-3">
                         <div class="flex-1">
-                            <label class="block text-[#395a7f] text-sm font-medium mb-2">Location</label>
-                            <input 
-                                id="location-input"
-                                type="text" 
-                                placeholder="Enter location or use current location"
-                                class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f]"
-                                readonly
-                            />
+                            <label class="block text-gray-300 text-sm font-medium mb-2">Location</label>
+                            <div class="relative">
+                                <input 
+                                    id="location-input"
+                                    type="text" 
+                                    placeholder="Enter location or use current location"
+                                    class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300"
+                                    readonly
+                                />
+                                <button 
+                                    type="button"
+                                    onclick="toggleLocationInput()"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-300"
+                                    title="Toggle manual input"
+                                >
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
                             <!-- Add a hidden input for coordinates -->
                             <input type="hidden" id="coordinates-input">
                             <!-- Location status message -->
-                            <p id="location-status" class="text-sm text-[#6e9fc1] mt-2"></p>
+                            <p id="location-status" class="text-sm text-purple-400 mt-2"></p>
+                            <!-- Manual input instructions -->
+                            <div id="manual-input-instructions" class="hidden mt-2 text-sm text-gray-300 bg-[#2d3630] p-3 rounded-lg">
+                                <p class="font-medium mb-2">Tips for better location accuracy:</p>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Enable GPS on your device</li>
+                                    <li>Move to an open area with clear sky view</li>
+                                    <li>Wait a few seconds for GPS to stabilize</li>
+                                    <li>Try refreshing the page and detecting again</li>
+                                </ul>
+                            </div>
                         </div>
                         <button 
                             type="button"
                             onclick="getLocation()"
                             id="detect-location"
-                            class="px-4 bg-[#6e9fc1] hover:bg-[#395a7f] text-white rounded-xl transition-all flex items-center justify-center group"
+                            class="px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-xl transition-all flex items-center justify-center group"
                             title="Use current location"
                         >
                             <i id="location-icon" class="fas fa-location-dot text-xl group-hover:animate-pulse"></i>
@@ -90,30 +111,35 @@
 
                     <!-- Upload Image Section -->
                     <div>
-                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Photos</label>
+                        <label class="block text-gray-300 text-sm font-medium mb-2">Photos</label>
                         <div class="flex items-center gap-4">
                             <button id="upload-btn" 
-                                class="flex-1 py-4 px-6 bg-gradient-to-r from-[#395a7f] to-[#6e9fc1] hover:from-[#6e9fc1] hover:to-[#395a7f] text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg">
+                                class="flex-1 py-4 px-6 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg">
                                 <i class="fas fa-camera text-xl"></i>
-                                <span>Upload Images</span>
+                                <span>Upload Photo</span>
                             </button>
-                            <input type="file" id="image-upload" accept="image/*" multiple class="hidden" />
+                            <input type="file" id="image-upload" accept="image/*" class="hidden" />
                         </div>
-                    </div>
-
-                    <!-- Image Preview Grid -->
-                    <div id="image-container" class="hidden">
-                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <!-- Image previews will be added here dynamically -->
+                        
+                        <!-- Single Image Preview -->
+                        <div id="image-container" class="hidden mt-4">
+                            <div class="relative w-48 h-48 border-2 border-dashed border-purple-400/30 rounded-lg overflow-hidden">
+                                <img id="image-preview" class="w-full h-full object-cover" />
+                                <button id="remove-image" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                    <i class="fas fa-times text-xs w-4 h-4 flex items-center justify-center"></i>
+                                </button>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2">Max 1 photo (2MB max)</p>
                         </div>
                     </div>
 
                     <!-- Condition -->
                     <div>
-                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Condition</label>
-                        <select class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f]">
+                        <label class="block text-gray-300 text-sm font-medium mb-2">Condition</label>
+                        <select class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300">
                             <option value="">Select condition</option>
                             <option value="healthy">Healthy</option>
+                            <option value="aggressive">Aggressive</option>
                             <option value="injured">Injured</option>
                             <option value="critical">Critical</option>
                         </select>
@@ -121,42 +147,68 @@
 
                     <!-- Description Input -->
                     <div>
-                        <label class="block text-[#395a7f] text-sm font-medium mb-2">Additional Details</label>
+                        <label class="block text-gray-300 text-sm font-medium mb-2">Additional Details</label>
                         <textarea 
                             id="query-input" 
                             rows="4" 
                             placeholder="Describe the situation, animal's behavior, or any other relevant details..."
-                            class="w-full p-4 bg-white rounded-xl border border-[#a1cae9] focus:outline-none focus:ring-2 focus:ring-[#6e9fc1] text-[#395a7f] resize-none"
+                            class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300 resize-none"
                         ></textarea>
                     </div>
 
                     <!-- Submit Button -->
                     <button 
                         id="submit-query" 
-                        class="w-full py-4 bg-gradient-to-r from-[#395a7f] to-[#6e9fc1] hover:from-[#6e9fc1] hover:to-[#395a7f] text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg"
+                        class="w-full py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg"
                     >
                         <i class="fas fa-paper-plane"></i>
                         <span>Submit Report</span>
                     </button>
 
                     <!-- Helper Text -->
-                    <div class="flex items-start gap-3 p-4 bg-[#a1cae9]/20 rounded-xl">
-                        <i class="fas fa-info-circle text-[#395a7f] mt-1"></i>
-                        <p class="text-[#395a7f] text-sm">
+                    <div class="flex items-start gap-3 p-4 bg-purple-400/10 rounded-xl">
+                        <i class="fas fa-info-circle text-purple-400 mt-1"></i>
+                        <p class="text-gray-300 text-sm">
                             Your report helps us locate and rescue stray animals efficiently. We'll contact you for any additional information needed.
                         </p>
                     </div>
                 </div>
 
                 <!-- Response Section -->
-                <div id="response-container" class="hidden border-t border-[#6e9fc1]/20">
+                <div id="response-container" class="hidden border-t border-purple-400/20">
                     <div class="p-6 space-y-4">
-                        <h3 class="text-xl font-semibold text-[#395a7f] flex items-center gap-2">
-                            <i class="fas fa-comment-dots"></i>
+                        <h3 class="text-xl font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-comment-dots text-purple-400"></i>
                             Response
                         </h3>
-                        <div class="bg-white p-4 rounded-xl text-[#395a7f]">
+                        <div class="bg-[#2d3630] p-4 rounded-xl text-white">
                             <!-- AI responses will appear here -->
+                        </div>
+                        
+                        <!-- Location-specific Information -->
+                        <div id="location-info" class="hidden mt-4">
+                            <div class="bg-[#3d463f]/50 p-4 rounded-xl border border-purple-400/20">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <i class="fas fa-map-marker-alt text-purple-400"></i>
+                                    <h4 class="text-white font-semibold">Nearby Help</h4>
+                                </div>
+                                <div id="shelter-info" class="hidden">
+                                    <p class="text-gray-300 mb-2">Nearest Dog Shelter:</p>
+                                    <div class="bg-[#2d3630] p-3 rounded-lg">
+                                        <p class="text-white font-medium">Paws & Care Shelter</p>
+                                        <p class="text-gray-400 text-sm">2.5 km away</p>
+                                        <p class="text-gray-400 text-sm">ETA: 15 minutes</p>
+                                    </div>
+                                </div>
+                                <div id="vet-info" class="hidden">
+                                    <p class="text-gray-300 mb-2">Nearest Veterinary Hospital:</p>
+                                    <div class="bg-[#2d3630] p-3 rounded-lg">
+                                        <p class="text-white font-medium">PetCare Emergency Hospital</p>
+                                        <p class="text-gray-400 text-sm">1.8 km away</p>
+                                        <p class="text-gray-400 text-sm">ETA: 10 minutes</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,19 +226,19 @@
         </div>
     </div>
 
-    <section class="features bg-[#e9ecee] py-16" id="hotspots">
+    <section class="features bg-[#2d3630] py-16" id="hotspots">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-[#395a7f] mb-4">Real-time Stray Tracking</h2>
-                <p class="text-[#6e9fc1] text-lg">Monitor and help strays in your area</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Real-time Stray Tracking</h2>
+                <p class="text-purple-400 text-lg">Monitor and help strays in your area</p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Map Container -->
-                <div class="lg:col-span-2 bg-white rounded-xl shadow-lg overflow-hidden border border-[#a1cae9]/20">
-                    <div class="p-4 bg-[#395a7f] text-white flex justify-between items-center">
+                <div class="lg:col-span-2 bg-[#3d463f]/50 rounded-xl shadow-lg overflow-hidden border border-purple-400/20">
+                    <div class="p-4 bg-[#2d3630] text-white flex justify-between items-center">
                         <h3 class="font-semibold flex items-center gap-2">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt text-purple-400"></i>
                             Live Hotspot Map
                         </h3>
                         <div class="flex items-center gap-4">
@@ -194,7 +246,7 @@
                                 <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                 Live Updates
                             </span>
-                            <button class="p-2 hover:bg-[#6e9fc1] rounded-lg transition-colors">
+                            <button class="p-2 hover:bg-purple-500 rounded-lg transition-colors">
                                 <i class="fas fa-expand"></i>
                             </button>
                         </div>
@@ -211,66 +263,66 @@
                 <!-- Stats and Filters Panel -->
                 <div class="space-y-6">
                     <!-- Quick Stats -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
-                        <h3 class="text-[#395a7f] font-semibold mb-4">Current Statistics</h3>
+                    <div class="bg-[#3d463f]/50 rounded-xl p-6 border border-purple-400/20">
+                        <h3 class="text-white font-semibold mb-4">Current Statistics</h3>
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
-                                <span class="text-[#395a7f]">Active Reports</span>
-                                <span class="text-[#6e9fc1] font-bold">24</span>
+                            <div class="flex justify-between items-center p-3 bg-[#2d3630] rounded-lg">
+                                <span class="text-gray-300">Active Reports</span>
+                                <span class="text-purple-400 font-bold">24</span>
                             </div>
-                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
-                                <span class="text-[#395a7f]">Teams Deployed</span>
-                                <span class="text-[#6e9fc1] font-bold">8</span>
+                            <div class="flex justify-between items-center p-3 bg-[#2d3630] rounded-lg">
+                                <span class="text-gray-300">Teams Deployed</span>
+                                <span class="text-purple-400 font-bold">8</span>
                             </div>
-                            <div class="flex justify-between items-center p-3 bg-[#e9ecee] rounded-lg">
-                                <span class="text-[#395a7f]">Response Time</span>
-                                <span class="text-[#6e9fc1] font-bold">~15 mins</span>
+                            <div class="flex justify-between items-center p-3 bg-[#2d3630] rounded-lg">
+                                <span class="text-gray-300">Response Time</span>
+                                <span class="text-purple-400 font-bold">~15 mins</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Filters -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
-                        <h3 class="text-[#395a7f] font-semibold mb-4">Map Filters</h3>
+                    <div class="bg-[#3d463f]/50 rounded-xl p-6 border border-purple-400/20">
+                        <h3 class="text-white font-semibold mb-4">Map Filters</h3>
                         <div class="space-y-3">
-                            <label class="flex items-center gap-2 text-[#395a7f]">
-                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                            <label class="flex items-center gap-2 text-gray-300">
+                                <input type="checkbox" checked class="form-checkbox text-purple-400">
                                 Recent Reports
                             </label>
-                            <label class="flex items-center gap-2 text-[#395a7f]">
-                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                            <label class="flex items-center gap-2 text-gray-300">
+                                <input type="checkbox" checked class="form-checkbox text-purple-400">
                                 Active Teams
                             </label>
-                            <label class="flex items-center gap-2 text-[#395a7f]">
-                                <input type="checkbox" checked class="form-checkbox text-[#6e9fc1]">
+                            <label class="flex items-center gap-2 text-gray-300">
+                                <input type="checkbox" checked class="form-checkbox text-purple-400">
                                 High Priority Areas
                             </label>
                         </div>
                     </div>
 
                     <!-- Recent Activity -->
-                    <div class="bg-white rounded-xl shadow-lg p-6 border border-[#a1cae9]/20">
-                        <h3 class="text-[#395a7f] font-semibold mb-4">Recent Activity</h3>
+                    <div class="bg-[#3d463f]/50 rounded-xl p-6 border border-purple-400/20">
+                        <h3 class="text-white font-semibold mb-4">Recent Activity</h3>
                         <div class="space-y-4">
                             <div class="flex items-start gap-3">
                                 <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                                 <div>
-                                    <p class="text-[#395a7f]">New report at Koramangala</p>
-                                    <p class="text-[#acacac] text-sm">2 minutes ago</p>
+                                    <p class="text-gray-300">New report at Koramangala</p>
+                                    <p class="text-gray-400 text-sm">2 minutes ago</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
                                 <div>
-                                    <p class="text-[#395a7f]">Team dispatched to Indiranagar</p>
-                                    <p class="text-[#acacac] text-sm">5 minutes ago</p>
+                                    <p class="text-gray-300">Team dispatched to Indiranagar</p>
+                                    <p class="text-gray-400 text-sm">5 minutes ago</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
                                 <div>
-                                    <p class="text-[#395a7f]">Rescue completed in HSR Layout</p>
-                                    <p class="text-[#acacac] text-sm">15 minutes ago</p>
+                                    <p class="text-gray-300">Rescue completed in HSR Layout</p>
+                                    <p class="text-gray-400 text-sm">15 minutes ago</p>
                                 </div>
                             </div>
                         </div>
@@ -798,7 +850,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="qr-code">
-                        <img id="dynamicQRCode" src="" alt="UPI QR Code" onerror="this.src='static/images/fallback-qr.png'">
+                        <img id="dynamicQRCode" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%236b7280'%3EQR Code not available%3C/text%3E%3C/svg%3E" alt="UPI QR Code">
                     </div>
                     <div class="upi-details">
                         <p class="upi-id" id="upiId">animalrescue@axis</p>
@@ -1125,6 +1177,24 @@
     </style>
 
     <script>
+    let isManualInput = false;
+
+    function toggleLocationInput() {
+        const locationInput = document.getElementById('location-input');
+        const instructions = document.getElementById('manual-input-instructions');
+        isManualInput = !isManualInput;
+        
+        if (isManualInput) {
+            locationInput.readOnly = false;
+            locationInput.placeholder = "Enter your location manually";
+            instructions.classList.remove('hidden');
+        } else {
+            locationInput.readOnly = true;
+            locationInput.placeholder = "Enter location or use current location";
+            instructions.classList.add('hidden');
+        }
+    }
+
     function getLocation() {
         const locationInput = document.getElementById('location-input');
         const coordinatesInput = document.getElementById('coordinates-input');
@@ -1142,25 +1212,35 @@
                 (position) => {
                     const { latitude, longitude, accuracy } = position.coords;
 
-                    if (accuracy <= 500 ) { // Increased threshold slightly for better usability
+                    // Increased threshold to 2000m for better usability
+                    // Most GPS devices have accuracy between 10-100m in good conditions
+                    if (accuracy <= 2000) {
                         // Reverse Geocoding using OpenStreetMap Nominatim API
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
-                            .then(response => response.json())
+                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Network response was not ok');
+                                }
+                                return response.json();
+                            })
                             .then(data => {
                                 const locationName = data.display_name || "Unknown location";
                                 // Store formatted address
                                 locationInput.value = locationName;
                                 // Store coordinates
                                 coordinatesInput.value = `${latitude},${longitude}`;
-                                // Update status
-                                locationStatus.textContent = `Location detected with ${Math.round(accuracy)}m accuracy`;
-                                locationStatus.classList.remove('text-red-500');
+                                // Update status with accuracy info
+                                locationStatus.textContent = `Location detected (Accuracy: ${Math.round(accuracy)}m)`;
+                                locationStatus.classList.remove('text-red-500', 'text-yellow-500');
                                 locationStatus.classList.add('text-green-500');
                             })
-                            .catch(() => {
-                                locationInput.value = `${latitude}, ${longitude}`;
+                            .catch((error) => {
+                                console.error('Geocoding error:', error);
+                                // Fallback to coordinates if geocoding fails
+                                locationInput.value = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
                                 coordinatesInput.value = `${latitude},${longitude}`;
-                                locationStatus.textContent = 'Could not fetch location name, using coordinates';
+                                locationStatus.textContent = 'Using coordinates (address lookup failed)';
+                                locationStatus.classList.remove('text-red-500', 'text-green-500');
                                 locationStatus.classList.add('text-yellow-500');
                             })
                             .finally(() => {
@@ -1169,8 +1249,11 @@
                                 locationLoader.classList.add('hidden');
                             });
                     } else {
-                        locationStatus.textContent = 'Could not get an accurate location. Please try again.';
+                        locationStatus.textContent = `Location accuracy is low (${Math.round(accuracy)}m). Try moving to an open area or enter location manually.`;
+                        locationStatus.classList.remove('text-green-500', 'text-yellow-500');
                         locationStatus.classList.add('text-red-500');
+                        // Show manual input instructions
+                        document.getElementById('manual-input-instructions').classList.remove('hidden');
                         // Hide loading state
                         locationIcon.classList.remove('hidden');
                         locationLoader.classList.add('hidden');
@@ -1180,32 +1263,38 @@
                     let errorMessage = 'Error detecting location: ';
                     switch(error.code) {
                         case error.PERMISSION_DENIED:
-                            errorMessage += 'Please enable location access.';
+                            errorMessage = 'Location access denied. Please enable location services in your browser settings.';
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            errorMessage += 'Location information unavailable.';
+                            errorMessage = 'Location information unavailable. Please check your GPS settings.';
                             break;
                         case error.TIMEOUT:
-                            errorMessage += 'Location request timed out.';
+                            errorMessage = 'Location request timed out. Please try again.';
                             break;
                         default:
-                            errorMessage += 'Unknown error occurred.';
+                            errorMessage = 'Unable to detect location. Please try again or enter location manually.';
                     }
                     locationStatus.textContent = errorMessage;
+                    locationStatus.classList.remove('text-green-500', 'text-yellow-500');
                     locationStatus.classList.add('text-red-500');
+                    // Show manual input instructions
+                    document.getElementById('manual-input-instructions').classList.remove('hidden');
                     // Hide loading state
                     locationIcon.classList.remove('hidden');
                     locationLoader.classList.add('hidden');
                 },
                 {
                     enableHighAccuracy: true,
-                    timeout: 10000,
+                    timeout: 15000, // Increased timeout to 15 seconds
                     maximumAge: 0
                 }
             );
         } else {
-            locationStatus.textContent = 'Geolocation is not supported by this browser.';
+            locationStatus.textContent = 'Geolocation is not supported by this browser. Please enter location manually.';
+            locationStatus.classList.remove('text-green-500', 'text-yellow-500');
             locationStatus.classList.add('text-red-500');
+            // Show manual input instructions
+            document.getElementById('manual-input-instructions').classList.remove('hidden');
             // Hide loading state
             locationIcon.classList.remove('hidden');
             locationLoader.classList.add('hidden');
