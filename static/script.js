@@ -53,11 +53,10 @@ document.addEventListener('DOMContentLoaded', function() {
             showError('⚠️ Please upload an image and enter a query.');
             return;
         }
-
         const formData = new FormData();
+
         formData.append('file', image);
         formData.append('additional_info', query);
-
         try {
             submitQuery.disabled = true;
             submitQuery.textContent = 'Processing... ⏳';
