@@ -8,7 +8,11 @@ import os
 # Sample Data: [Latitude, Longitude, Severity, Report Time]
 # Severity weight: Emergency 🔴 = 5.0, Injured 🟡 = 2.5, Healthy 🟢 = 1.0
 # Report Time format: YYYY-MM-DD HH:MM:SS
-
+dog_images = {
+        5.0: "static/images/ben-owen-FFwNGYZK-2o-unsplash.jpg",  # Emergency dog image path
+        2.5: "static/images/mink-mingle-UAsFSsMDpa0-unsplash.jpg",    # Injured dog image path
+        1.0: "static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg"     # Healthy dog image path
+    }
 data = [
     [26.8415, 75.5659, 5.0, "2025-03-21 10:30:00"],  # Emergency 🔴
     [26.8418, 75.5662, 5.0, "2025-03-21 09:45:00"],  # Emergency 🔴
@@ -18,6 +22,7 @@ data = [
     [26.8419, 75.5666, 5.0, "2025-03-21 11:00:00"],  # Emergency 🔴
     [26.8510, 75.5790, 5.0, "2025-03-21 11:30:00"],  # Emergency 🔴
     [26.8520, 75.5800, 5.0, "2025-03-21 11:45:00"],  # Emergency 🔴
+    
     [26.8505, 75.5785, 5.0, "2025-03-21 06:45:00"],  # Emergency 🔴
     [26.8508, 75.5788, 5.0, "2025-03-21 12:00:00"],  # Emergency 🔴
     [26.8515, 75.5795, 2.5, "2025-03-21 07:30:00"],  # Injured 🟡
@@ -60,98 +65,97 @@ data = [
     [27.0000, 76.0000, 5.0, "2025-03-21 05:15:00"],  # Completely random point
 ]
 
+def create_hotspot_map(df):
+    # Ensure the DataFrame has the required columns
+    required_columns = ["Latitude", "Longitude", "Severity", "ReportTime"]
+    if not all(col in df.columns for col in required_columns):
+        raise ValueError(f"DataFrame must contain the following columns: {required_columns}")
 
-# Convert to DataFrame
-df = pd.DataFrame(data, columns=["Latitude", "Longitude", "Severity", "ReportTime"])
-df["ReportTime"] = pd.to_datetime(df["ReportTime"])
+    # Convert ReportTime to datetime if not already
+    df["ReportTime"] = pd.to_datetime(df["ReportTime"])
 
-# Time Decay Factor
-lambda_decay = 0.1  # Higher = more weight to recent reports
-current_time = df["ReportTime"].max()
-# current_time = datetime.now()
-print(current_time)
+    # Time Decay Factor
+    lambda_decay = 0.1  # Higher = more weight to recent reports
+    current_time = df["ReportTime"].max()
 
-def compute_weight(row):
-    time_diff = (current_time - row["ReportTime"]).total_seconds() / 3600  # Hours
-    decay_factor = np.exp(-lambda_decay * time_diff)
-    return row["Severity"] * decay_factor
+    def compute_weight(row):
+        time_diff = (current_time - row["ReportTime"]).total_seconds() / 3600  # Hours
+        decay_factor = np.exp(-lambda_decay * time_diff)
+        return row["Severity"] * decay_factor
 
-df["Weight"] = df.apply(compute_weight, axis=1)
+    df["Weight"] = df.apply(compute_weight, axis=1)
 
-# Custom Weighted Distance Function
-def weighted_distance(A, B):
-    lat1, lon1, w1 = A
-    lat2, lon2, w2 = B
-    euclidean_dist = np.linalg.norm([lat1 - lat2, lon1 - lon2])
-    return euclidean_dist / (1 + np.sqrt(w1 * w2))  
+    # Custom Weighted Distance Function
+    def weighted_distance(A, B):
+        lat1, lon1, w1 = A
+        lat2, lon2, w2 = B
+        euclidean_dist = np.linalg.norm([lat1 - lat2, lon1 - lon2])
+        return euclidean_dist / (1 + np.sqrt(w1 * w2))
 
-# Apply DBSCAN
-coords_weights = df[["Latitude", "Longitude", "Weight"]].values
-dbscan = DBSCAN(eps=0.01, min_samples=2, metric=weighted_distance)
-df["Cluster"] = dbscan.fit_predict(coords_weights)
+    # Apply DBSCAN
+    coords_weights = df[["Latitude", "Longitude", "Weight"]].values
+    dbscan = DBSCAN(eps=0.01, min_samples=2, metric=weighted_distance)
+    df["Cluster"] = dbscan.fit_predict(coords_weights)
 
-# Prioritize clusters based on severity & density
-# Clusters that were outliers were balanced by adding additional weight so that single healthy dog wouldn't be given same priority as single emergency outlier 
-cluster_priority = df.groupby("Cluster")["Weight"].sum().reset_index()
-cluster_priority.columns = ["Cluster", "Priority"]
-df = df.merge(cluster_priority, on="Cluster", how="left")
-df["Priority"] = df.apply(lambda row: row["Priority"] * 0.25 if row["Cluster"] == -1 and row["Severity"] == 1.0 else row["Priority"], axis=1)
-df["Priority"] = df.apply(lambda row: row["Priority"] * 0.3 if row["Cluster"] == -1 and row["Severity"] == 2.5 else row["Priority"], axis=1)
+    # Prioritize clusters based on severity & density
+    cluster_priority = df.groupby("Cluster")["Weight"].sum().reset_index()
+    cluster_priority.columns = ["Cluster", "Priority"]
+    df = df.merge(cluster_priority, on="Cluster", how="left")
+    df["Priority"] = df.apply(lambda row: row["Priority"] * 0.25 if row["Cluster"] == -1 and row["Severity"] == 1.0 else row["Priority"], axis=1)
+    df["Priority"] = df.apply(lambda row: row["Priority"] * 0.3 if row["Cluster"] == -1 and row["Severity"] == 2.5 else row["Priority"], axis=1)
 
+    # Visualization - Folium Map
+    map_center = [df["Latitude"].mean(), df["Longitude"].mean()]
+    m = folium.Map(location=map_center, zoom_start=15)
 
-#  Visualization - Folium Map
-map_center = [df["Latitude"].mean(), df["Longitude"].mean()]
-m = folium.Map(location=map_center, zoom_start=15)
+    color_map = {5.0: "red", 2.5: "orange", 1.0: "green"}  # Emergency, Injured, Healthy
 
-color_map = {5.0: "red", 2.5: "orange", 1.0: "green"}  # Emergency, Injured, Healthy
-
-# Add dog images for each severity level
-dog_images = {
-    5.0: "static/images/ben-owen-FFwNGYZK-2o-unsplash.jpg",  # Replace with your emergency dog image path
-    2.5: "static/images/mink-mingle-UAsFSsMDpa0-unsplash.jpg",    # Replace with your injured dog image path
-    1.0: "static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg"     # Replace with your healthy dog image path
-}
-
-for _, row in df.iterrows():
-    # Create HTML content for popup with image
-    html = f"""
-        <div style="width:200px">
-            <img src="{dog_images.get(row['Severity'])}" style="width:100%;border-radius:10px;margin-bottom:10px">
-            <div style="text-align:center;font-family:Arial,sans-serif">
-                <strong style="color:{color_map.get(row['Severity'])}">
-                    {['Emergency 🔴', 'Injured 🟡', 'Healthy 🟢'][int((5-row['Severity'])/2)]}
-                </strong><br>
-                <span style="color:#666">
-                    Reported: {row['ReportTime'].strftime('%Y-%m-%d %H:%M')}<br>
-                    Location: {row['Latitude']:.4f}, {row['Longitude']:.4f}<br>
-                    Cluster: {row['Cluster']}<br>
-                    Priority: {row['Priority']:.2f}
-                </span>
+    # Add dog images for each severity level
+    for _, row in df.iterrows():
+        # Create HTML content for popup with image
+        html = f"""
+            <div style="width:200px">
+                <img src="{dog_images.get(row['Severity'])}" style="width:100%;border-radius:10px;margin-bottom:10px">
+                <div style="text-align:center;font-family:Arial,sans-serif">
+                    <strong style="color:{color_map.get(row['Severity'])}">
+                        {['Emergency 🔴', 'Injured 🟡', 'Healthy 🟢'][int((5-row['Severity'])/2)]}
+                    </strong><br>
+                    <span style="color:#666">
+                        Reported: {row['ReportTime'].strftime('%Y-%m-%d %H:%M')}<br>
+                        Location: {row['Latitude']:.4f}, {row['Longitude']:.4f}<br>
+                        Cluster: {row['Cluster']}<br>
+                        Priority: {row['Priority']:.2f}
+                    </span>
+                </div>
             </div>
-        </div>
-    """
-    
-    # Create popup with HTML content
-    popup = folium.Popup(html, max_width=300)
-    
-    # Create marker with popup
-    folium.CircleMarker(
-        location=[row["Latitude"], row["Longitude"]],
-        radius=8,
-        color=color_map.get(row["Severity"], "blue"),
-        fill=True,
-        fill_color=color_map.get(row["Severity"], "blue"),
-        fill_opacity=0.7,
-        popup=popup
-    ).add_to(m)
+        """
+        
+        # Create popup with HTML content
+        popup = folium.Popup(html, max_width=300)
+        
+        # Create marker with popup
+        folium.CircleMarker(
+            location=[row["Latitude"], row["Longitude"]],
+            radius=8,
+            color=color_map.get(row["Severity"], "blue"),
+            fill=True,
+            fill_color=color_map.get(row["Severity"], "blue"),
+            fill_opacity=0.7,
+            popup=popup
+        ).add_to(m)
 
-# Create static directory if it doesn't exist
-if not os.path.exists('static'):
-    os.makedirs('static')
+    # Create static directory if it doesn't exist
+    if not os.path.exists('static'):
+        os.makedirs('static')
 
-# Save the map
-m.save("hotspot_map.html")
-print("🔥 Hotspot Map Saved as 'hotspot_map.html'")
+    # Save the map
+    m.save("hotspot_map.html")
+    print("🔥 Hotspot Map Saved as 'hotspot_map.html'")
+
+    return m  # Return the map object if needed
+
+df = pd.DataFrame(data, columns=["Latitude", "Longitude", "Severity", "ReportTime"])
+create_hotspot_map(df)
 
 print(df)
    
