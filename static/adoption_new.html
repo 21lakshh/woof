@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adopt | PawsGuard - Luxury Pet Adoption</title>
+    <title>Adopt | Woof - Luxury Pet Adoption</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/css?family=Material+Icons+Round">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -256,6 +256,15 @@
             padding: 4rem 5%;
             margin-top: 6rem;
         }
+        .personality-tag {
+        display: inline-block;
+        background: rgba(255, 107, 107, 0.15);
+        color: var(--secondary);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        margin: 0.2rem;
+        font-size: 0.9rem;
+}
     </style>
 </head>
 <body>
@@ -288,7 +297,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2023 PawsGuard. All rights reserved.</p>
+        <p>&copy; 2025 Woof. All rights reserved.</p>
     </footer>
 
     <script>
@@ -325,7 +334,7 @@
         location: "Bangalore Rescue Home",
         personality: ["Affectionate", "Intelligent", "Social"],
         description: "Luna is a loving and gentle Labrador who enjoys being around people. She is highly trainable and would make a great family pet or therapy dog.",
-        image: "",
+        image: "images.jpeg",
         vaccinated: true,
         trained: true
     },
@@ -361,7 +370,7 @@
         location: "Manali Rescue Home",
         personality: ["Energetic", "Independent", "Intelligent"],
         description: "Oliver is a striking Siberian Husky with a love for running and outdoor activities. He needs an active owner who can keep up with his high energy levels.",
-        image: "",
+        image: "images.jpeg.jpg",
         vaccinated: true,
         trained: false
     }
@@ -372,7 +381,7 @@
             container.innerHTML = pets.map(pet => `
                 <div class="pet-card">
                     <div class="pet-image">
-                        <img src="${pet.image}" alt="${pet.name}">
+                        <img src="images/${pet.image}" alt="${pet.name}">
                     </div>
                     <div class="pet-info">
                         <h3>${pet.name}</h3>
@@ -388,26 +397,26 @@
         }
 
         function showModal(petName) {
-            const pet = pets.find(p => p.name === petName);
-            const modalContent = document.getElementById('modal-content');
-            modalContent.innerHTML = `
-                <div class="modal-body">
-                    <div class="pet-image">
-                        <img src="${pet.image}" alt="${pet.name}">
-                    </div>
-                    <div class="pet-details">
-                        <h2>${pet.name}</h2>
-                        <p><strong>Breed:</strong> ${pet.breed}</p>
-                        <p><strong>Age:</strong> ${pet.age}</p>
-                        <p><strong>Gender:</strong> ${pet.gender}</p>
-                        <p><strong>Location:</strong> ${pet.location}</p>
-                        <div class="personality">
-                            ${pet.personality.map(t => <span class="personality-tag">${t}</span>).join('')}
-                        </div>
-                        <p>${pet.description}</p>
-                        <button class="adopt-btn" onclick="location.href='adoption-form.html'">Start Adoption Process</button>
-                    </div>
+    const pet = pets.find(p => p.name === petName);
+    const modalContent = document.getElementById('modal-content');
+    modalContent.innerHTML = `
+        <div class="modal-body">
+            <div class="pet-image">
+                <img src="images/${pet.image || 'placeholder.jpg'}" alt="${pet.name}">
+            </div>
+            <div class="pet-details">
+                <h2>${pet.name}</h2>
+                <p><strong>Breed:</strong> ${pet.breed}</p>
+                <p><strong>Age:</strong> ${pet.age}</p>
+                <p><strong>Gender:</strong> ${pet.gender}</p>
+                <p><strong>Location:</strong> ${pet.location}</p>
+                <div class="personality">
+                    ${pet.personality.map(t => `<span class="personality-tag">${t}</span>`).join('')}
                 </div>
+                <p>${pet.description}</p>
+                <button class="adopt-btn" onclick="location.href='adoption-form.html'">Start Adoption Process</button>
+            </div>
+        </div>
             `;
             document.getElementById('modal').style.display = 'flex';
             setTimeout(() => document.getElementById('modal').classList.add('modal-active'), 10);
