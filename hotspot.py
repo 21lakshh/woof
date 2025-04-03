@@ -9,9 +9,9 @@ import os
 # Severity weight: Emergency 🔴 = 5.0, Injured 🟡 = 2.5, Healthy 🟢 = 1.0
 # Report Time format: YYYY-MM-DD HH:MM:SS
 dog_images = {
-        5.0: "static/images/ben-owen-FFwNGYZK-2o-unsplash.jpg",  # Emergency dog image path
-        2.5: "static/images/mink-mingle-UAsFSsMDpa0-unsplash.jpg",    # Injured dog image path
-        1.0: "static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg"     # Healthy dog image path
+        5.0: "ben-owen-FFwNGYZK-2o-unsplash.jpg",  # Emergency dog image path
+        2.5: "mink-mingle-UAsFSsMDpa0-unsplash.jpg",    # Injured dog image path
+        1.0: "VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg"     # Healthy dog image path
     }
 data = [
     [26.8415, 75.5659, 5.0, "2025-03-21 10:30:00"],  # Emergency 🔴
@@ -148,9 +148,9 @@ def create_hotspot_map(df):
     if not os.path.exists('static'):
         os.makedirs('static')
 
-    # Save the map
-    m.save("hotspot_map.html")
-    print("🔥 Hotspot Map Saved as 'hotspot_map.html'")
+    # Save the map in the static folder
+    m.save("static/hotspot_map.html")  # Save in the static folder
+    print("🔥 Hotspot Map Saved as 'static/hotspot_map.html'")
 
     return m  # Return the map object if needed
 

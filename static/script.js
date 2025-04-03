@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const responseContainer = document.getElementById('response-container');
     const errorContainer = document.getElementById('error-container');
     const errorText = document.getElementById('error-text');
+    console.log("Script loaded and event listeners attached.");
+
 
     function getFormattedDateTime() {
         let now = new Date();
@@ -23,10 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
     // Click to Upload button trigger
-    uploadBtn.addEventListener('click', () => imageUpload.click());
+    let isClicking = false;
+
+    uploadBtn.addEventListener('click', function () {
+        if (isClicking) return; // Prevent multiple clicks
+        isClicking = true;
+    
+        imageUpload.click();
+    
+        setTimeout(() => isClicking = false, 500); // Reset after 500ms
+    });
 
     // Handle image selection
     imageUpload.addEventListener('change', function(event) {
+        console.log("Image selected:", event.target.files[0]);
         const file = event.target.files[0];
         
         if (!file) return;
@@ -54,10 +66,11 @@ document.addEventListener('DOMContentLoaded', function() {
         imagePreview.src = '';
         imageContainer.classList.add('hidden');
         imageUpload.value = ''; // Clear the file input
-        storedTime = getFormattedDateTime();
     });
+
     // Submit Query
-    submitQuery.addEventListener('click', async () => {
+    submitQuery.addEventListener('click', async (event) => {
+        event.preventDefault(); // Prevent default form submission
         const image = imageUpload.files[0];
         const query = queryInput.value;
 
@@ -87,20 +100,19 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const responseText = result.choices[0].message.content;
-            const markdownResponse = result.choices[0].message.content;
-            responseContainer.innerHTML = marked.parse(markdownResponse);
+            responseContainer.innerHTML = marked.parse(responseText);
             responseContainer.classList.remove('hidden');
             errorContainer.classList.add('hidden');
 
-            // Now create the second formData for create_hotspot
+            // If you want to create a hotspot, uncomment and implement this part
+            /*
             const formData2 = new FormData();
             formData2.append('file', image);
             formData2.append('latitude', latitude); // Ensure latitude is defined
             formData2.append('longitude', longitude); // Ensure longitude is defined
             formData2.append('response', responseText);
-            formData2.append('time', time); // Use the function to get the current time
+            formData2.append('time', getFormattedDateTime());
 
-            // Send the second request
             const hotspotResponse = await fetch('/create_hotspot', {
                 method: 'POST',
                 body: formData2
@@ -109,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!hotspotResponse.ok) {
                 throw new Error(`Server error: ${hotspotResponse.status} ${hotspotResponse.statusText}`);
             }
+            */
 
         } catch (error) {
             console.error('Error:', error);
