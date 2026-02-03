@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a1d5e2c8c3ab3e6d73ddae6d520bb21f {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a1d5e2c8c3ab3e6d73ddae6d520bb21f" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a1d5e2c8c3ab3e6d73ddae6d520bb21f = L.map(
+                "map_a1d5e2c8c3ab3e6d73ddae6d520bb21f",
+                {
+                    center: [26.874043478260873, 75.74762173913044],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_87ac32abd9add478be4278d1b1051ff9 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_87ac32abd9add478be4278d1b1051ff9.addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+            var circle_marker_e0f2f7fdc21da755fde7dfb0aeaec66c = L.circleMarker(
+                [26.8415, 75.5659],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_b692f1bb67c676c528810b8087f32010 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6699359795ec4356d9d7725fffe2b7e0 = $(`<div id="html_6699359795ec4356d9d7725fffe2b7e0" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 10:30<br>                     Location: 26.8415, 75.5659<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_b692f1bb67c676c528810b8087f32010.setContent(html_6699359795ec4356d9d7725fffe2b7e0);
+            
+        
+
+        circle_marker_e0f2f7fdc21da755fde7dfb0aeaec66c.bindPopup(popup_b692f1bb67c676c528810b8087f32010)
+        ;
+
+        
+    
+    
+            var circle_marker_ff702d75ea06524a2549468c1c594b63 = L.circleMarker(
+                [26.8418, 75.5662],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_f7c9e064222bd60b143d1be3d1122db2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f6ef8703dd4e946fd45dd0893e20e98a = $(`<div id="html_f6ef8703dd4e946fd45dd0893e20e98a" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 09:45<br>                     Location: 26.8418, 75.5662<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_f7c9e064222bd60b143d1be3d1122db2.setContent(html_f6ef8703dd4e946fd45dd0893e20e98a);
+            
+        
+
+        circle_marker_ff702d75ea06524a2549468c1c594b63.bindPopup(popup_f7c9e064222bd60b143d1be3d1122db2)
+        ;
+
+        
+    
+    
+            var circle_marker_2fd20a0787f013a5787473476830ae94 = L.circleMarker(
+                [26.842, 75.5665],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_3ca48623ce48be80bfc23e0cef5f2e01 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1bce5baadfadf53a60c4dbde3651b148 = $(`<div id="html_1bce5baadfadf53a60c4dbde3651b148" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 08:15<br>                     Location: 26.8420, 75.5665<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_3ca48623ce48be80bfc23e0cef5f2e01.setContent(html_1bce5baadfadf53a60c4dbde3651b148);
+            
+        
+
+        circle_marker_2fd20a0787f013a5787473476830ae94.bindPopup(popup_3ca48623ce48be80bfc23e0cef5f2e01)
+        ;
+
+        
+    
+    
+            var circle_marker_652df90d5db5cb86989765b4c9c276cf = L.circleMarker(
+                [26.8412, 75.5661],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_7c65b716f5cf1e526f2f0238a9a39698 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d537e313e2cb2c3c41bbb96db2bf0484 = $(`<div id="html_d537e313e2cb2c3c41bbb96db2bf0484" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 10:00<br>                     Location: 26.8412, 75.5661<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_7c65b716f5cf1e526f2f0238a9a39698.setContent(html_d537e313e2cb2c3c41bbb96db2bf0484);
+            
+        
+
+        circle_marker_652df90d5db5cb86989765b4c9c276cf.bindPopup(popup_7c65b716f5cf1e526f2f0238a9a39698)
+        ;
+
+        
+    
+    
+            var circle_marker_4272d2f277931e280389ed9d2cc0118c = L.circleMarker(
+                [26.8417, 75.5664],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_f14440ebe8ad387259d540a20ace7938 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7783f12e5d813f659cfed33bd8b6e283 = $(`<div id="html_7783f12e5d813f659cfed33bd8b6e283" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 10:15<br>                     Location: 26.8417, 75.5664<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_f14440ebe8ad387259d540a20ace7938.setContent(html_7783f12e5d813f659cfed33bd8b6e283);
+            
+        
+
+        circle_marker_4272d2f277931e280389ed9d2cc0118c.bindPopup(popup_f14440ebe8ad387259d540a20ace7938)
+        ;
+
+        
+    
+    
+            var circle_marker_f8819b55136204d74957dcf5ff52a4b8 = L.circleMarker(
+                [26.8419, 75.5666],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_e5dbbe57ea2c3317f42f20197fdf2fd8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_47ca0256f7792ba9b9581df6fd5466c0 = $(`<div id="html_47ca0256f7792ba9b9581df6fd5466c0" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 11:00<br>                     Location: 26.8419, 75.5666<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_e5dbbe57ea2c3317f42f20197fdf2fd8.setContent(html_47ca0256f7792ba9b9581df6fd5466c0);
+            
+        
+
+        circle_marker_f8819b55136204d74957dcf5ff52a4b8.bindPopup(popup_e5dbbe57ea2c3317f42f20197fdf2fd8)
+        ;
+
+        
+    
+    
+            var circle_marker_99f5dcad7de07bbb026f9a6477d9885b = L.circleMarker(
+                [26.851, 75.579],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_a85f8a689ea434a3d392c2eed2b1593d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c09ef8aea664b17af6a60629b3fee774 = $(`<div id="html_c09ef8aea664b17af6a60629b3fee774" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 11:30<br>                     Location: 26.8510, 75.5790<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_a85f8a689ea434a3d392c2eed2b1593d.setContent(html_c09ef8aea664b17af6a60629b3fee774);
+            
+        
+
+        circle_marker_99f5dcad7de07bbb026f9a6477d9885b.bindPopup(popup_a85f8a689ea434a3d392c2eed2b1593d)
+        ;
+
+        
+    
+    
+            var circle_marker_76149f88d2b23744434b75867752fd3c = L.circleMarker(
+                [26.852, 75.58],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_538994c4250d4f4b972ce513da1c1aba = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8191b36486a9ac288d49bc3779c65b39 = $(`<div id="html_8191b36486a9ac288d49bc3779c65b39" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 11:45<br>                     Location: 26.8520, 75.5800<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_538994c4250d4f4b972ce513da1c1aba.setContent(html_8191b36486a9ac288d49bc3779c65b39);
+            
+        
+
+        circle_marker_76149f88d2b23744434b75867752fd3c.bindPopup(popup_538994c4250d4f4b972ce513da1c1aba)
+        ;
+
+        
+    
+    
+            var circle_marker_0b092a0587a9176c7815a74329ba95e9 = L.circleMarker(
+                [26.8505, 75.5785],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_46b825e98ed5731837336a92b7beab41 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3ef80dc24320b51130178e812cb7d8cf = $(`<div id="html_3ef80dc24320b51130178e812cb7d8cf" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 06:45<br>                     Location: 26.8505, 75.5785<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_46b825e98ed5731837336a92b7beab41.setContent(html_3ef80dc24320b51130178e812cb7d8cf);
+            
+        
+
+        circle_marker_0b092a0587a9176c7815a74329ba95e9.bindPopup(popup_46b825e98ed5731837336a92b7beab41)
+        ;
+
+        
+    
+    
+            var circle_marker_f76161431a2010c928f471933bf0bce1 = L.circleMarker(
+                [26.8508, 75.5788],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_4b27777f2d3d04ee52538b2d5035d583 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_caed9bab0595857c92f16bec9c0a46ee = $(`<div id="html_caed9bab0595857c92f16bec9c0a46ee" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 12:00<br>                     Location: 26.8508, 75.5788<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_4b27777f2d3d04ee52538b2d5035d583.setContent(html_caed9bab0595857c92f16bec9c0a46ee);
+            
+        
+
+        circle_marker_f76161431a2010c928f471933bf0bce1.bindPopup(popup_4b27777f2d3d04ee52538b2d5035d583)
+        ;
+
+        
+    
+    
+            var circle_marker_d3371d0c4580bed05b800af2a733f8d3 = L.circleMarker(
+                [26.8515, 75.5795],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_e876b810aa39d1063809e8b0e25e9de0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08a73adfa4c8849d48d2b928e22800d0 = $(`<div id="html_08a73adfa4c8849d48d2b928e22800d0" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 07:30<br>                     Location: 26.8515, 75.5795<br>                     Cluster: 0<br>                     Priority: 12.87                 </span>             </div>         </div>     </div>`)[0];
+                popup_e876b810aa39d1063809e8b0e25e9de0.setContent(html_08a73adfa4c8849d48d2b928e22800d0);
+            
+        
+
+        circle_marker_d3371d0c4580bed05b800af2a733f8d3.bindPopup(popup_e876b810aa39d1063809e8b0e25e9de0)
+        ;
+
+        
+    
+    
+            var circle_marker_e4b5663245ab880a40db93f5e557486c = L.circleMarker(
+                [26.885, 75.73],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_8c00fd3fa4403d23e3c096e834ada315 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08bfbcf19c082d0548cab55f41a2d8de = $(`<div id="html_08bfbcf19c082d0548cab55f41a2d8de" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 12:30<br>                     Location: 26.8850, 75.7300<br>                     Cluster: 1<br>                     Priority: 5.57                 </span>             </div>         </div>     </div>`)[0];
+                popup_8c00fd3fa4403d23e3c096e834ada315.setContent(html_08bfbcf19c082d0548cab55f41a2d8de);
+            
+        
+
+        circle_marker_e4b5663245ab880a40db93f5e557486c.bindPopup(popup_8c00fd3fa4403d23e3c096e834ada315)
+        ;
+
+        
+    
+    
+            var circle_marker_da81c1ba1455f7113bd3e2a234353c29 = L.circleMarker(
+                [26.8855, 75.7305],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_c04c7dcb20f09eb57c97af93d8412b83 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fc30f6bc0c3dec1d069dbc875066775d = $(`<div id="html_fc30f6bc0c3dec1d069dbc875066775d" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 13:00<br>                     Location: 26.8855, 75.7305<br>                     Cluster: 1<br>                     Priority: 5.57                 </span>             </div>         </div>     </div>`)[0];
+                popup_c04c7dcb20f09eb57c97af93d8412b83.setContent(html_fc30f6bc0c3dec1d069dbc875066775d);
+            
+        
+
+        circle_marker_da81c1ba1455f7113bd3e2a234353c29.bindPopup(popup_c04c7dcb20f09eb57c97af93d8412b83)
+        ;
+
+        
+    
+    
+            var circle_marker_f0da7ae0dbb028a4d17467928cbb21ed = L.circleMarker(
+                [26.886, 75.731],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_e7ee7810617bd96dd99864db3b11c9c9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a805add702cb0a8d6264f012645b4550 = $(`<div id="html_a805add702cb0a8d6264f012645b4550" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 13:15<br>                     Location: 26.8860, 75.7310<br>                     Cluster: 1<br>                     Priority: 5.57                 </span>             </div>         </div>     </div>`)[0];
+                popup_e7ee7810617bd96dd99864db3b11c9c9.setContent(html_a805add702cb0a8d6264f012645b4550);
+            
+        
+
+        circle_marker_f0da7ae0dbb028a4d17467928cbb21ed.bindPopup(popup_e7ee7810617bd96dd99864db3b11c9c9)
+        ;
+
+        
+    
+    
+            var circle_marker_8be061d4a7791ff049f1742685f8db99 = L.circleMarker(
+                [26.8858, 75.7308],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_8b9729b70f35cb41949950f8343210d2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6d96f24963768cbca1d3ad9234d0fa24 = $(`<div id="html_6d96f24963768cbca1d3ad9234d0fa24" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 14:00<br>                     Location: 26.8858, 75.7308<br>                     Cluster: 1<br>                     Priority: 5.57                 </span>             </div>         </div>     </div>`)[0];
+                popup_8b9729b70f35cb41949950f8343210d2.setContent(html_6d96f24963768cbca1d3ad9234d0fa24);
+            
+        
+
+        circle_marker_8be061d4a7791ff049f1742685f8db99.bindPopup(popup_8b9729b70f35cb41949950f8343210d2)
+        ;
+
+        
+    
+    
+            var circle_marker_41b85053d6ceb3aadf6b4ed5a5d044be = L.circleMarker(
+                [26.8865, 75.7315],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_f5c32831274a98e29db6cd35118718b4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e0e7b80340690c757b738043553e8296 = $(`<div id="html_e0e7b80340690c757b738043553e8296" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 13:30<br>                     Location: 26.8865, 75.7315<br>                     Cluster: 1<br>                     Priority: 5.57                 </span>             </div>         </div>     </div>`)[0];
+                popup_f5c32831274a98e29db6cd35118718b4.setContent(html_e0e7b80340690c757b738043553e8296);
+            
+        
+
+        circle_marker_41b85053d6ceb3aadf6b4ed5a5d044be.bindPopup(popup_f5c32831274a98e29db6cd35118718b4)
+        ;
+
+        
+    
+    
+            var circle_marker_123e68fd709268f8d93ff35bdc86683e = L.circleMarker(
+                [26.87, 75.78],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_fe20a70d96b1daac70500567614744d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_48b81c904635d201809c8fc9f791d857 = $(`<div id="html_48b81c904635d201809c8fc9f791d857" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 14:15<br>                     Location: 26.8700, 75.7800<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_fe20a70d96b1daac70500567614744d6.setContent(html_48b81c904635d201809c8fc9f791d857);
+            
+        
+
+        circle_marker_123e68fd709268f8d93ff35bdc86683e.bindPopup(popup_fe20a70d96b1daac70500567614744d6)
+        ;
+
+        
+    
+    
+            var circle_marker_0994bdb95e6026926171e323e4eeede4 = L.circleMarker(
+                [26.8705, 75.7805],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_02e76e9d8d1dc4866940ebdff08b49a1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ca830c3ec9a16c67190cf75f7a314245 = $(`<div id="html_ca830c3ec9a16c67190cf75f7a314245" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 14:30<br>                     Location: 26.8705, 75.7805<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_02e76e9d8d1dc4866940ebdff08b49a1.setContent(html_ca830c3ec9a16c67190cf75f7a314245);
+            
+        
+
+        circle_marker_0994bdb95e6026926171e323e4eeede4.bindPopup(popup_02e76e9d8d1dc4866940ebdff08b49a1)
+        ;
+
+        
+    
+    
+            var circle_marker_f8107692907529d8395188f506cf31ca = L.circleMarker(
+                [26.871, 75.781],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_c2293032e11f0947c48f37767d706c8d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_77e7fff16da73dd46d320b1711ea44c3 = $(`<div id="html_77e7fff16da73dd46d320b1711ea44c3" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 15:00<br>                     Location: 26.8710, 75.7810<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_c2293032e11f0947c48f37767d706c8d.setContent(html_77e7fff16da73dd46d320b1711ea44c3);
+            
+        
+
+        circle_marker_f8107692907529d8395188f506cf31ca.bindPopup(popup_c2293032e11f0947c48f37767d706c8d)
+        ;
+
+        
+    
+    
+            var circle_marker_7938d84230d7ff0cebb943409bbbe379 = L.circleMarker(
+                [26.8715, 75.7815],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_530394e05a3e2a19887671ee62bca575 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_663494ed38893976b2f54bddd45043b9 = $(`<div id="html_663494ed38893976b2f54bddd45043b9" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 15:30<br>                     Location: 26.8715, 75.7815<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_530394e05a3e2a19887671ee62bca575.setContent(html_663494ed38893976b2f54bddd45043b9);
+            
+        
+
+        circle_marker_7938d84230d7ff0cebb943409bbbe379.bindPopup(popup_530394e05a3e2a19887671ee62bca575)
+        ;
+
+        
+    
+    
+            var circle_marker_71f2f4ec33a29c527e84303b3065f695 = L.circleMarker(
+                [26.8708, 75.7808],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_1f2c6853bed91f97d5133f5d1f5ef165 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d2b5470b2cc1cc17345b34012af5c056 = $(`<div id="html_d2b5470b2cc1cc17345b34012af5c056" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 16:00<br>                     Location: 26.8708, 75.7808<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_1f2c6853bed91f97d5133f5d1f5ef165.setContent(html_d2b5470b2cc1cc17345b34012af5c056);
+            
+        
+
+        circle_marker_71f2f4ec33a29c527e84303b3065f695.bindPopup(popup_1f2c6853bed91f97d5133f5d1f5ef165)
+        ;
+
+        
+    
+    
+            var circle_marker_04f1994e2ed42bc8ef0dfde89eb6831e = L.circleMarker(
+                [26.912, 75.745],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_5de72f33b8893464b9f5c43875d2b7e1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de4262a287c3e8f66df1c5b61e51b3ec = $(`<div id="html_de4262a287c3e8f66df1c5b61e51b3ec" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 16:30<br>                     Location: 26.9120, 75.7450<br>                     Cluster: 3<br>                     Priority: 2.89                 </span>             </div>         </div>     </div>`)[0];
+                popup_5de72f33b8893464b9f5c43875d2b7e1.setContent(html_de4262a287c3e8f66df1c5b61e51b3ec);
+            
+        
+
+        circle_marker_04f1994e2ed42bc8ef0dfde89eb6831e.bindPopup(popup_5de72f33b8893464b9f5c43875d2b7e1)
+        ;
+
+        
+    
+    
+            var circle_marker_a45fabef4783c673abd031f846b45742 = L.circleMarker(
+                [26.9125, 75.7455],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_1bdeeb421a40d4f2c5d76d7d8c7c12b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_74ec089c14843a358a7212c61c23e26c = $(`<div id="html_74ec089c14843a358a7212c61c23e26c" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 17:00<br>                     Location: 26.9125, 75.7455<br>                     Cluster: 3<br>                     Priority: 2.89                 </span>             </div>         </div>     </div>`)[0];
+                popup_1bdeeb421a40d4f2c5d76d7d8c7c12b9.setContent(html_74ec089c14843a358a7212c61c23e26c);
+            
+        
+
+        circle_marker_a45fabef4783c673abd031f846b45742.bindPopup(popup_1bdeeb421a40d4f2c5d76d7d8c7c12b9)
+        ;
+
+        
+    
+    
+            var circle_marker_25d181215d8431894b1b8459705cabd7 = L.circleMarker(
+                [26.913, 75.746],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_4c674e4efd7479e4f8089e8902f32937 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_693a8a4933899420fb765891936cbe9c = $(`<div id="html_693a8a4933899420fb765891936cbe9c" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 17:30<br>                     Location: 26.9130, 75.7460<br>                     Cluster: 3<br>                     Priority: 2.89                 </span>             </div>         </div>     </div>`)[0];
+                popup_4c674e4efd7479e4f8089e8902f32937.setContent(html_693a8a4933899420fb765891936cbe9c);
+            
+        
+
+        circle_marker_25d181215d8431894b1b8459705cabd7.bindPopup(popup_4c674e4efd7479e4f8089e8902f32937)
+        ;
+
+        
+    
+    
+            var circle_marker_429dca3c3f47cda8a8253c81cd37e8db = L.circleMarker(
+                [26.9128, 75.7458],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_98b1096a48421a0cb77623476166cdbc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d7f59aa2e280ebaa832a954ac6265e56 = $(`<div id="html_d7f59aa2e280ebaa832a954ac6265e56" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 18:00<br>                     Location: 26.9128, 75.7458<br>                     Cluster: 3<br>                     Priority: 2.89                 </span>             </div>         </div>     </div>`)[0];
+                popup_98b1096a48421a0cb77623476166cdbc.setContent(html_d7f59aa2e280ebaa832a954ac6265e56);
+            
+        
+
+        circle_marker_429dca3c3f47cda8a8253c81cd37e8db.bindPopup(popup_98b1096a48421a0cb77623476166cdbc)
+        ;
+
+        
+    
+    
+            var circle_marker_f52c85a79b9ef6a01790fa038c9597b6 = L.circleMarker(
+                [26.9, 75.78],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_62a77b1aaaab88eae5672b53ae1f06fa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4e00171304f6d97dcbb67871c18c4edb = $(`<div id="html_4e00171304f6d97dcbb67871c18c4edb" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 18:30<br>                     Location: 26.9000, 75.7800<br>                     Cluster: 4<br>                     Priority: 2.81                 </span>             </div>         </div>     </div>`)[0];
+                popup_62a77b1aaaab88eae5672b53ae1f06fa.setContent(html_4e00171304f6d97dcbb67871c18c4edb);
+            
+        
+
+        circle_marker_f52c85a79b9ef6a01790fa038c9597b6.bindPopup(popup_62a77b1aaaab88eae5672b53ae1f06fa)
+        ;
+
+        
+    
+    
+            var circle_marker_c032f5844310eeda675f01baaa2237d5 = L.circleMarker(
+                [26.9005, 75.7805],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_527f2564a9f2405e2aa8826a64dd1f18 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_36e292988d95faca6da5781ceb8a485f = $(`<div id="html_36e292988d95faca6da5781ceb8a485f" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 19:00<br>                     Location: 26.9005, 75.7805<br>                     Cluster: 4<br>                     Priority: 2.81                 </span>             </div>         </div>     </div>`)[0];
+                popup_527f2564a9f2405e2aa8826a64dd1f18.setContent(html_36e292988d95faca6da5781ceb8a485f);
+            
+        
+
+        circle_marker_c032f5844310eeda675f01baaa2237d5.bindPopup(popup_527f2564a9f2405e2aa8826a64dd1f18)
+        ;
+
+        
+    
+    
+            var circle_marker_377cde33b47069b3ff7c2dbe28fc467e = L.circleMarker(
+                [26.901, 75.781],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_26a06e83f16c86be21eeea1cf12b2733 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f7dbea615d9880483a17ff7ffee2fcd7 = $(`<div id="html_f7dbea615d9880483a17ff7ffee2fcd7" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 19:15<br>                     Location: 26.9010, 75.7810<br>                     Cluster: 4<br>                     Priority: 2.81                 </span>             </div>         </div>     </div>`)[0];
+                popup_26a06e83f16c86be21eeea1cf12b2733.setContent(html_f7dbea615d9880483a17ff7ffee2fcd7);
+            
+        
+
+        circle_marker_377cde33b47069b3ff7c2dbe28fc467e.bindPopup(popup_26a06e83f16c86be21eeea1cf12b2733)
+        ;
+
+        
+    
+    
+            var circle_marker_106050ac400bb7be3e333f6330a88caa = L.circleMarker(
+                [26.85, 75.8],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_a71c7df032a6cbfaccedc12160d634a5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7195c00c376b6931157f0135528d3181 = $(`<div id="html_7195c00c376b6931157f0135528d3181" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 19:30<br>                     Location: 26.8500, 75.8000<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_a71c7df032a6cbfaccedc12160d634a5.setContent(html_7195c00c376b6931157f0135528d3181);
+            
+        
+
+        circle_marker_106050ac400bb7be3e333f6330a88caa.bindPopup(popup_a71c7df032a6cbfaccedc12160d634a5)
+        ;
+
+        
+    
+    
+            var circle_marker_ceae1aa12c8868c49e484fc4e0e1d080 = L.circleMarker(
+                [26.8505, 75.8005],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_b7a6b9f96f4d19b5f4da9a1e045bbd69 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_90dbb5346141fae3e47882174a515fb4 = $(`<div id="html_90dbb5346141fae3e47882174a515fb4" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 20:00<br>                     Location: 26.8505, 75.8005<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_b7a6b9f96f4d19b5f4da9a1e045bbd69.setContent(html_90dbb5346141fae3e47882174a515fb4);
+            
+        
+
+        circle_marker_ceae1aa12c8868c49e484fc4e0e1d080.bindPopup(popup_b7a6b9f96f4d19b5f4da9a1e045bbd69)
+        ;
+
+        
+    
+    
+            var circle_marker_b5ea5ca2f005f4747f49c178a17350d6 = L.circleMarker(
+                [26.851, 75.801],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_6b4651cb62d3dbcb397b5e2624d17135 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9cb14977a7bbca4e74e4850e18a8fc4f = $(`<div id="html_9cb14977a7bbca4e74e4850e18a8fc4f" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 20:30<br>                     Location: 26.8510, 75.8010<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_6b4651cb62d3dbcb397b5e2624d17135.setContent(html_9cb14977a7bbca4e74e4850e18a8fc4f);
+            
+        
+
+        circle_marker_b5ea5ca2f005f4747f49c178a17350d6.bindPopup(popup_6b4651cb62d3dbcb397b5e2624d17135)
+        ;
+
+        
+    
+    
+            var circle_marker_c5ea009dc135c01ec66dc2acb8d4cd5d = L.circleMarker(
+                [26.8512, 75.8012],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_0766a1476c98677a20b0251a3a5e1aa7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_01a1d3742a3b3085f4579dd34b571101 = $(`<div id="html_01a1d3742a3b3085f4579dd34b571101" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 20:45<br>                     Location: 26.8512, 75.8012<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_0766a1476c98677a20b0251a3a5e1aa7.setContent(html_01a1d3742a3b3085f4579dd34b571101);
+            
+        
+
+        circle_marker_c5ea009dc135c01ec66dc2acb8d4cd5d.bindPopup(popup_0766a1476c98677a20b0251a3a5e1aa7)
+        ;
+
+        
+    
+    
+            var circle_marker_477eecd1b700e3257138b1954ba5356f = L.circleMarker(
+                [26.87, 75.82],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_274070785470251c6078a3d6bba4e9cf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4ac10c985894486142c820e56cfe542d = $(`<div id="html_4ac10c985894486142c820e56cfe542d" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 21:00<br>                     Location: 26.8700, 75.8200<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_274070785470251c6078a3d6bba4e9cf.setContent(html_4ac10c985894486142c820e56cfe542d);
+            
+        
+
+        circle_marker_477eecd1b700e3257138b1954ba5356f.bindPopup(popup_274070785470251c6078a3d6bba4e9cf)
+        ;
+
+        
+    
+    
+            var circle_marker_b7a5a43e2a05b68b850881e519bb8dc5 = L.circleMarker(
+                [26.8705, 75.8205],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_ce0acbe8c80f0ae6e0ea4b0787f589a9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2c2cec7fb69ad5baff433e069ec46074 = $(`<div id="html_2c2cec7fb69ad5baff433e069ec46074" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 21:30<br>                     Location: 26.8705, 75.8205<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_ce0acbe8c80f0ae6e0ea4b0787f589a9.setContent(html_2c2cec7fb69ad5baff433e069ec46074);
+            
+        
+
+        circle_marker_b7a5a43e2a05b68b850881e519bb8dc5.bindPopup(popup_ce0acbe8c80f0ae6e0ea4b0787f589a9)
+        ;
+
+        
+    
+    
+            var circle_marker_01255eed371c8a8606c596c2cfc4399e = L.circleMarker(
+                [26.871, 75.821],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_7d27691b835f54d5d7d1ae67c7ddb71a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e8aaaebb8c80c50ad05ed83b991c9573 = $(`<div id="html_e8aaaebb8c80c50ad05ed83b991c9573" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 22:00<br>                     Location: 26.8710, 75.8210<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_7d27691b835f54d5d7d1ae67c7ddb71a.setContent(html_e8aaaebb8c80c50ad05ed83b991c9573);
+            
+        
+
+        circle_marker_01255eed371c8a8606c596c2cfc4399e.bindPopup(popup_7d27691b835f54d5d7d1ae67c7ddb71a)
+        ;
+
+        
+    
+    
+            var circle_marker_a91ffc9db006c9c667e0a3eb3a9c0c5c = L.circleMarker(
+                [26.8715, 75.8215],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_a34716afb2da2588deedf54f081a4e7e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f4736e712e9bf65ed7032776fba00bbd = $(`<div id="html_f4736e712e9bf65ed7032776fba00bbd" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 22:30<br>                     Location: 26.8715, 75.8215<br>                     Cluster: 2<br>                     Priority: 29.75                 </span>             </div>         </div>     </div>`)[0];
+                popup_a34716afb2da2588deedf54f081a4e7e.setContent(html_f4736e712e9bf65ed7032776fba00bbd);
+            
+        
+
+        circle_marker_a91ffc9db006c9c667e0a3eb3a9c0c5c.bindPopup(popup_a34716afb2da2588deedf54f081a4e7e)
+        ;
+
+        
+    
+    
+            var circle_marker_3e07d708e8227a9b0189254af46b585f = L.circleMarker(
+                [26.95, 75.9],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_58ba9811d36a4106cc90034ee1d4d425 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2f1458fd879e495bdf4af0311de7c9ed = $(`<div id="html_2f1458fd879e495bdf4af0311de7c9ed" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 22:30<br>                     Location: 26.9500, 75.9000<br>                     Cluster: 5<br>                     Priority: 7.78                 </span>             </div>         </div>     </div>`)[0];
+                popup_58ba9811d36a4106cc90034ee1d4d425.setContent(html_2f1458fd879e495bdf4af0311de7c9ed);
+            
+        
+
+        circle_marker_3e07d708e8227a9b0189254af46b585f.bindPopup(popup_58ba9811d36a4106cc90034ee1d4d425)
+        ;
+
+        
+    
+    
+            var circle_marker_3674c29d59acbf968c34fb0d3545afe0 = L.circleMarker(
+                [26.96, 75.91],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_ccdf3b91ebe1a1ee93296b636af4fcf4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_66ac907c21d9fd10a774b809cc0d0585 = $(`<div id="html_66ac907c21d9fd10a774b809cc0d0585" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 23:00<br>                     Location: 26.9600, 75.9100<br>                     Cluster: 5<br>                     Priority: 7.78                 </span>             </div>         </div>     </div>`)[0];
+                popup_ccdf3b91ebe1a1ee93296b636af4fcf4.setContent(html_66ac907c21d9fd10a774b809cc0d0585);
+            
+        
+
+        circle_marker_3674c29d59acbf968c34fb0d3545afe0.bindPopup(popup_ccdf3b91ebe1a1ee93296b636af4fcf4)
+        ;
+
+        
+    
+    
+            var circle_marker_d314de69a56a81179e389fcdfed8b742 = L.circleMarker(
+                [26.97, 75.92],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_d68c533bba341e9025be6fcf7213ee0a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7778893f8c0222b8f9ade2f539b65317 = $(`<div id="html_7778893f8c0222b8f9ade2f539b65317" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 23:30<br>                     Location: 26.9700, 75.9200<br>                     Cluster: 5<br>                     Priority: 7.78                 </span>             </div>         </div>     </div>`)[0];
+                popup_d68c533bba341e9025be6fcf7213ee0a.setContent(html_7778893f8c0222b8f9ade2f539b65317);
+            
+        
+
+        circle_marker_d314de69a56a81179e389fcdfed8b742.bindPopup(popup_d68c533bba341e9025be6fcf7213ee0a)
+        ;
+
+        
+    
+    
+            var circle_marker_89d2c35e0ac3a8244a8b3f6c8120b785 = L.circleMarker(
+                [27.1, 76.2],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_a9972a5050e9bcfbc5a7d2ed39cb7973 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0eadef534e3cf074050a6e63dd3c9802 = $(`<div id="html_0eadef534e3cf074050a6e63dd3c9802" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 23:45<br>                     Location: 27.1000, 76.2000<br>                     Cluster: -1<br>                     Priority: 7.22                 </span>             </div>         </div>     </div>`)[0];
+                popup_a9972a5050e9bcfbc5a7d2ed39cb7973.setContent(html_0eadef534e3cf074050a6e63dd3c9802);
+            
+        
+
+        circle_marker_89d2c35e0ac3a8244a8b3f6c8120b785.bindPopup(popup_a9972a5050e9bcfbc5a7d2ed39cb7973)
+        ;
+
+        
+    
+    
+            var circle_marker_963d690cffe330f6b6202e74c5b95e14 = L.circleMarker(
+                [27.15, 76.25],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_4afc816ddd814ff0f5c9d1f52f71614b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bdf88305300814955ab614df4242b0dd = $(`<div id="html_bdf88305300814955ab614df4242b0dd" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 00:15<br>                     Location: 27.1500, 76.2500<br>                     Cluster: -1<br>                     Priority: 1.80                 </span>             </div>         </div>     </div>`)[0];
+                popup_4afc816ddd814ff0f5c9d1f52f71614b.setContent(html_bdf88305300814955ab614df4242b0dd);
+            
+        
+
+        circle_marker_963d690cffe330f6b6202e74c5b95e14.bindPopup(popup_4afc816ddd814ff0f5c9d1f52f71614b)
+        ;
+
+        
+    
+    
+            var circle_marker_0bce99507e0d718c418652480e30781e = L.circleMarker(
+                [26.5, 75.3],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_5eb5fc7e1a7fcf565f89e52a705909cf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_661b9962850fb4fd5c3da8a06850af98 = $(`<div id="html_661b9962850fb4fd5c3da8a06850af98" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 01:30<br>                     Location: 26.5000, 75.3000<br>                     Cluster: -1<br>                     Priority: 2.17                 </span>             </div>         </div>     </div>`)[0];
+                popup_5eb5fc7e1a7fcf565f89e52a705909cf.setContent(html_661b9962850fb4fd5c3da8a06850af98);
+            
+        
+
+        circle_marker_0bce99507e0d718c418652480e30781e.bindPopup(popup_5eb5fc7e1a7fcf565f89e52a705909cf)
+        ;
+
+        
+    
+    
+            var circle_marker_ba30e34f31c280f8f9a69c5d982eb2ff = L.circleMarker(
+                [27.3, 76.5],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_77dfe906ef6e29e2f0d825c4e4f477bf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5944a7716a41f77a550d92da280ccd1 = $(`<div id="html_e5944a7716a41f77a550d92da280ccd1" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 02:00<br>                     Location: 27.3000, 76.5000<br>                     Cluster: -1<br>                     Priority: 7.22                 </span>             </div>         </div>     </div>`)[0];
+                popup_77dfe906ef6e29e2f0d825c4e4f477bf.setContent(html_e5944a7716a41f77a550d92da280ccd1);
+            
+        
+
+        circle_marker_ba30e34f31c280f8f9a69c5d982eb2ff.bindPopup(popup_77dfe906ef6e29e2f0d825c4e4f477bf)
+        ;
+
+        
+    
+    
+            var circle_marker_2d0563f6c66472884e46fc54f872ac9d = L.circleMarker(
+                [26.7, 75.7],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_24c6c101c15c23043c34512ef07a0455 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9a3f69e170f67190ff70432e2d7d4960 = $(`<div id="html_9a3f69e170f67190ff70432e2d7d4960" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:green">                     Healthy 🟢                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 03:45<br>                     Location: 26.7000, 75.7000<br>                     Cluster: -1<br>                     Priority: 1.80                 </span>             </div>         </div>     </div>`)[0];
+                popup_24c6c101c15c23043c34512ef07a0455.setContent(html_9a3f69e170f67190ff70432e2d7d4960);
+            
+        
+
+        circle_marker_2d0563f6c66472884e46fc54f872ac9d.bindPopup(popup_24c6c101c15c23043c34512ef07a0455)
+        ;
+
+        
+    
+    
+            var circle_marker_900017f9922e7d967bacb12518866449 = L.circleMarker(
+                [26.25, 75.05],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_58da47ee02a5cab5c4474e0ff83be297 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cf972d5039ba0545711c16243fea0c2c = $(`<div id="html_cf972d5039ba0545711c16243fea0c2c" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/mink-mingle-UAsFSsMDpa0-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:orange">                     Injured 🟡                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 04:30<br>                     Location: 26.2500, 75.0500<br>                     Cluster: -1<br>                     Priority: 2.17                 </span>             </div>         </div>     </div>`)[0];
+                popup_58da47ee02a5cab5c4474e0ff83be297.setContent(html_cf972d5039ba0545711c16243fea0c2c);
+            
+        
+
+        circle_marker_900017f9922e7d967bacb12518866449.bindPopup(popup_58da47ee02a5cab5c4474e0ff83be297)
+        ;
+
+        
+    
+    
+            var circle_marker_a6e979805bfa352a015440ac1c11b405 = L.circleMarker(
+                [27.0, 76.0],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_a1d5e2c8c3ab3e6d73ddae6d520bb21f);
+        
+    
+        var popup_da879a8f06507c1836adc367a408971e = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_59e11302e4390ae0e9b3521751934e57 = $(`<div id="html_59e11302e4390ae0e9b3521751934e57" style="width: 100.0%; height: 100.0%;">         <div style="width:200px">             <img src="images/ben-owen-FFwNGYZK-2o-unsplash.jpg" style="width:100%;border-radius:10px;margin-bottom:10px">             <div style="text-align:center;font-family:Arial,sans-serif">                 <strong style="color:red">                     Emergency 🔴                 </strong><br>                 <span style="color:#666">                     Reported: 2025-03-21 05:15<br>                     Location: 27.0000, 76.0000<br>                     Cluster: -1<br>                     Priority: 7.22                 </span>             </div>         </div>     </div>`)[0];
+                popup_da879a8f06507c1836adc367a408971e.setContent(html_59e11302e4390ae0e9b3521751934e57);
+            
+        
+
+        circle_marker_a6e979805bfa352a015440ac1c11b405.bindPopup(popup_da879a8f06507c1836adc367a408971e)
+        ;
+
+        
+    
+</script>
+</html>

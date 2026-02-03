@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: woof
+
+groq:
+  api:
+    key: ${GROQ_API_KEY}
