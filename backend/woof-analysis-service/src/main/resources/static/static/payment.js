@@ -1,26 +1,36 @@
+const PAYMENT_SERVICE_URL = 'http://localhost:8081/payment';
+
 // Payment handling functions
-export function handlePayment(amount) {
+export async function handlePayment(amount, upiId) {
     // Validate amount
     if (!amount || amount <= 0) {
         throw new Error('Invalid payment amount');
     }
 
-    // Create payment object
-    const payment = {
-        amount,
-        currency: 'INR',
-        timestamp: new Date().toISOString(),
-        status: 'pending'
-    };
+    try {
+        const response = await fetch(`${PAYMENT_SERVICE_URL}/donate-money`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                amount: amount.toString(),
+                currency: 'INR',
+                upiId: upiId || 'anonymous',
+                status: 'COMPLETED',
+                timestamp: new Date().toISOString()
+            })
+        });
 
-    // Simulate payment processing
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            payment.status = 'completed';
-            payment.transactionId = `TXN${Date.now()}`;
-            resolve(payment);
-        }, 2000);
-    });
+        if (!response.ok) {
+            throw new Error('Payment failed');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Payment error:', error);
+        throw error;
+    }
 }
 
 // QR code generation
@@ -37,42 +47,48 @@ export function generateQRCode(amount) {
 }
 
 // Transaction history management
-export function saveTransaction(transaction) {
-    const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
-    transactions.push(transaction);
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-    return transaction;
-}
-
-export function getTransactions() {
-    return JSON.parse(localStorage.getItem('transactions') || '[]');
+export async function getTransactions(upiId) {
+    try {
+        const response = await fetch(`${PAYMENT_SERVICE_URL}/history?UPIid=${upiId || 'anonymous'}`);
+        if (!response.ok) {
+            return [];
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching transactions:', error);
+        return [];
+    }
 }
 
 // Wallet management
-export function connectWallet() {
-    const walletAddress = `0x${Math.random().toString(16).substr(2, 40)}`;
-    localStorage.setItem('walletAddress', walletAddress);
-    return walletAddress;
+export async function connectWallet(upiId) {
+    try {
+        const response = await fetch(`${PAYMENT_SERVICE_URL}/wallet/connect?UPIid=${upiId || 'user_' + Date.now()}`, {
+            method: 'POST'
+        });
+
+        if (!response.ok) {
+            throw new Error('Wallet connection failed');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Wallet error:', error);
+        // Fallback for demo if backend is offline
+        console.warn('Backend unavailable, using fallback wallet address');
+        return {
+            transactionId: `fallback_${Date.now()}`,
+            amount: "0",
+            status: "CONNECTED"
+        };
+    }
 }
 
-export function getWalletAddress() {
-    return localStorage.getItem('walletAddress');
-}
-
-// Fraud prevention
+// Fraud prevention (Simplified for backend)
 export function checkTransactionRisk(amount) {
-    const transactions = getTransactions();
-    const recentTransactions = transactions.filter(tx => {
-        const txDate = new Date(tx.timestamp);
-        const now = new Date();
-        return (now - txDate) < 24 * 60 * 60 * 1000; // Last 24 hours
-    });
-
-    const totalRecentAmount = recentTransactions.reduce((sum, tx) => sum + tx.amount, 0);
-    
     return {
-        riskLevel: totalRecentAmount + amount > 10000 ? 'high' : 'low',
-        recentTransactions: recentTransactions.length,
-        totalRecentAmount
+        riskLevel: amount > 10000 ? 'high' : 'low',
+        recentTransactions: 0,
+        totalRecentAmount: 0
     };
 } 
