@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: woof-payment-service
+
+server:
+  port: 8081

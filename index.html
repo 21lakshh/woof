@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Woof 🐾 - Stray Dog Rescue</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23395a7f'/%3E%3Cpath d='M30 40c0 0 5-10 20-10s20 10 20 10M30 60c0 0 5 10 20 10s20-10 20-10M50 40v20' stroke='white' stroke-width='8' fill='none'/%3E%3C/svg%3E">
-    <link rel = "stylesheet" href = "static/styles.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23395a7f'/%3E%3Cpath d='M30 40c0 0 5-10 20-10s20 10 20 10M30 60c0 0 5 10 20 10s20-10 20-10M50 40v20' stroke='white' stroke-width='8' fill='none'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="static/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,9 +15,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/your-real-kit-code.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 </head>
+
 <body>
     <header class="header bg-[#2d3630] p-4 flex justify-between items-center">
         <div class="logo text-purple-400 text-4xl font-extrabold">Woof🐾</div>
@@ -56,9 +61,10 @@
     <div class="w-full bg-[#2d3630] py-16" id="report">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">🐾 Report a Stray Dog</h2>
-            
+
             <!-- Main Report Container -->
-            <div class="bg-[#3d463f]/50 backdrop-blur-md rounded-xl shadow-lg border border-purple-400/20 overflow-hidden">
+            <div
+                class="bg-[#3d463f]/50 backdrop-blur-md rounded-xl shadow-lg border border-purple-400/20 overflow-hidden">
                 <!-- Input Section -->
                 <div class="p-6 space-y-6">
                     <!-- Location Input -->
@@ -66,19 +72,13 @@
                         <div class="flex-1">
                             <label class="block text-gray-300 text-sm font-medium mb-2">Location</label>
                             <div class="relative">
-                                <input 
-                                    id="location-input"
-                                    type="text" 
+                                <input id="location-input" type="text"
                                     placeholder="Enter location or use current location"
                                     class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300"
-                                    readonly
-                                />
-                                <button 
-                                    type="button"
-                                    onclick="toggleLocationInput()"
+                                    readonly />
+                                <button type="button" onclick="toggleLocationInput()"
                                     class="absolute right-3 top-1/2 -translate-y-1/2 text-purple-400 hover:text-purple-300"
-                                    title="Toggle manual input"
-                                >
+                                    title="Toggle manual input">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </div>
@@ -87,7 +87,8 @@
                             <!-- Location status message -->
                             <p id="location-status" class="text-sm text-purple-400 mt-2"></p>
                             <!-- Manual input instructions -->
-                            <div id="manual-input-instructions" class="hidden mt-2 text-sm text-gray-300 bg-[#2d3630] p-3 rounded-lg">
+                            <div id="manual-input-instructions"
+                                class="hidden mt-2 text-sm text-gray-300 bg-[#2d3630] p-3 rounded-lg">
                                 <p class="font-medium mb-2">Tips for better location accuracy:</p>
                                 <ul class="list-disc list-inside space-y-1">
                                     <li>Enable GPS on your device</li>
@@ -97,13 +98,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <button 
-                            type="button"
-                            onclick="getLocation()"
-                            id="detect-location"
+                        <button type="button" onclick="getLocation()" id="detect-location"
                             class="px-4 bg-purple-500 hover:bg-purple-600 text-white rounded-xl transition-all flex items-center justify-center group"
-                            title="Use current location"
-                        >
+                            title="Use current location">
                             <i id="location-icon" class="fas fa-location-dot text-xl group-hover:animate-pulse"></i>
                             <i id="location-loader" class="fas fa-circle-notch animate-spin text-xl hidden"></i>
                         </button>
@@ -113,19 +110,21 @@
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-2">Photos</label>
                         <div class="flex items-center gap-4">
-                            <button id="upload-btn" 
+                            <button id="upload-btn"
                                 class="flex-1 py-4 px-6 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg">
                                 <i class="fas fa-camera text-xl"></i>
                                 <span>Upload Photo</span>
                             </button>
                             <input type="file" id="image-upload" accept="image/*" class="hidden" />
                         </div>
-                        
+
                         <!-- Single Image Preview -->
                         <div id="image-container" class="hidden mt-4">
-                            <div class="relative w-48 h-48 border-2 border-dashed border-purple-400/30 rounded-lg overflow-hidden">
+                            <div
+                                class="relative w-48 h-48 border-2 border-dashed border-purple-400/30 rounded-lg overflow-hidden">
                                 <img id="image-preview" class="w-full h-full object-cover" />
-                                <button id="remove-image" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
+                                <button id="remove-image"
+                                    class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
                                     <i class="fas fa-times text-xs w-4 h-4 flex items-center justify-center"></i>
                                 </button>
                             </div>
@@ -136,7 +135,8 @@
                     <!-- Condition -->
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-2">Condition</label>
-                        <select class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300">
+                        <select
+                            class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300">
                             <option value="">Select condition</option>
                             <option value="healthy">Healthy</option>
                             <option value="aggressive">Aggressive</option>
@@ -148,19 +148,14 @@
                     <!-- Description Input -->
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-2">Additional Details</label>
-                        <textarea 
-                            id="query-input" 
-                            rows="4" 
+                        <textarea id="query-input" rows="4"
                             placeholder="Describe the situation, animal's behavior, or any other relevant details..."
-                            class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300 resize-none"
-                        ></textarea>
+                            class="w-full p-4 bg-[#2d3630] rounded-xl border border-purple-400/30 focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-300 resize-none"></textarea>
                     </div>
 
                     <!-- Submit Button -->
-                    <button 
-                        id="submit-query" 
-                        class="w-full py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg"
-                    >
+                    <button id="submit-query"
+                        class="w-full py-4 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-medium rounded-xl transition-all flex items-center justify-center gap-3 shadow-lg">
                         <i class="fas fa-paper-plane"></i>
                         <span>Submit Report</span>
                     </button>
@@ -169,7 +164,8 @@
                     <div class="flex items-start gap-3 p-4 bg-purple-400/10 rounded-xl">
                         <i class="fas fa-info-circle text-purple-400 mt-1"></i>
                         <p class="text-gray-300 text-sm">
-                            Your report helps us locate and rescue stray animals efficiently. We'll contact you for any additional information needed.
+                            Your report helps us locate and rescue stray animals efficiently. We'll contact you for any
+                            additional information needed.
                         </p>
                     </div>
                 </div>
@@ -184,7 +180,7 @@
                         <div class="bg-[#2d3630] p-4 rounded-xl text-white">
                             <!-- AI responses will appear here -->
                         </div>
-                        
+
                         <!-- Location-specific Information -->
                         <div id="location-info" class="hidden mt-4">
                             <div class="bg-[#3d463f]/50 p-4 rounded-xl border border-purple-400/20">
@@ -235,7 +231,8 @@
 
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Map Container -->
-                <div class="lg:col-span-2 bg-[#3d463f]/50 rounded-xl shadow-lg overflow-hidden border border-purple-400/20">
+                <div
+                    class="lg:col-span-2 bg-[#3d463f]/50 rounded-xl shadow-lg overflow-hidden border border-purple-400/20">
                     <div class="p-4 bg-[#2d3630] text-white flex justify-between items-center">
                         <h3 class="font-semibold flex items-center gap-2">
                             <i class="fas fa-map-marker-alt text-purple-400"></i>
@@ -252,9 +249,7 @@
                         </div>
                     </div>
                     <div class="relative h-[600px]">
-                        <iframe 
-                            src="/static/hotspot_map.html"
-                            class="absolute inset-0 w-full h-full border-none"
+                        <iframe src="/static/hotspot_map.html" class="absolute inset-0 w-full h-full border-none"
                             allowfullscreen>
                         </iframe>
                     </div>
@@ -338,7 +333,7 @@
             <div class="text-center mb-16 animate fade-in">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Every Paw Deserves a Chance 🐾</h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Right now, a scared puppy is searching for food. A injured dog is crying in pain. 
+                    Right now, a scared puppy is searching for food. A injured dog is crying in pain.
                     A mother cat is struggling to feed her kittens. Your help can change their story.
                 </p>
             </div>
@@ -353,18 +348,19 @@
                             <h3 class="text-red-400 font-semibold">URGENT: 47 Rescues Waiting</h3>
                         </div>
                         <p class="text-gray-300">
-                            We have 47 injured strays needing immediate medical care. Every minute counts. 
+                            We have 47 injured strays needing immediate medical care. Every minute counts.
                             Your donation today can save a life tomorrow.
                         </p>
                     </div>
                     <!-- Success Story -->
                     <div class="bg-[#3d463f]/50 rounded-xl overflow-hidden">
-                        <img src="static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg" alt="Luna's transformation" class="w-full h-64 object-cover">
+                        <img src="static/images/VIER PFOTEN_2023-10-19_00151-2850x1900-2746x1900-1920x1328.jpg"
+                            alt="Luna's transformation" class="w-full h-64 object-cover">
                         <div class="p-6">
                             <h3 class="text-2xl font-semibold text-purple-400 mb-4">Luna's Second Chance</h3>
                             <p class="text-gray-300 mb-4">
-                                "When we found Luna, she was skin and bones, too weak to even stand. 
-                                Three months of love and care transformed her into the happy, healthy dog 
+                                "When we found Luna, she was skin and bones, too weak to even stand.
+                                Three months of love and care transformed her into the happy, healthy dog
                                 you see today. Your donation made this possible."
                             </p>
                             <div class="grid grid-cols-2 gap-4">
@@ -404,10 +400,10 @@
                     <h3 class="text-2xl font-bold text-center text-white mb-6">
                         Be Their Guardian Angel Today 🙏
                     </h3>
-                    
+
                     <!-- Emotional Appeal -->
                     <p class="text-gray-300 mb-8 text-center">
-                        For just ₹100/day, you can feed a hungry stray, provide medical care, 
+                        For just ₹100/day, you can feed a hungry stray, provide medical care,
                         and give them the love they deserve. Will you help?
                     </p>
 
@@ -419,38 +415,37 @@
                         </div>
                         <div class="flex">
                             <span class="bg-[#3d564f] px-4 py-3 rounded-l-lg text-gray-400">₹</span>
-                            <input type="number" 
-                                   id="donationAmount" 
-                                   placeholder="Enter amount" 
-                                   class="flex-1 bg-[#3d564f] px-4 py-3 rounded-r-lg text-white focus:outline-none focus:ring-2 focus:ring-[#5d665f]">
+                            <input type="number" id="donationAmount" placeholder="Enter amount"
+                                class="flex-1 bg-[#3d564f] px-4 py-3 rounded-r-lg text-white focus:outline-none focus:ring-2 focus:ring-[#5d665f]">
                         </div>
                         <div id="walletStatus" class="mt-2 text-sm text-gray-400"></div>
                     </div>
 
                     <!-- Quick Donation Options -->
                     <div class="grid grid-cols-3 gap-4 mb-8">
-                        <button onclick="setDonationAmount(100)" class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
+                        <button onclick="setDonationAmount(100)"
+                            class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
                             ₹100
                         </button>
-                        <button onclick="setDonationAmount(500)" class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
+                        <button onclick="setDonationAmount(500)"
+                            class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
                             ₹500
                         </button>
-                        <button onclick="setDonationAmount(1000)" class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
+                        <button onclick="setDonationAmount(1000)"
+                            class="bg-[#3d564f] hover:bg-[#4d665f] text-white py-3 rounded-lg transition-all">
                             ₹1000
                         </button>
                     </div>
 
                     <!-- Payment Methods -->
                     <div class="grid grid-cols-1 gap-4 mb-8">
-                        <button onclick="connectWallet()" 
-                                id="connectWallet"
-                                class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
+                        <button onclick="connectWallet()" id="connectWallet"
+                            class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
                             <i class="fas fa-id-card"></i>
                             <span>Connect IndiaStack Wallet</span>
                         </button>
-                        <button onclick="showUPIVerification()" 
-                                id="upiButton"
-                                class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
+                        <button onclick="showUPIVerification()" id="upiButton"
+                            class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
                             <i class="fas fa-qrcode"></i>
                             <span>Secure UPI with Blockchain</span>
                         </button>
@@ -479,7 +474,8 @@
                                 </div>
                                 <div class="bg-[#3d463f]/30 p-4 rounded-lg">
                                     <div class="text-sm text-gray-400 mb-1">Transaction ID</div>
-                                    <div class="font-mono text-sm text-white break-all" id="txId">TXIN1742586125488</div>
+                                    <div class="font-mono text-sm text-white break-all" id="txId">TXIN1742586125488
+                                    </div>
                                 </div>
                                 <div class="flex items-center gap-2 text-sm text-gray-400">
                                     <i class="fas fa-clock"></i>
@@ -516,12 +512,12 @@
 
                     <!-- Final Appeal -->
                     <p class="text-center text-sm text-gray-400 mt-6 italic">
-                        "Every donation, no matter how small, is a beacon of hope for a stray in need. 
+                        "Every donation, no matter how small, is a beacon of hope for a stray in need.
                         Your kindness today creates miracles tomorrow."
                     </p>
                 </div>
             </div>
-            
+
             <!-- Bottom Testimonials Section -->
             <div class="mt-16 mb-24" id="testimonials">
                 <!-- Section Header -->
@@ -539,8 +535,8 @@
                                 <h2 class="text-white">A Life Transformed</h2>
                             </div>
                             <p class="text-gray-300">
-                                "I found an injured puppy on the street. One call to Woof, and within 30 minutes, 
-                                they were there. Today, that puppy has a loving home. Your donations make such 
+                                "I found an injured puppy on the street. One call to Woof, and within 30 minutes,
+                                they were there. Today, that puppy has a loving home. Your donations make such
                                 rescues possible."
                             </p>
                             <div class="ratings">
@@ -567,8 +563,9 @@
                                 <h2 class="text-white">Emergency Response</h2>
                             </div>
                             <p class="text-gray-300">
-                                "During the floods, PawsGuard rescued over 200 stranded animals. They didn't just save 
-                                lives; they gave hope when all seemed lost. Every donation counts in emergencies like these."
+                                "During the floods, PawsGuard rescued over 200 stranded animals. They didn't just save
+                                lives; they gave hope when all seemed lost. Every donation counts in emergencies like
+                                these."
                             </p>
                             <div class="ratings">
                                 <i class="fa-solid fa-heart text-red-400"></i>
@@ -594,8 +591,9 @@
                                 <h2 class="text-white">Daily Miracles</h2>
                             </div>
                             <p class="text-gray-300">
-                                "Every morning, I see PawsGuard volunteers feeding the strays in my area. These angels 
-                                work tirelessly, rain or shine. A small monthly donation helps keep their mission alive."
+                                "Every morning, I see PawsGuard volunteers feeding the strays in my area. These angels
+                                work tirelessly, rain or shine. A small monthly donation helps keep their mission
+                                alive."
                             </p>
                             <div class="ratings">
                                 <i class="fa-solid fa-heart text-red-400"></i>
@@ -621,8 +619,8 @@
                                 <h2 class="text-white">Second Chances</h2>
                             </div>
                             <p class="text-gray-300">
-                                "My heart broke seeing a paralyzed dog struggling. PawsGuard provided months of 
-                                treatment and physiotherapy. Today, he runs and plays like any other dog. These 
+                                "My heart broke seeing a paralyzed dog struggling. PawsGuard provided months of
+                                treatment and physiotherapy. Today, he runs and plays like any other dog. These
                                 miracles happen because of donors like you."
                             </p>
                             <div class="ratings">
@@ -649,8 +647,8 @@
                                 <h2 class="text-white">Community Impact</h2>
                             </div>
                             <p class="text-gray-300">
-                                "As a school teacher, I've seen how PawsGuard's work teaches children compassion. 
-                                They rescued an injured puppy from our school grounds, and now our students understand 
+                                "As a school teacher, I've seen how PawsGuard's work teaches children compassion.
+                                They rescued an injured puppy from our school grounds, and now our students understand
                                 the importance of being kind to animals."
                             </p>
                             <div class="ratings">
@@ -677,8 +675,8 @@
                                 <h2 class="text-white">Night Heroes</h2>
                             </div>
                             <p class="text-gray-300">
-                                "At 2 AM, I found a critically injured dog after an accident. One call to PawsGuard's 
-                                emergency helpline, and they were there within minutes. Their 24/7 service saves 
+                                "At 2 AM, I found a critically injured dog after an accident. One call to PawsGuard's
+                                emergency helpline, and they were there within minutes. Their 24/7 service saves
                                 countless lives. Please donate to keep this lifeline running."
                             </p>
                             <div class="ratings">
@@ -715,15 +713,17 @@
     <!-- Remove any constraining containers and make footer standalone -->
     <footer class="w-full bg-[#1a211d] text-gray-300 pt-16 pb-8 relative">
         <!-- Decorative Top Border -->
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500/50 via-purple-400 to-purple-500/50"></div>
-        
+        <div
+            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500/50 via-purple-400 to-purple-500/50">
+        </div>
+
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                 <!-- Mission Section -->
                 <div class="space-y-4">
                     <h3 class="text-2xl font-bold text-purple-400 mb-6">Woof</h3>
                     <p class="text-gray-400">
-                        Every tail has a story, every paw needs a guardian. 
+                        Every tail has a story, every paw needs a guardian.
                         Join us in creating a world where no stray goes unloved.
                     </p>
                     <div class="emergency-contact bg-[#3d463f]/50 p-4 rounded-lg mt-4">
@@ -731,7 +731,7 @@
                         <p class="text-xl font-bold text-white">1800-PAWHELP</p>
                     </div>
                 </div>
-                
+
 
                 <!-- Quick Links -->
                 <div class="space-y-4">
@@ -743,7 +743,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#volunteer" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                            <a href="#volunteer"
+                                class="hover:text-purple-400 transition-colors flex items-center gap-2">
                                 <i class="fas fa-hands-helping"></i> Volunteer
                             </a>
                         </li>
@@ -753,7 +754,8 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#success-stories" class="hover:text-purple-400 transition-colors flex items-center gap-2">
+                            <a href="#success-stories"
+                                class="hover:text-purple-400 transition-colors flex items-center gap-2">
                                 <i class="fas fa-star"></i> Success Stories
                             </a>
                         </li>
@@ -772,16 +774,16 @@
                         <div class="bg-[#3d463f]/50 p-4 rounded-lg">
                             <h4 class="font-semibold text-white">Mumbai HQ</h4>
                             <p class="text-sm text-gray-400">
-                                123 Animal Care Road<br/>
-                                Mumbai, MH 400001<br/>
+                                123 Animal Care Road<br />
+                                Mumbai, MH 400001<br />
                                 <span class="text-green-400">Open 24/7</span>
                             </p>
                         </div>
                         <div class="bg-[#3d463f]/50 p-4 rounded-lg">
                             <h4 class="font-semibold text-white">Delhi Center</h4>
                             <p class="text-sm text-gray-400">
-                                45 Paw Street<br/>
-                                Delhi, DL 110001<br/>
+                                45 Paw Street<br />
+                                Delhi, DL 110001<br />
                                 <span class="text-green-400">Open 24/7</span>
                             </p>
                         </div>
@@ -795,9 +797,8 @@
                     <div class="mb-6">
                         <p class="text-sm mb-3">Subscribe to our newsletter for updates</p>
                         <div class="flex">
-                            <input type="email" 
-                                   placeholder="Enter your email" 
-                                   class="bg-[#3d463f] px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-400 flex-1">
+                            <input type="email" placeholder="Enter your email"
+                                class="bg-[#3d463f] px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-400 flex-1">
                             <button class="bg-purple-500 hover:bg-purple-600 px-4 py-2 rounded-r-lg transition-colors">
                                 <i class="fas fa-paper-plane"></i>
                             </button>
@@ -828,7 +829,8 @@
             <div class="mt-12 pt-8 border-t border-[#4d564f]">
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div class="text-sm text-gray-400">
-                        © 2024 Woof. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for animals
+                        © 2024 Woof. All rights reserved. Made with <i class="fas fa-heart text-red-400"></i> for
+                        animals
                     </div>
                     <div class="flex gap-6 text-sm">
                         <a href="#privacy" class="hover:text-purple-400 transition-colors">Privacy Policy</a>
@@ -846,11 +848,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="qrModalLabel">Scan QR to Pay</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="qr-code">
-                        <img id="dynamicQRCode" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%236b7280'%3EQR Code not available%3C/text%3E%3C/svg%3E" alt="UPI QR Code">
+                        <img id="dynamicQRCode"
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%236b7280'%3EQR Code not available%3C/text%3E%3C/svg%3E"
+                            alt="UPI QR Code">
                     </div>
                     <div class="upi-details">
                         <p class="upi-id" id="upiId">animalrescue@axis</p>
@@ -870,7 +875,7 @@
 
     <script src="static/script.js"></script>
     <script type="module" src="static/payment.js"></script>
-    
+
     <!-- Add required scripts before closing body tag -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
@@ -931,13 +936,13 @@
                     hash: `0x${Math.random().toString(16).substr(2, 10)}`,
                     network: 'Mumbai Polygon Testnet'
                 };
-                
+
                 setTimeout(() => {
                     tx.status = 'confirmed';
                     this.transactions.push(tx);
                     this.saveToStorage();
                 }, 2000);
-                
+
                 return tx;
             }
 
@@ -982,12 +987,12 @@
                 const walletAddress = blockchain.connectWallet();
                 currentWallet = walletAddress;
                 updateWalletDisplay(walletAddress);
-                
+
                 const connectButton = document.getElementById('connectWallet');
                 connectButton.innerHTML = `<i class="fas fa-check"></i> <span>Connected</span>`;
                 connectButton.classList.add('bg-green-600', 'hover:bg-green-700');
-                
-                document.getElementById('walletStatus').innerHTML = 
+
+                document.getElementById('walletStatus').innerHTML =
                     `<i class="fas fa-check-circle text-green-400"></i> Wallet Connected`;
             } catch (error) {
                 alert('Failed to connect wallet. Please try again.');
@@ -996,7 +1001,7 @@
 
         function updateWalletDisplay(address) {
             const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-            document.getElementById('walletStatus').innerHTML = 
+            document.getElementById('walletStatus').innerHTML =
                 `<i class="fas fa-wallet"></i> ${shortAddress}`;
         }
 
@@ -1011,9 +1016,9 @@
 
             const txStatus = document.getElementById('txStatus');
             txStatus.classList.remove('hidden');
-            
+
             const tx = blockchain.makeTransaction(currentAmount, 'Donation');
-            
+
             // Update transaction details with new structure
             document.getElementById('txAmount').textContent = currentAmount;
             document.getElementById('txStatusText').textContent = 'Pending';
@@ -1039,7 +1044,7 @@
         function updateTransactionList() {
             const txList = document.getElementById('txList');
             const transactions = blockchain.getTransactionHistory();
-            
+
             txList.innerHTML = transactions.slice(0, 5).map(tx => `
                 <div class="flex justify-between items-center py-2 border-b border-gray-700">
                     <div>
@@ -1177,79 +1182,104 @@
     </style>
 
     <script>
-    let isManualInput = false;
+        let isManualInput = false;
 
-    function toggleLocationInput() {
-        const locationInput = document.getElementById('location-input');
-        const instructions = document.getElementById('manual-input-instructions');
-        isManualInput = !isManualInput;
-        
-        if (isManualInput) {
-            locationInput.readOnly = false;
-            locationInput.placeholder = "Enter your location manually";
-            instructions.classList.remove('hidden');
-        } else {
-            locationInput.readOnly = true;
-            locationInput.placeholder = "Enter location or use current location";
-            instructions.classList.add('hidden');
+        function toggleLocationInput() {
+            const locationInput = document.getElementById('location-input');
+            const instructions = document.getElementById('manual-input-instructions');
+            isManualInput = !isManualInput;
+
+            if (isManualInput) {
+                locationInput.readOnly = false;
+                locationInput.placeholder = "Enter your location manually";
+                instructions.classList.remove('hidden');
+            } else {
+                locationInput.readOnly = true;
+                locationInput.placeholder = "Enter location or use current location";
+                instructions.classList.add('hidden');
+            }
         }
-    }
 
-    function getLocation() {
-        const locationInput = document.getElementById('location-input');
-        const coordinatesInput = document.getElementById('coordinates-input');
-        const locationStatus = document.getElementById('location-status');
-        const locationIcon = document.getElementById('location-icon');
-        const locationLoader = document.getElementById('location-loader');
+        function getLocation() {
+            const locationInput = document.getElementById('location-input');
+            const coordinatesInput = document.getElementById('coordinates-input');
+            const locationStatus = document.getElementById('location-status');
+            const locationIcon = document.getElementById('location-icon');
+            const locationLoader = document.getElementById('location-loader');
 
-        // Show loading state
-        locationIcon.classList.add('hidden');
-        locationLoader.classList.remove('hidden');
-        locationStatus.textContent = 'Detecting your location...';
+            // Show loading state
+            locationIcon.classList.add('hidden');
+            locationLoader.classList.remove('hidden');
+            locationStatus.textContent = 'Detecting your location...';
 
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude, accuracy } = position.coords;
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude, accuracy } = position.coords;
 
-                    // Increased threshold to 2000m for better usability
-                    // Most GPS devices have accuracy between 10-100m in good conditions
-                    if (accuracy <= 2000) {
-                        // Reverse Geocoding using OpenStreetMap Nominatim API
-                        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
-                            .then(response => {
-                                if (!response.ok) {
-                                    throw new Error('Network response was not ok');
-                                }
-                                return response.json();
-                            })
-                            .then(data => {
-                                const locationName = data.display_name || "Unknown location";
-                                // Store formatted address
-                                locationInput.value = locationName;
-                                // Store coordinates
-                                coordinatesInput.value = `${latitude},${longitude}`;
-                                // Update status with accuracy info
-                                locationStatus.textContent = `Location detected (Accuracy: ${Math.round(accuracy)}m)`;
-                                locationStatus.classList.remove('text-red-500', 'text-yellow-500');
-                                locationStatus.classList.add('text-green-500');
-                            })
-                            .catch((error) => {
-                                console.error('Geocoding error:', error);
-                                // Fallback to coordinates if geocoding fails
-                                locationInput.value = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
-                                coordinatesInput.value = `${latitude},${longitude}`;
-                                locationStatus.textContent = 'Using coordinates (address lookup failed)';
-                                locationStatus.classList.remove('text-red-500', 'text-green-500');
-                                locationStatus.classList.add('text-yellow-500');
-                            })
-                            .finally(() => {
-                                // Hide loading state
-                                locationIcon.classList.remove('hidden');
-                                locationLoader.classList.add('hidden');
-                            });
-                    } else {
-                        locationStatus.textContent = `Location accuracy is low (${Math.round(accuracy)}m). Try moving to an open area or enter location manually.`;
+                        // Increased threshold to 2000m for better usability
+                        // Most GPS devices have accuracy between 10-100m in good conditions
+                        if (accuracy <= 2000) {
+                            // Reverse Geocoding using OpenStreetMap Nominatim API
+                            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`)
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error('Network response was not ok');
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    const locationName = data.display_name || "Unknown location";
+                                    // Store formatted address
+                                    locationInput.value = locationName;
+                                    // Store coordinates
+                                    coordinatesInput.value = `${latitude},${longitude}`;
+                                    // Update status with accuracy info
+                                    locationStatus.textContent = `Location detected (Accuracy: ${Math.round(accuracy)}m)`;
+                                    locationStatus.classList.remove('text-red-500', 'text-yellow-500');
+                                    locationStatus.classList.add('text-green-500');
+                                })
+                                .catch((error) => {
+                                    console.error('Geocoding error:', error);
+                                    // Fallback to coordinates if geocoding fails
+                                    locationInput.value = `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
+                                    coordinatesInput.value = `${latitude},${longitude}`;
+                                    locationStatus.textContent = 'Using coordinates (address lookup failed)';
+                                    locationStatus.classList.remove('text-red-500', 'text-green-500');
+                                    locationStatus.classList.add('text-yellow-500');
+                                })
+                                .finally(() => {
+                                    // Hide loading state
+                                    locationIcon.classList.remove('hidden');
+                                    locationLoader.classList.add('hidden');
+                                });
+                        } else {
+                            locationStatus.textContent = `Location accuracy is low (${Math.round(accuracy)}m). Try moving to an open area or enter location manually.`;
+                            locationStatus.classList.remove('text-green-500', 'text-yellow-500');
+                            locationStatus.classList.add('text-red-500');
+                            // Show manual input instructions
+                            document.getElementById('manual-input-instructions').classList.remove('hidden');
+                            // Hide loading state
+                            locationIcon.classList.remove('hidden');
+                            locationLoader.classList.add('hidden');
+                        }
+                    },
+                    (error) => {
+                        let errorMessage = 'Error detecting location: ';
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                errorMessage = 'Location access denied. Please enable location services in your browser settings.';
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                errorMessage = 'Location information unavailable. Please check your GPS settings.';
+                                break;
+                            case error.TIMEOUT:
+                                errorMessage = 'Location request timed out. Please try again.';
+                                break;
+                            default:
+                                errorMessage = 'Unable to detect location. Please try again or enter location manually.';
+                        }
+                        locationStatus.textContent = errorMessage;
                         locationStatus.classList.remove('text-green-500', 'text-yellow-500');
                         locationStatus.classList.add('text-red-500');
                         // Show manual input instructions
@@ -1257,49 +1287,25 @@
                         // Hide loading state
                         locationIcon.classList.remove('hidden');
                         locationLoader.classList.add('hidden');
+                    },
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 15000, // Increased timeout to 15 seconds
+                        maximumAge: 0
                     }
-                },
-                (error) => {
-                    let errorMessage = 'Error detecting location: ';
-                    switch(error.code) {
-                        case error.PERMISSION_DENIED:
-                            errorMessage = 'Location access denied. Please enable location services in your browser settings.';
-                            break;
-                        case error.POSITION_UNAVAILABLE:
-                            errorMessage = 'Location information unavailable. Please check your GPS settings.';
-                            break;
-                        case error.TIMEOUT:
-                            errorMessage = 'Location request timed out. Please try again.';
-                            break;
-                        default:
-                            errorMessage = 'Unable to detect location. Please try again or enter location manually.';
-                    }
-                    locationStatus.textContent = errorMessage;
-                    locationStatus.classList.remove('text-green-500', 'text-yellow-500');
-                    locationStatus.classList.add('text-red-500');
-                    // Show manual input instructions
-                    document.getElementById('manual-input-instructions').classList.remove('hidden');
-                    // Hide loading state
-                    locationIcon.classList.remove('hidden');
-                    locationLoader.classList.add('hidden');
-                },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 15000, // Increased timeout to 15 seconds
-                    maximumAge: 0
-                }
-            );
-        } else {
-            locationStatus.textContent = 'Geolocation is not supported by this browser. Please enter location manually.';
-            locationStatus.classList.remove('text-green-500', 'text-yellow-500');
-            locationStatus.classList.add('text-red-500');
-            // Show manual input instructions
-            document.getElementById('manual-input-instructions').classList.remove('hidden');
-            // Hide loading state
-            locationIcon.classList.remove('hidden');
-            locationLoader.classList.add('hidden');
+                );
+            } else {
+                locationStatus.textContent = 'Geolocation is not supported by this browser. Please enter location manually.';
+                locationStatus.classList.remove('text-green-500', 'text-yellow-500');
+                locationStatus.classList.add('text-red-500');
+                // Show manual input instructions
+                document.getElementById('manual-input-instructions').classList.remove('hidden');
+                // Hide loading state
+                locationIcon.classList.remove('hidden');
+                locationLoader.classList.add('hidden');
+            }
         }
-    }
     </script>
 </body>
+
 </html>
