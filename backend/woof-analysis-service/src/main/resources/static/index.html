@@ -407,20 +407,6 @@
                         and give them the love they deserve. Will you help?
                     </p>
 
-                    <!-- Custom Amount -->
-                    <div class="mb-8">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-gray-300">Donate in INR</span>
-                            <span class="text-sm text-blue-400">(IndiaStack Verified)</span>
-                        </div>
-                        <div class="flex">
-                            <span class="bg-[#3d564f] px-4 py-3 rounded-l-lg text-gray-400">₹</span>
-                            <input type="number" id="donationAmount" placeholder="Enter amount"
-                                class="flex-1 bg-[#3d564f] px-4 py-3 rounded-r-lg text-white focus:outline-none focus:ring-2 focus:ring-[#5d665f]">
-                        </div>
-                        <div id="walletStatus" class="mt-2 text-sm text-gray-400"></div>
-                    </div>
-
                     <!-- Quick Donation Options -->
                     <div class="grid grid-cols-3 gap-4 mb-8">
                         <button onclick="setDonationAmount(100)"
@@ -439,75 +425,20 @@
 
                     <!-- Payment Methods -->
                     <div class="grid grid-cols-1 gap-4 mb-8">
-                        <button onclick="connectWallet()" id="connectWallet"
-                            class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
-                            <i class="fas fa-id-card"></i>
-                            <span>Connect IndiaStack Wallet</span>
-                        </button>
-                        <button onclick="showUPIVerification()" id="upiButton"
-                            class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg">
-                            <i class="fas fa-qrcode"></i>
-                            <span>Secure UPI with Blockchain</span>
+                        <button onclick="initiatePayment()" id="donateButton"
+                            class="flex items-center justify-center gap-2 bg-[#4d564f] hover:bg-[#5d665f] text-white py-3 rounded-lg transition-all">
+                            <i class="fas fa-heart"></i>
+                            <span>Donate Now</span>
                         </button>
                     </div>
 
-                    <!-- Transaction Status -->
-                    <div id="txStatus" class="hidden mb-8">
-                        <div class="bg-[#2d3630] p-6 rounded-lg border border-[#4d564f]/20">
-                            <div class="flex items-center justify-between mb-4">
-                                <h4 class="text-blue-400 font-bold text-lg">Transaction Status</h4>
-                                <div class="network-badge text-xs bg-blue-900/30 text-blue-400 px-3 py-1 rounded-full">
-                                    <i class="fas fa-network-wired mr-1"></i>
-                                    Mumbai Polygon Testnet
-                                </div>
-                            </div>
-                            <div class="tx-details space-y-4">
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-[#3d463f]/30 p-4 rounded-lg">
-                                        <div class="text-sm text-gray-400 mb-1">Amount</div>
-                                        <div class="text-xl font-bold text-white">₹<span id="txAmount">100</span></div>
-                                    </div>
-                                    <div class="bg-[#3d463f]/30 p-4 rounded-lg">
-                                        <div class="text-sm text-gray-400 mb-1">Status</div>
-                                        <div class="text-xl font-bold text-green-400" id="txStatusText">Confirmed</div>
-                                    </div>
-                                </div>
-                                <div class="bg-[#3d463f]/30 p-4 rounded-lg">
-                                    <div class="text-sm text-gray-400 mb-1">Transaction ID</div>
-                                    <div class="font-mono text-sm text-white break-all" id="txId">TXIN1742586125488
-                                    </div>
-                                </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-400">
-                                    <i class="fas fa-clock"></i>
-                                    <span id="txTimestamp">Just now</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blockchain Transaction Record -->
-                    <div class="bg-[#2d3630] p-4 rounded-lg mt-6">
-                        <div class="flex items-center gap-2 text-blue-400 mb-2">
-                            <i class="fas fa-link"></i>
-                            <h4 class="font-bold">Live Transactions</h4>
-                        </div>
-                        <div id="txList" class="text-sm text-gray-400 space-y-2">
-                            <!-- Dynamically populated -->
-                        </div>
-                    </div>
-
-                    <!-- Fraud Prevention System -->
-                    <div class="bg-[#3d463f] p-4 rounded-lg mt-6">
-                        <h4 class="text-yellow-400 mb-2">AI + Blockchain Monitoring</h4>
-                        <div class="text-sm text-gray-400">
-                            <p class="flex items-center gap-2">
-                                <i class="fas fa-shield-alt"></i>
-                                Live anomaly detection:
-                            </p>
-                            <div id="fraudStatus" class="grid grid-cols-2 gap-4 mt-2">
-                                <!-- Dynamically populated -->
-                            </div>
-                        </div>
+                    <!-- Impact Message -->
+                    <div class="bg-[#2d3630] p-6 rounded-lg border border-[#4d564f]/20 mb-8">
+                        <p class="text-center text-gray-300">
+                            All donations directly support animal rescue operations and medical care.
+                            <br>
+                            <span class="text-purple-400 font-semibold">100% Transparency</span>
+                        </p>
                     </div>
 
                     <!-- Final Appeal -->
@@ -887,76 +818,10 @@
             window.bootstrap = require('bootstrap');
         });
     </script>
-    <!-- Blockchain Implementation -->
-    <script>
-        class MockBlockchain {
-            constructor() {
-                this.transactions = [];
-                this.wallets = new Map();
-                this.loadFromStorage();
-            }
 
-            loadFromStorage() {
-                const savedData = localStorage.getItem('mockBlockchain');
-                if (savedData) {
-                    const data = JSON.parse(savedData);
-                    this.transactions = data.transactions || [];
-                    this.wallets = new Map(Object.entries(data.wallets || {}));
-                }
-            }
-
-            saveToStorage() {
-                const data = {
-                    transactions: this.transactions,
-                    wallets: Object.fromEntries(this.wallets)
-                };
-                localStorage.setItem('mockBlockchain', JSON.stringify(data));
-            }
-
-            connectWallet() {
-                const walletAddress = `inr:0xIND${Math.random().toString(36).substr(2, 10)}`;
-                this.wallets.set(walletAddress, {
-                    balance: Math.floor(Math.random() * 10000),
-                    currency: 'INR',
-                    lastUpdated: new Date().toISOString()
-                });
-                this.saveToStorage();
-                return walletAddress;
-            }
-
-            makeTransaction(amount, purpose) {
-                const tx = {
-                    id: `TXIN${Date.now()}`,
-                    amount: amount,
-                    currency: 'INR',
-                    purpose: purpose,
-                    timestamp: new Date().toISOString(),
-                    status: 'pending',
-                    block: Math.floor(Math.random() * 1000000),
-                    hash: `0x${Math.random().toString(16).substr(2, 10)}`,
-                    network: 'Mumbai Polygon Testnet'
-                };
-
-                setTimeout(() => {
-                    tx.status = 'confirmed';
-                    this.transactions.push(tx);
-                    this.saveToStorage();
-                }, 2000);
-
-                return tx;
-            }
-
-            getTransactionHistory() {
-                return this.transactions.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            }
-        }
-
-        const blockchain = new MockBlockchain();
-    </script>
 
     <!-- Payment Handling Script -->
     <script>
-        let currentWallet = null;
         let currentAmount = 0;
 
         function generateQRCode(amount) {
@@ -977,105 +842,48 @@
 
         function setDonationAmount(amount) {
             currentAmount = amount;
-            document.getElementById('donationAmount').value = amount;
-            document.getElementById('paymentAmount').textContent = amount;
-            generateQRCode(amount); // Generate QR code when amount is set
+            // Update button styles to show selection
+            const buttons = document.querySelectorAll('button[onclick^="setDonationAmount"]');
+            buttons.forEach(btn => {
+                if (btn.textContent.trim().includes(amount)) {
+                    btn.classList.remove('bg-[#3d564f]');
+                    btn.classList.add('bg-purple-600');
+                } else {
+                    btn.classList.add('bg-[#3d564f]');
+                    btn.classList.remove('bg-purple-600');
+                }
+            });
         }
 
-        async function connectWallet() {
-            try {
-                const walletAddress = blockchain.connectWallet();
-                currentWallet = walletAddress;
-                updateWalletDisplay(walletAddress);
-
-                const connectButton = document.getElementById('connectWallet');
-                connectButton.innerHTML = `<i class="fas fa-check"></i> <span>Connected</span>`;
-                connectButton.classList.add('bg-green-600', 'hover:bg-green-700');
-
-                document.getElementById('walletStatus').innerHTML =
-                    `<i class="fas fa-check-circle text-green-400"></i> Wallet Connected`;
-            } catch (error) {
-                alert('Failed to connect wallet. Please try again.');
+        function initiatePayment() {
+            // Check if user is logged in
+            const userStr = localStorage.getItem('woofUser');
+            if (!userStr) {
+                // Redirect to login if not signed in
+                // Save intention to return? (Optional improvement)
+                alert('Please sign in to donate.');
+                window.location.href = '/signin.html';
+                return;
             }
-        }
 
-        function updateWalletDisplay(address) {
-            const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
-            document.getElementById('walletStatus').innerHTML =
-                `<i class="fas fa-wallet"></i> ${shortAddress}`;
-        }
-
-        function showUPIVerification() {
             if (!currentAmount) {
                 alert('Please select or enter a donation amount first.');
                 return;
             }
 
+            const paymentAmountElem = document.getElementById('paymentAmount');
+            if (paymentAmountElem) paymentAmountElem.textContent = currentAmount;
+
             // Generate QR code with current amount
             generateQRCode(currentAmount);
 
-            const txStatus = document.getElementById('txStatus');
-            txStatus.classList.remove('hidden');
-
-            const tx = blockchain.makeTransaction(currentAmount, 'Donation');
-
-            // Update transaction details with new structure
-            document.getElementById('txAmount').textContent = currentAmount;
-            document.getElementById('txStatusText').textContent = 'Pending';
-            document.getElementById('txStatusText').classList.remove('text-green-400');
-            document.getElementById('txStatusText').classList.add('text-yellow-400');
-            document.getElementById('txId').textContent = tx.id;
-            document.getElementById('txTimestamp').textContent = new Date().toLocaleString();
-
-            updateTransactionList();
-
             const modal = new bootstrap.Modal(document.getElementById('qrModal'));
             modal.show();
-
-            setTimeout(() => {
-                document.getElementById('txStatusText').textContent = 'Confirmed';
-                document.getElementById('txStatusText').classList.remove('text-yellow-400');
-                document.getElementById('txStatusText').classList.add('text-green-400');
-                updateTransactionList();
-                modal.hide();
-            }, 5000);
-        }
-
-        function updateTransactionList() {
-            const txList = document.getElementById('txList');
-            const transactions = blockchain.getTransactionHistory();
-
-            txList.innerHTML = transactions.slice(0, 5).map(tx => `
-                <div class="flex justify-between items-center py-2 border-b border-gray-700">
-                    <div>
-                        <div class="font-mono text-xs">${tx.id}</div>
-                        <div class="text-xs text-gray-500">${new Date(tx.timestamp).toLocaleString()}</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-green-400">₹${tx.amount}</div>
-                        <div class="text-xs text-gray-500">${tx.status}</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function initFraudPrevention() {
-            const fraudStatus = document.getElementById('fraudStatus');
-            fraudStatus.innerHTML = `
-                <div class="bg-green-900/30 p-2 rounded">
-                    <div class="text-xs text-green-400">Transaction Pattern</div>
-                    <div class="text-xs text-gray-400">Normal</div>
-                </div>
-                <div class="bg-green-900/30 p-2 rounded">
-                    <div class="text-xs text-green-400">Risk Level</div>
-                    <div class="text-xs text-gray-400">Low</div>
-                </div>
-            `;
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initFraudPrevention();
-            updateTransactionList();
+            // Optional: Pre-select an amount
+            setDonationAmount(100);
         });
     </script>
 

@@ -35,7 +35,7 @@ export async function handlePayment(amount, upiId) {
 
 // QR code generation
 export function generateQRCode(amount) {
-    const upiId = "animalrescue@axis";
+    const upiId = "parthbatrab@icici";
     const recipientName = "Woof";
     const currency = "INR";
 
