@@ -30,6 +30,17 @@
             <a href="#hotspots" class="text-white hover:text-purple-400">Hotspots</a>
             <a href="#about" class="text-white hover:text-purple-400">Donate</a>
             <a href="#testimonials" class="text-white hover:text-purple-400">Testimonials</a>
+            <div id="auth-section" class="flex items-center ml-4">
+                <a href="/signin.html" id="signin-btn"
+                    class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">Sign
+                    In</a>
+                <div id="user-info" class="hidden flex items-center gap-3">
+                    <span id="user-name" class="text-purple-400 font-medium"></span>
+                    <button onclick="logout()" class="text-gray-400 hover:text-white" title="Sign Out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -773,36 +784,7 @@
         </div>
     </footer>
 
-    <!-- QR Payment Modal -->
-    <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="qrModalLabel">Scan QR to Pay</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="qr-code">
-                        <img id="dynamicQRCode"
-                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='14' fill='%236b7280'%3EQR Code not available%3C/text%3E%3C/svg%3E"
-                            alt="UPI QR Code">
-                    </div>
-                    <div class="upi-details">
-                        <p class="upi-id" id="upiId">animalrescue@axis</p>
-                        <p class="payment-amount">₹<span id="paymentAmount">100</span></p>
-                        <p class="payment-status">
-                            <i class="fas fa-spinner fa-spin"></i>
-                            Waiting for payment...
-                        </p>
-                    </div>
-                    <p class="text-muted mt-3">
-                        Open your UPI app and scan the QR code to complete the payment
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- QR Payment Modal Removed -->
 
     <script src="static/script.js"></script>
     <script type="module" src="static/payment.js"></script>
@@ -860,28 +842,39 @@
             const userStr = localStorage.getItem('woofUser');
             if (!userStr) {
                 // Redirect to login if not signed in
-                // Save intention to return? (Optional improvement)
                 alert('Please sign in to donate.');
                 window.location.href = '/signin.html';
                 return;
             }
 
-            if (!currentAmount) {
-                alert('Please select or enter a donation amount first.');
-                return;
+            // Redirect to dashboard for payment
+            window.location.href = '/dashboard.html';
+        }
+
+        function checkAuthStatus() {
+            const userStr = localStorage.getItem('woofUser');
+            const signinBtn = document.getElementById('signin-btn');
+            const userInfo = document.getElementById('user-info');
+            const userName = document.getElementById('user-name');
+
+            if (userStr) {
+                const user = JSON.parse(userStr);
+                if (signinBtn) signinBtn.classList.add('hidden');
+                if (userInfo) userInfo.classList.remove('hidden');
+                if (userName) userName.textContent = `Hi, ${user.name}`;
+            } else {
+                if (signinBtn) signinBtn.classList.remove('hidden');
+                if (userInfo) userInfo.classList.add('hidden');
             }
+        }
 
-            const paymentAmountElem = document.getElementById('paymentAmount');
-            if (paymentAmountElem) paymentAmountElem.textContent = currentAmount;
-
-            // Generate QR code with current amount
-            generateQRCode(currentAmount);
-
-            const modal = new bootstrap.Modal(document.getElementById('qrModal'));
-            modal.show();
+        function logout() {
+            localStorage.removeItem('woofUser');
+            window.location.reload();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus();
             // Optional: Pre-select an amount
             setDonationAmount(100);
         });
