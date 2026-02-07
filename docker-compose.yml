@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  # 1. Analysis Service (Frontend + Core)
+  woof-analysis:
+    build:
+      context: ./backend/woof-analysis-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-gsk_...} # Fallback or pass from .env
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+    depends_on:
+      - woof-payment
+      - woof-user
+
+  # 2. Payment Service
+  woof-payment:
+    build:
+      context: ./backend/woof-payment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+
+  # 3. User Service
+  woof-user:
+    build:
+      context: ./backend/woof-user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+
+networks:
+  woof-network:
+    driver: bridge
