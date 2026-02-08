@@ -2,17 +2,14 @@ spring:
   application:
     name: woof-user-service
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
-    username: sa
+    url: jdbc:postgresql://localhost:5432/woofdb
+    driverClassName: org.postgresql.Driver
+    username: woof
     password: password
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
 
 server:
   port: 8082

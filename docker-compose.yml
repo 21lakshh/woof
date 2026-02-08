@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # 1. Analysis Service (Frontend + Core)
+  woof-analysis:
+    build:
+      context: ./backend/woof-analysis-service
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY:-gsk_...} # Fallback or pass from .env
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+    depends_on:
+      - woof-payment
+      - woof-user
+
+  # 2. Payment Service
+  woof-payment:
+    build:
+      context: ./backend/woof-payment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+
+  # 3. User Service
+  woof-user:
+    build:
+      context: ./backend/woof-user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+    depends_on:
+      - woof-db
+
+  # 4. Database (PostgreSQL)
+  woof-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: woofdb
+      POSTGRES_USER: woof
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - woof-network
+    ports:
+      - "5432:5432"
+
+  # 5. Database Management (pgAdmin)
+  woof-pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@woof.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - woof-network
+
+volumes:
+  postgres-data:
+
+networks:
+  woof-network:
+    driver: bridge
