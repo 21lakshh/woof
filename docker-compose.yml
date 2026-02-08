@@ -40,6 +40,38 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - woof-network
+    depends_on:
+      - woof-db
+
+  # 4. Database (PostgreSQL)
+  woof-db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: woofdb
+      POSTGRES_USER: woof
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - woof-network
+    ports:
+      - "5432:5432"
+
+  # 5. Database Management (pgAdmin)
+  woof-pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@woof.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    networks:
+      - woof-network
+
+volumes:
+  postgres-data:
 
 networks:
   woof-network:
