@@ -1,15 +1,22 @@
 package com.project.woofpayment.service;
 
 import com.project.woofpayment.repository.PaymentRepository;
+import com.project.woofpayment.repository.ExpenseRepository;
 import com.project.woofpayment.model.Payment;
+import com.project.woofpayment.model.Expense;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class PaymentService {
     PaymentRepository paymentRepository;
-    public PaymentService(PaymentRepository paymentRepository) {
+    ExpenseRepository expenseRepository;
+
+    public PaymentService(PaymentRepository paymentRepository, ExpenseRepository expenseRepository) {
         this.paymentRepository = paymentRepository;
+        this.expenseRepository = expenseRepository;
     }
 
     public Payment connectWallet(String UPIid) {
@@ -68,5 +75,33 @@ public class PaymentService {
                 .timestamp(java.time.LocalDateTime.now().toString())
                 .build();   
         return paymentRepository.save(newPayment);
-    }   
+    }
+
+    public double getTotalExpenses() {
+        return expenseRepository.findAll().stream()
+                .mapToDouble(Expense::getAmount)
+                .sum();
+    }
+
+    public Map<String, Double> getExpenseBreakdown() {
+        return expenseRepository.findAll().stream()
+                .collect(Collectors.groupingBy(
+                        Expense::getCategory,
+                        Collectors.summingDouble(Expense::getAmount)
+                ));
+    }
+
+    public List<Payment> getRecentTransactions() {
+        return paymentRepository.findAll();
+    }
+
+    public Expense addExpense(Expense expense) {
+        if (expense.getExpenseId() == null) {
+            expense.setExpenseId("EXP_" + System.currentTimeMillis());
+        }
+        if (expense.getTimestamp() == null) {
+            expense.setTimestamp(java.time.LocalDateTime.now().toString());
+        }
+        return expenseRepository.save(expense);
+    }
 }

@@ -1,7 +1,12 @@
 spring:
   application:
-    name: woof
+    name: woof-analysis-service
 
 groq:
   api:
     key: ${GROQ_API_KEY}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
