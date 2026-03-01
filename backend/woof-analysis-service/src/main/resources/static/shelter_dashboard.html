@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woof 🐾 - Shelter Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1a211d;
+            color: #fff;
+        }
+        .status-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-REPORTED { background-color: #fee2e2; color: #ef4444; }
+        .status-NEEDS_TREATMENT { background-color: #fef3c7; color: #f59e0b; }
+        .status-IN_SHELTER { background-color: #dbeafe; color: #3b82f6; }
+        .status-AVAILABLE_FOR_ADOPTION { background-color: #d1fae5; color: #10b981; }
+        .status-ADOPTED { background-color: #f3f4f6; color: #6b7280; }
+    </style>
+</head>
+
+<body class="bg-[#2d3630]">
+    <header class="header p-4 flex justify-between items-center shadow-md bg-[#1a211d]">
+        <div class="logo text-purple-400 text-3xl font-extrabold flex items-center gap-2">
+            <i class="fas fa-paw"></i> Woof Shelter Admin
+        </div>
+        <nav class="nav-links flex space-x-6">
+            <a href="/" class="text-white hover:text-purple-400">Back to Home</a>
+        </nav>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold mb-8">Manage Reported Dogs</h2>
+
+        <div class="bg-[#3d463f]/50 rounded-xl overflow-hidden border border-purple-400/20">
+            <table class="w-full text-left">
+                <thead class="bg-[#1a211d] text-gray-300">
+                    <tr>
+                        <th class="p-4">ID</th>
+                        <th class="p-4">Photo</th>
+                        <th class="p-4">Location</th>
+                        <th class="p-4">AI Analysis</th>
+                        <th class="p-4">Status</th>
+                        <th class="p-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="reportsTableBody" class="divide-y divide-purple-400/10">
+                    <!-- Data populated via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Update Status Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered text-black">
+            <div class="modal-content">
+                <div class="modal-header bg-purple-500 text-white">
+                    <h5 class="modal-title">Update Dog Status</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-gray-50">
+                    <form id="updateForm">
+                        <input type="hidden" id="reportId">
+                        
+                        <div class="mb-3">
+                            <label class="form-label font-bold">New Status</label>
+                            <select id="newStatus" class="form-select" onchange="toggleAdoptionFields()">
+                                <option value="REPORTED">Reported</option>
+                                <option value="NEEDS_TREATMENT">Needs Treatment</option>
+                                <option value="IN_SHELTER">In Shelter (Recovering)</option>
+                                <option value="AVAILABLE_FOR_ADOPTION">Available for Adoption</option>
+                                <option value="ADOPTED">Adopted</option>
+                            </select>
+                        </div>
+                        
+                        <div id="adoptionFields" class="d-none bg-white p-3 rounded border">
+                            <h6 class="font-bold text-purple-600 mb-2">Adoption Profile Details</h6>
+                            <p class="text-sm text-gray-500 mb-3">Fill this out when making the dog available for adoption.</p>
+                            
+                            <div class="mb-2">
+                                <label class="form-label text-sm">Dog Name</label>
+                                <input type="text" id="dogName" class="form-control form-control-sm">
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-2">
+                                    <label class="form-label text-sm">Est. Age (Months)</label>
+                                    <input type="number" id="dogAge" class="form-control form-control-sm">
+                                </div>
+                                <div class="col-6 mb-2">
+                                    <label class="form-label text-sm">Breed</label>
+                                    <input type="text" id="dogBreed" class="form-control form-control-sm" placeholder="e.g. Indie">
+                                </div>
+                            </div>
+                            <div class="mb-2">
+                                <label class="form-label text-sm">Temperament</label>
+                                <input type="text" id="dogTemperament" class="form-control form-control-sm" placeholder="e.g. Friendly, Shy">
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="checkbox" id="isVaccinated">
+                                <label class="form-check-label text-sm">Fully Vaccinated</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary bg-purple-600 border-0" onclick="saveUpdate()">Save updates</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const API_BASE = "http://localhost:8000/adoption"; // Configured via API Gateway
+        let updateModal;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateModal = new bootstrap.Modal(document.getElementById('updateModal'));
+            fetchReports();
+        });
+
+        async function fetchReports() {
+            try {
+                const response = await fetch(`${API_BASE}/reports`);
+                const data = await response.json();
+                renderTable(data);
+            } catch (err) {
+                console.error("Error fetching reports:", err);
+            }
+        }
+
+        function renderTable(reports) {
+            const tbody = document.getElementById('reportsTableBody');
+            tbody.innerHTML = '';
+            
+            reports.forEach(report => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-[#4d564f]/30 transition-colors";
+                
+                tr.innerHTML = `
+                    <td class="p-4">#${report.id}</td>
+                    <td class="p-4">
+                        <img src="${report.imageUrl || 'https://via.placeholder.com/50'}" class="w-12 h-12 object-cover rounded shadow">
+                    </td>
+                    <td class="p-4 text-sm">${report.location}</td>
+                    <td class="p-4 text-xs text-gray-300 max-w-xs truncate" title="${report.diseaseAnalysis}">
+                        ${report.diseaseAnalysis || 'No analysis'}
+                    </td>
+                    <td class="p-4">
+                        <span class="status-badge status-${report.status}">${report.status.replace(/_/g, ' ')}</span>
+                    </td>
+                    <td class="p-4">
+                        <button onclick="openUpdateModal(${report.id}, '${report.status}')" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded text-sm">
+                            Update
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function toggleAdoptionFields() {
+            const status = document.getElementById('newStatus').value;
+            const fields = document.getElementById('adoptionFields');
+            if (status === 'AVAILABLE_FOR_ADOPTION') {
+                fields.classList.remove('d-none');
+            } else {
+                fields.classList.add('d-none');
+            }
+        }
+
+        function openUpdateModal(id, currentStatus) {
+            document.getElementById('reportId').value = id;
+            document.getElementById('newStatus').value = currentStatus;
+            toggleAdoptionFields();
+            updateModal.show();
+        }
+
+        async function saveUpdate() {
+            const id = document.getElementById('reportId').value;
+            const status = document.getElementById('newStatus').value;
+            
+            const payload = { status: status };
+            
+            if (status === 'AVAILABLE_FOR_ADOPTION') {
+                payload.dogName = document.getElementById('dogName').value;
+                payload.estimatedAge = parseInt(document.getElementById('dogAge').value);
+                payload.breed = document.getElementById('dogBreed').value;
+                payload.temperament = document.getElementById('dogTemperament').value;
+                payload.isVaccinated = document.getElementById('isVaccinated').checked;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/reports/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (response.ok) {
+                    updateModal.hide();
+                    fetchReports();
+                } else {
+                    alert("Failed to update status");
+                }
+            } catch (err) {
+                console.error("Error updating:", err);
+            }
+        }
+    </script>
+</body>
+</html>

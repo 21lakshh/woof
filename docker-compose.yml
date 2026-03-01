@@ -1,5 +1,19 @@
 services:
-  # 0. Service Registry (Eureka)
+  # 0. API Gateway
+  woof-gateway:
+    build:
+      context: ./backend/woof-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+    depends_on:
+      - woof-service-reg
+
+  # 1. Service Registry (Eureka)
   woof-service-reg:
     build:
       context: ./backend/service-reg
@@ -56,6 +70,21 @@ services:
       - woof-service-reg
       - woof-db
 
+  # 5. Adoption Service
+  woof-adoption:
+    build:
+      context: ./backend/woof-adoption-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - woof-network
+    depends_on:
+      - woof-service-reg
+      - woof-db
+
   # 4. Database (PostgreSQL)
   woof-db:
     image: postgres:15-alpine
@@ -85,6 +114,7 @@ services:
 
 volumes:
   postgres-data:
+
 
 networks:
   woof-network:

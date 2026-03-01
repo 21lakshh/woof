@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: woof-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: woof-analysis-service
+          uri: lb://woof-analysis-service
+          predicates:
+            - Path=/api/v1/analyze/**
+        - id: woof-payment-service
+          uri: lb://woof-payment-service
+          predicates:
+            - Path=/payment/**
+        - id: woof-user-service
+          uri: lb://woof-user-service
+          predicates:
+            - Path=/user/**
+        - id: woof-adoption-service
+          uri: lb://woof-adoption-service
+          predicates:
+            - Path=/adoption/**
+
+server:
+  port: 8000
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
