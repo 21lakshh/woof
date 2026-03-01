@@ -321,6 +321,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 throw new Error(result.detail || 'An error occurred while processing your request.');
             }
 
+            // Now send it to our Adoption Service Database
+            updateStatusTracker(statusTracker, 'processing', 'Saving report to Shelter Database');
+            
+            try {
+                // Post to API gateway which routes to adoption service
+                const adoptionResponse = await fetch('http://localhost:8000/adoption/reports', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        location: reportData.location.address || `${reportData.location.coordinates.latitude}, ${reportData.location.coordinates.longitude}`,
+                        imageUrl: "", // Our current analysis endpoint doesn't return an image URL. Let's send an empty string for now or generate a placeholder.
+                        description: reportData.details || "No additional details provided.",
+                        diseaseAnalysis: extractedCondition || "Awaiting further manual analysis"
+                    })
+                });
+                
+                if(!adoptionResponse.ok) {
+                    console.warn("Failed to save to adoption service database.");
+                } else {
+                    console.log("Successfully saved to database.");
+                }
+            } catch (dbErr) {
+                console.error("Database save error:", dbErr);
+            }
+
             // Update status: completed
             updateStatusTracker(statusTracker, 'completed', 'Report processed successfully!');
 
