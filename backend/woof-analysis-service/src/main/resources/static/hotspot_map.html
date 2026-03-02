@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Woof Live Hotspots Dashboard</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #2d3630;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .legend {
+            background: rgba(61, 70, 63, 0.9);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .legend-item {
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .color-box {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        // Default to a central location (e.g., India or roughly center of reported activity)
+        var map = L.map('map').setView([20.5937, 78.9629], 5);
+
+        // Dark theme map tiles
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
+
+        // Fetch cluster data from our new API
+        fetch('/api/v1/hotspots/clusters')
+            .then(response => response.json())
+            .then(clusters => {
+                if (clusters.length === 0) {
+                    console.log("No active clusters to display");
+                    // Add some dummy data just for visual demonstration if DB is empty
+                    addDemoClusters();
+                    return;
+                }
+
+                clusters.forEach(cluster => {
+                    let color = '#10b981'; // LOW (Green)
+                    let fillColor = '#10b981';
+
+                    if (cluster.priorityLevel === 'HIGH') {
+                        color = '#ef4444'; // Red
+                        fillColor = '#f87171';
+                    } else if (cluster.priorityLevel === 'MEDIUM') {
+                        color = '#f59e0b'; // Orange
+                        fillColor = '#fbbf24';
+                    }
+
+                    // Circle marking the cluster radius
+                    L.circle([cluster.centerLatitude, cluster.centerLongitude], {
+                        color: color,
+                        fillColor: fillColor,
+                        fillOpacity: 0.4,
+                        radius: 2000 // 2km radius from Epsilon
+                    }).addTo(map)
+                        .bindPopup(`<b>${cluster.priorityLevel} Priority Hotspot</b><br/>Reports: ${cluster.numberOfReports}`);
+                });
+            })
+            .catch(err => {
+                console.error("Error fetching hotspots", err);
+                addDemoClusters(); // Fallback for UI presentation
+            });
+
+        function addDemoClusters() {
+            // Bangalore area demo clusters for visual representation
+            const demos = [
+                { lat: 12.9716, lng: 77.5946, color: '#ef4444', level: 'HIGH', count: 12 },
+                { lat: 12.9250, lng: 77.5938, color: '#f59e0b', level: 'MEDIUM', count: 6 },
+                { lat: 13.0012, lng: 77.6200, color: '#10b981', level: 'LOW', count: 3 }
+            ];
+
+            demos.forEach(d => {
+                L.circle([d.lat, d.lng], {
+                    color: d.color,
+                    fillColor: d.color,
+                    fillOpacity: 0.4,
+                    radius: 2000
+                }).addTo(map)
+                    .bindPopup(`<b>${d.level} Priority Hotspot (Demo)</b><br/>Reports: ${d.count}`);
+            });
+
+            map.setView([12.9716, 77.5946], 11); // Center on Bangalore demo
+        }
+
+        // Legend
+        var legend = L.control({ position: 'bottomright' });
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<h4>Severity Level</h4>';
+            div.innerHTML += '<div class="legend-item"><span class="color-box" style="background:#ef4444"></span> High Priority (Critical)</div>';
+            div.innerHTML += '<div class="legend-item"><span class="color-box" style="background:#f59e0b"></span> Medium Priority (Injured)</div>';
+            div.innerHTML += '<div class="legend-item"><span class="color-box" style="background:#10b981"></span> Low Priority (Healthy)</div>';
+            return div;
+        };
+        legend.addTo(map);
+    </script>
+</body>
+
+</html>
