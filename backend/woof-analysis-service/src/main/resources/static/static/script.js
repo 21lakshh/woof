@@ -277,8 +277,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Update status: uploading
             updateStatusTracker(statusTracker, 'uploading', 'Uploading data');
 
-            // Send directly to the upload_and_query endpoint
-            const response = await fetch('http://localhost:8080/api/v1/analyze', {
+            // Send directly to the upload_and_query endpoint via API gateway
+            const response = await fetch('http://localhost:8000/api/v1/analyze', {
                 method: 'POST',
                 body: formData
             });
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Now send it to our Adoption Service Database
             updateStatusTracker(statusTracker, 'processing', 'Saving report to Shelter Database');
-            
+
             try {
                 // Post to API gateway which routes to adoption service
                 const adoptionResponse = await fetch('http://localhost:8000/adoption/reports', {
@@ -338,8 +338,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         diseaseAnalysis: extractedCondition || "Awaiting further manual analysis"
                     })
                 });
-                
-                if(!adoptionResponse.ok) {
+
+                if (!adoptionResponse.ok) {
                     console.warn("Failed to save to adoption service database.");
                 } else {
                     console.log("Successfully saved to database.");
